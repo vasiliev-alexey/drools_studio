@@ -6,5 +6,8 @@ import org.springframework.data.repository.Repository;
 /**
  * Created by alexey on 25.11.16.
  */
-public interface ModelRepository extends Repository<Model , Long> {
+public interface ModelService {
+
+    Model Save(Model model);
+
 }

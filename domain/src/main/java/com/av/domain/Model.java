@@ -3,6 +3,7 @@ package com.av.domain;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by alexey on 22.11.16.
@@ -10,20 +11,46 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "MODEL")
-public class Model {
+@Table(name = "model")
+public class Model implements Serializable {
 
     @Id
     @GeneratedValue
-    private  long id;
+    @Column(name = "id")
+    private  Long id;
 
     @NotEmpty
     @Column(name = "code" , length = 50)
-    private String Code;
+    private String code;
 
     @NotEmpty
     @Column(name = "name" , length = 150)
-    private String Name;
+    private String name;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 
 

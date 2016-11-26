@@ -14,13 +14,13 @@
 
     <context:component-scan base-package="com.av"/>
     <context:annotation-config/>
-    <tx:annotation-driven  transaction-manager="txManager"/>
+    <!--tx:annotation-driven transaction-manager="txManager"/-->
     <context:property-placeholder location="classpath:db.properties"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="url"   value="${sqlite.db.url}"/>
-        <property name="defaultAutoCommit" value="false"/>
-        <property name="driverClassName" value="org.sqlite.JDBC"/>
+        <property name="url" value="${db.url}"/>
+              <property name="driverClassName" value="${db.driver}"/>
+        <property name="defaultAutoCommit" value="true"></property>
     </bean>
 
     <bean id="template" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
@@ -29,10 +29,48 @@
 
     </bean>
 
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+               <property name="entityManagerFactory" ref="emf"></property>
 
-    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"></property>
     </bean>
-    <jpa:repositories base-package="com.av.repositories"></jpa:repositories>
 
+
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+
+    <!--bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean-->
+
+    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+        </property>
+        <property name="packagesToScan" value="com.av.domain">
+
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">
+                    com.enigmabridge.hibernate.dialect.SQLiteDialect
+                </prop>
+
+                <prop key="hibernate.max_fetch_depth">3</prop>
+                <prop key="hibernate.jdbc.fetch_size">50</prop>
+                <prop key="hibernate.jdbc.batch_size">50</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+
+        </property>
+
+    </bean>
+
+
+    <jpa:repositories base-package="com.av.repositories"
+                      transaction-manager-ref="transactionManager"
+                      entity-manager-factory-ref="emf"></jpa:repositories>
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.av.repositories"></context:component-scan>
 </beans>
