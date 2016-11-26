@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * Created by alexey on 26.11.16.
+ * Created by Vasiliev.Alexey on 26.11.16.
  */
 
 @Service(value = "modelService")
@@ -27,11 +27,10 @@ public class ModelServiceImpl implements ModelService {
     public Model Save(Model model) {
 
 
-           emf.persist(model);
+        emf.persist(model);
 
-       // emf.getTransaction().commit();
+        // emf.getTransaction().commit();
         return model;
-
 
 
     }

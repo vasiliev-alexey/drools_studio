@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by alexey on 22.11.16.
@@ -17,15 +18,20 @@ public class Model implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private  Long id;
+    private Long id;
 
     @NotEmpty
-    @Column(name = "code" , length = 50)
+    @Column(name = "code", length = 50)
     private String code;
 
     @NotEmpty
-    @Column(name = "name" , length = 150)
+    @Column(name = "name", length = 150)
     private String name;
+
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "model_id")
+    private List<ModelAttrGroup> modelAttrGroups;
 
 
     public Long getId() {
@@ -53,5 +59,11 @@ public class Model implements Serializable {
     }
 
 
+    public List<ModelAttrGroup> getModelAttrGroups() {
+        return modelAttrGroups;
+    }
 
+    public void setModelAttrGroups(List<ModelAttrGroup> modelAttrGroups) {
+        this.modelAttrGroups = modelAttrGroups;
+    }
 }

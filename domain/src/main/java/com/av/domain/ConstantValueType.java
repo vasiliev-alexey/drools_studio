@@ -5,6 +5,6 @@ package com.av.domain;
  */
 public enum ConstantValueType {
 
-    Date,String,Double
+    Date, String, Double
 
 }

@@ -1,7 +1,7 @@
 package com.av.domain;
 
 /**
- * Created by alexey on 22.11.16.
+ * Created by Vasiliev.Alexey on 22.11.16.
  */
 public class AbstractCondition {
 

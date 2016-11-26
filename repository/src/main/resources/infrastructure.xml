@@ -19,7 +19,7 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="url" value="${db.url}"/>
-              <property name="driverClassName" value="${db.driver}"/>
+        <property name="driverClassName" value="${db.driver}"/>
         <property name="defaultAutoCommit" value="true"></property>
     </bean>
 
@@ -30,7 +30,7 @@
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-               <property name="entityManagerFactory" ref="emf"></property>
+        <property name="entityManagerFactory" ref="emf"></property>
 
     </bean>
 
