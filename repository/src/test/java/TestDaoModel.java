@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @ContextConfiguration(locations = {"classpath:infrastructure.xml"})
-public class TestDao {
+public class TestDaoModel {
 
 
     @Autowired

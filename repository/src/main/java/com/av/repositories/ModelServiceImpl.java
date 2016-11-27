@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
 
 @Service(value = "modelService")
 @Repository
-//@Transactional
+@Transactional
 public class ModelServiceImpl implements ModelService {
 
     @PersistenceContext
@@ -23,13 +23,15 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
 
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+
     public Model Save(Model model) {
 
 
-        emf.persist(model);
-
-        // emf.getTransaction().commit();
+        if(model.getId() == null) {
+            emf.persist(model);
+        } else  {
+            emf.merge(model);
+        }
         return model;
 
 
