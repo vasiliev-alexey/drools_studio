@@ -1,6 +1,9 @@
 package com.av.repositories;
 
 import com.av.domain.AbstractCondition;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,6 +11,9 @@ import javax.persistence.PersistenceContext;
 /**
  * Created by Vasiliev.Alexey on 27.11.16.
  */
+@Service(value = "conditionService")
+@Repository
+@Transactional
 public class ConditionServiceImpl implements ConditionService {
     @PersistenceContext
     private EntityManager emf;

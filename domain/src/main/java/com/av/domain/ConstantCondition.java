@@ -1,32 +1,40 @@
 package com.av.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 /**
  * Created by Vasiliev.Alexey on 22.11.16.
  */
 @Entity
-@Table(name = "video_releases")
-@DiscriminatorValue("CONSTANT")
+@Table(name = "constant_condition")
+//@DiscriminatorValue("CONSTANT")
+@PrimaryKeyJoinColumn(name="id")
 public class ConstantCondition extends AbstractCondition {
 
 @Column(name = "double_value")
-    private double DoubleValue;
+    private Double DoubleValue;
     @Column(name = "string_value")
     private String StringValue;
     @Column(name = "date_value")
     private LocalDate DateValue;
-    @Column
+    @Column(name = "constant_value_type")
+    @NotNull
     @Enumerated(EnumType.STRING)
     private ConstantValueType valueType;
 
 
-    public double getDoubleValue() {
+    public ConstantCondition() {
+        super();
+        super.setConditionType(ConditionType.CONSTANT);
+    }
+
+    public Double getDoubleValue() {
         return DoubleValue;
     }
 
-    public void setDoubleValue(double doubleValue) {
+    public void setDoubleValue(Double doubleValue) {
         DoubleValue = doubleValue;
     }
 
@@ -71,13 +79,11 @@ public class ConstantCondition extends AbstractCondition {
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(getDoubleValue());
-        result = (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (getStringValue() != null ? getStringValue().hashCode() : 0);
-        result = 31 * result + (getDateValue() != null ? getDateValue().hashCode() : 0);
-        result = 31 * result + getValueType().hashCode();
+        int result = super.hashCode();
+        result = 31 * result + (DoubleValue != null ? DoubleValue.hashCode() : 0);
+        result = 31 * result + (StringValue != null ? StringValue.hashCode() : 0);
+        result = 31 * result + (DateValue != null ? DateValue.hashCode() : 0);
+        result = 31 * result + valueType.hashCode();
         return result;
     }
 }

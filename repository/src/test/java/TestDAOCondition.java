@@ -1,4 +1,11 @@
+import com.av.domain.ConstantCondition;
+import com.av.domain.ConstantValueType;
+import com.av.repositories.ConditionService;
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -11,7 +18,26 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = {"classpath:infrastructure.xml"})
 public class TestDAOCondition {
 
+    @Autowired
+    @Qualifier("conditionService")
+    private ConditionService  conditionService;
 
+
+    @Test
+    public void ConstantConditionShouldBeSave() {
+
+
+        ConstantCondition constantCondition = new ConstantCondition();
+        constantCondition.setCode("code1");
+        constantCondition.setName("Name1");
+        constantCondition.setValueType(ConstantValueType.String);
+        constantCondition.setStringValue("simple 1");
+
+
+        conditionService.Save(constantCondition);
+        Assert.assertNotNull("Объект долженг быть сохранен" , constantCondition.getId() );
+
+    }
 
 
 

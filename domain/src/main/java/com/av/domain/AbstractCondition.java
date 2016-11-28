@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "abstract_condition")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "condition_type")
+//@DiscriminatorColumn(name = "condition_type")
 public abstract class AbstractCondition {
 
 
@@ -72,22 +72,23 @@ public abstract class AbstractCondition {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AbstractCondition)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         AbstractCondition that = (AbstractCondition) o;
 
-        if (!getId().equals(that.getId())) return false;
-        if (!getCode().equals(that.getCode())) return false;
-        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) return false;
-        return getConditionType() == that.getConditionType();
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (code != null ? !code.equals(that.code) : that.code != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        return conditionType == that.conditionType;
+
     }
 
     @Override
     public int hashCode() {
-        int result = getId().hashCode();
-        result = 31 * result + getCode().hashCode();
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + getConditionType().hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (code != null ? code.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + conditionType.hashCode();
         return result;
     }
 }
