@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 /**
  * Created by Vasiliev.Alexey on 27.11.16.
  */
-@Service(value = "conditionService")
+//@Service(value = "conditionService")
 @Repository
 @Transactional
 public class ConditionServiceImpl implements ConditionService {

@@ -14,7 +14,7 @@
 
     <context:component-scan base-package="com.av"/>
     <context:annotation-config/>
-    <!--tx:annotation-driven transaction-manager="txManager"/-->
+
     <context:property-placeholder location="classpath:db.properties"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -37,9 +37,6 @@
 
     <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
 
-    <!--bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"></property>
-    </bean-->
 
     <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
@@ -73,4 +70,7 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="com.av.repositories"></context:component-scan>
+
+    <bean name="conditionService" class="com.av.repositories.ConditionServiceImpl"></bean>
+
 </beans>

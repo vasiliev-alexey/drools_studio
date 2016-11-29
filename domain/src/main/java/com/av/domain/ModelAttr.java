@@ -20,7 +20,6 @@ public class ModelAttr {
     @Column(name = "name")
     private String name;
 
-
     @ManyToOne
     @JoinColumn(name = "attr_group_id")
     private ModelAttrGroup modelAttrGroup;

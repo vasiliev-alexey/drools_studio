@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
  * Created by Vasiliev.Alexey on 26.11.16.
  */
 
-@Service(value = "modelService")
+
 @Repository
 @Transactional
 public class ModelServiceImpl implements ModelService {

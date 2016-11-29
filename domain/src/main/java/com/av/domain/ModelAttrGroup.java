@@ -20,11 +20,15 @@ public class ModelAttrGroup {
     @Column(name = "name")
     private String name;
 
+    @Column (name = "group_type")
+    @Enumerated(EnumType.STRING)
+    private GroupType groupType;
+
+
     @ManyToOne
     private Model model;
 
     @OneToMany(mappedBy = "modelAttrGroup", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    // @JoinColumn(name="attr_group_id")
     private List<ModelAttr> modelAttrList;
 
     public Long getId() {
@@ -65,5 +69,39 @@ public class ModelAttrGroup {
 
     public void setModelAttrList(List<ModelAttr> modelAttrList) {
         this.modelAttrList = modelAttrList;
+    }
+
+    public GroupType getGroupType() {
+        return groupType;
+    }
+
+    public void setGroupType(GroupType groupType) {
+        this.groupType = groupType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ModelAttrGroup)) return false;
+
+        ModelAttrGroup that = (ModelAttrGroup) o;
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        if (!getCode().equals(that.getCode())) return false;
+        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) return false;
+        if (getGroupType() != that.getGroupType()) return false;
+        if (getModel() != null ? !getModel().equals(that.getModel()) : that.getModel() != null) return false;
+        return getModelAttrList() != null ? getModelAttrList().equals(that.getModelAttrList()) : that.getModelAttrList() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + getCode().hashCode();
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + getGroupType().hashCode();
+        result = 31 * result + (getModel() != null ? getModel().hashCode() : 0);
+        result = 31 * result + (getModelAttrList() != null ? getModelAttrList().hashCode() : 0);
+        return result;
     }
 }

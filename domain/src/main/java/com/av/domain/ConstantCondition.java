@@ -1,23 +1,23 @@
 package com.av.domain;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDate;
 
 /**
  * Created by Vasiliev.Alexey on 22.11.16.
  */
 @Entity
 @Table(name = "constant_condition")
-//@DiscriminatorValue("CONSTANT")
-@PrimaryKeyJoinColumn(name="id")
+@PrimaryKeyJoinColumn(name = "id")
 public class ConstantCondition extends AbstractCondition {
 
-@Column(name = "double_value")
+    @Column(name = "double_value")
     private Double DoubleValue;
     @Column(name = "string_value")
     private String StringValue;
     @Column(name = "date_value")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateAsString")
     private LocalDate DateValue;
     @Column(name = "constant_value_type")
     @NotNull

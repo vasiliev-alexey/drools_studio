@@ -1,3 +1,4 @@
+import com.av.domain.GroupType;
 import com.av.domain.Model;
 import com.av.domain.ModelAttr;
 import com.av.domain.ModelAttrGroup;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-@ContextConfiguration(locations = {"classpath:infrastructure.xml"})
+@ContextConfiguration(locations = {"classpath:repository-beans.xml"})
 public class TestDaoModel {
 
 
@@ -40,6 +41,7 @@ public class TestDaoModel {
         ModelAttrGroup attrGroup = new ModelAttrGroup();
         attrGroup.setCode("mag_code_1");
         attrGroup.setName("mag_name_1");
+        attrGroup.setGroupType(GroupType.HEADER);
         m.setModelAttrGroups(new ArrayList<>());
         m.getModelAttrGroups().add(attrGroup);
         attrGroup.setModel(m);
