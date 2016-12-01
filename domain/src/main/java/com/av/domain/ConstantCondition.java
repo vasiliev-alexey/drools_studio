@@ -22,7 +22,7 @@ public class ConstantCondition extends AbstractCondition {
     @Column(name = "constant_value_type")
     @NotNull
     @Enumerated(EnumType.STRING)
-    private ConstantValueType valueType;
+    private StandardValueType valueType;
 
 
     public ConstantCondition() {
@@ -54,11 +54,11 @@ public class ConstantCondition extends AbstractCondition {
         DateValue = dateValue;
     }
 
-    public ConstantValueType getValueType() {
+    public StandardValueType getValueType() {
         return valueType;
     }
 
-    public void setValueType(ConstantValueType valueType) {
+    public void setValueType(StandardValueType valueType) {
         this.valueType = valueType;
     }
 

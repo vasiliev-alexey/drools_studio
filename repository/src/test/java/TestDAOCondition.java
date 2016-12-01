@@ -1,5 +1,5 @@
 import com.av.domain.ConstantCondition;
-import com.av.domain.ConstantValueType;
+import com.av.domain.StandardValueType;
 import com.av.repositories.ConditionService;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
@@ -7,9 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -37,7 +34,7 @@ public class TestDAOCondition {
         ConstantCondition constantCondition = new ConstantCondition();
         constantCondition.setCode("code1");
         constantCondition.setName("Name1");
-        constantCondition.setValueType(ConstantValueType.String);
+        constantCondition.setValueType(StandardValueType.String);
         constantCondition.setStringValue("simple 1");
 
 
@@ -50,7 +47,7 @@ public class TestDAOCondition {
         ConstantCondition constantCondition = new ConstantCondition();
         constantCondition.setCode("code_date1");
         constantCondition.setName("Name_DATE_1");
-        constantCondition.setValueType(ConstantValueType.Date);
+        constantCondition.setValueType(StandardValueType.Date);
         constantCondition.setDateValue(LocalDate.now());
 
         conditionService.Save(constantCondition);
@@ -63,7 +60,7 @@ public class TestDAOCondition {
         ConstantCondition constantCondition = new ConstantCondition();
         constantCondition.setCode("code_double1");
         constantCondition.setName("Name_Double_1");
-        constantCondition.setValueType(ConstantValueType.Double);
+        constantCondition.setValueType(StandardValueType.Double);
         constantCondition.setDoubleValue(1D);
 
         conditionService.Save(constantCondition);
