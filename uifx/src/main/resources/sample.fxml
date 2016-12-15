@@ -6,13 +6,22 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Окно 1" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane animated="false" maxHeight="-Infinity" fx:controller="com.av.ui.controlers.Sample" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Окно 1"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <content>
         <AnchorPane>
-         <children>
-            <Button layoutX="88.0" layoutY="58.0" mnemonicParsing="false" text="Кнопка" />
-            <ComboBox layoutX="190.0" layoutY="91.0" prefWidth="150.0" />
-            <DatePicker layoutX="46.0" layoutY="187.0" />
-         </children></AnchorPane>
+            <children>
+                <Button layoutX="357.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#on_Mouse_Click"
+                        text="Кнопка"/>
+                <ComboBox layoutX="350.0" layoutY="120.0" prefWidth="150.0"/>
+                <DatePicker layoutX="337.0" layoutY="170.0"/>
+                <ScrollPane layoutX="14.0" layoutY="20.0" prefViewportHeight="296.0" prefViewportWidth="210.0">
+                    <content>
+                        <TreeView layoutX="14.0" layoutY="20.0" prefHeight="296.0" prefWidth="210.0"/>
+                    </content>
+                </ScrollPane>
+            </children>
+        </AnchorPane>
     </content>
 </TitledPane>
