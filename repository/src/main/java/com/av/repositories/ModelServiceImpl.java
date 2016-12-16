@@ -16,7 +16,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
- * Created by Vasiliev.Alexey on 26.11.16.
+ * Created by vasiliev-alexey on 26.11.16.
  */
 
 
@@ -44,6 +44,7 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ObservableList<Model> getAll() {
 
         CriteriaBuilder cb = emf.getCriteriaBuilder();
