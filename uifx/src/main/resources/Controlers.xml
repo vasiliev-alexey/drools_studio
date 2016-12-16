@@ -8,6 +8,6 @@
     <bean name="mainController"  class="com.av.ui.controlers.MainController"></bean>
 
 
-    <import resource="infrastructure.xml"></import>
+
 
 </beans>
