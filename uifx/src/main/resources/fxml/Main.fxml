@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="1084.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controlers.MainController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Файл">
+            <items>
+                <MenuItem fx:id="menuBtnExit" mnemonicParsing="false" onAction="#onExitClick" text="Выход" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Сервис">
+            <items>
+                <!--MenuItem mnemonicParsing="false" text="Delete" /-->
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="О программе">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+       <SplitPane dividerPositions="0.15" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0">
+               <children>
+                  <TreeView fx:id="mainTree" layoutY="14.0" maxWidth="200.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
+            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+              <items>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutY="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <TitledPane alignment="BASELINE_LEFT" animated="true" text="Действия" textAlignment="CENTER">
+                                <content>
+                                    <AnchorPane prefWidth="32.0">
+                                       <children>
+                                           <MenuBar layoutX="-7.6" layoutY="21.4" maxHeight="-Infinity" prefHeight="32.0" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-10.0" AnchorPane.topAnchor="-10.0">
+                                            <menus>
+                                                <Menu mnemonicParsing="false">
+                                                   <graphic>
+                                                       <MenuButton id="insMenuButton" fx:id="menuBtAdd" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#btnAddClicked" prefHeight="32.0" prefWidth="41.0" style="-fx-background-image: url('../icons/add.png');                                                                    -fx-background-repeat: space;                                                                    -fx-arrows-visible: false;                                                                    -fx-collapsible: false;">
+                                                       </MenuButton>
+
+                                                   </graphic>
+                                              </Menu>
+
+                                                <Menu mnemonicParsing="false">
+                                                    <graphic>
+
+                                                        <MenuButton id="editMenuButton" fx:id="menuBtnEdit" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="32.0" prefWidth="41.0" style="-fx-background-image: url('../icons/edit.png');                                                                    -fx-background-repeat: space;                                                                    -fx-arrows-visible: false;                                                                    -fx-collapsible: false;">
+
+                                                        </MenuButton>
+                                                    </graphic>
+                                                </Menu>
+
+                                                <!--Menu mnemonicParsing="false" text="Копировать" /-->
+                                            </menus>
+                                          </MenuBar>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+              </items>
+            </SplitPane>
+        </items>
+      </SplitPane>
+   </center>
+   <bottom>
+      <Pane prefHeight="23.0" prefWidth="1084.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

@@ -6,25 +6,33 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 
 public class MainApp extends Application {
 
     public static void main(String[] args) {
+
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext("classpath*:repository-beans.xml");
+
         launch(args);
+
+
     }
 
     @Override
     public void start(Stage primaryStage) {
         // Stage - это контейнер, ассоциированный с окном
 
-        // Если вы загляните в файл sample.fxml, то у видете в нем XML объявление элемента GridPane, т.е. табличного контейнера
         // Этот контейнер мы будем считать корневым, т.е. все элементы нашего приложения будут содержаться в нем
         Parent root = null;
         try {
-            root = FXMLLoader.load(MainApp.class.getClassLoader().getResource("sample.fxml"));
+            root = FXMLLoader.load(MainApp.class.getClassLoader().getResource("fxml/Main.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,8 +40,14 @@ public class MainApp extends Application {
 
 
         // создаем сцену с заданными шириной и высотой и содержащую наш корневым контейнером, и связываем ее с окном
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root));
 
+        Screen screen = Screen.getPrimary();
+        primaryStage.setHeight(screen.getBounds().getHeight());
+        primaryStage.setWidth(screen.getBounds().getWidth());
+
+
+        primaryStage.setTitle("Струдия настройки бизнес правил учета");
         primaryStage.show(); // запускаем окно
     }
 

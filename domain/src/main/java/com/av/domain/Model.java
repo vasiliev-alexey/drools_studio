@@ -1,5 +1,6 @@
 package com.av.domain;
 
+import com.av.domain.ifaces.INodeable;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "model")
-public class Model implements Serializable {
+public class Model implements Serializable  , INodeable {
 
     @Id
     @GeneratedValue
@@ -65,5 +66,10 @@ public class Model implements Serializable {
 
     public void setModelAttrGroups(List<ModelAttrGroup> modelAttrGroups) {
         this.modelAttrGroups = modelAttrGroups;
+    }
+
+    @Override
+    public String getNodelLable() {
+        return new StringBuilder().append(code).append(" ").append(name).toString();
     }
 }
