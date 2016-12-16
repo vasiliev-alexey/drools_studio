@@ -30,7 +30,7 @@ public class Model implements Serializable  , INodeable {
     private String name;
 
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "model_id")
     private List<ModelAttrGroup> modelAttrGroups;
 
@@ -69,7 +69,7 @@ public class Model implements Serializable  , INodeable {
     }
 
     @Override
-    public String getNodelLable() {
+    public String getNodelLabel() {
         return new StringBuilder().append(code).append(" ").append(name).toString();
     }
 }

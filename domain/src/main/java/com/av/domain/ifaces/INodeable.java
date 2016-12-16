@@ -5,6 +5,6 @@ package com.av.domain.ifaces;
  */
 public interface INodeable {
 
-    String getNodelLable();
+    String getNodelLabel();
 
 }

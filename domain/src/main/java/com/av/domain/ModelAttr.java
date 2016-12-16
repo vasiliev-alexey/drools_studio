@@ -4,7 +4,7 @@ import javax.jws.WebParam;
 import javax.persistence.*;
 
 /**
- * Created by alexey on 22.11.16.
+ * Created by Vasiliev.Alexey on 22.11.16.
  */
 @Entity
 @Table(name = "model_attr")
@@ -20,7 +20,7 @@ public class ModelAttr {
     @Column(name = "name")
     private String name;
 
-    @Column
+    @Column(name ="value_type")
     private StandardValueType  attrValueType;
 
     @ManyToOne

@@ -28,7 +28,7 @@ public class ModelAttrGroup {
     @ManyToOne
     private Model model;
 
-    @OneToMany(mappedBy = "modelAttrGroup", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "modelAttrGroup", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<ModelAttr> modelAttrList;
 
     public Long getId() {
