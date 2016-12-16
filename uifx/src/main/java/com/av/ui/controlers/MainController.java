@@ -8,19 +8,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.net.URL;
@@ -31,15 +27,12 @@ import java.util.ResourceBundle;
  */
 
 
-public class MainController implements Initializable {
+public class MainController implements Initializable, Controller {
+    private Node view;
 
 
-    public MainController() {
-        System.out.println("new");
-    }
-
-    private         TreeItem root = new TreeItem<>();
-private  TreeItem model = new TreeItem<>("Модели");
+    private TreeItem root = new TreeItem<>();
+    private TreeItem model = new TreeItem<>("Модели");
 
     @FXML
     private BorderPane mainPane;
@@ -57,16 +50,9 @@ private  TreeItem model = new TreeItem<>("Модели");
 
     }
 
-@Autowired (required = true)
-
+    @Autowired()
     ModelService modelService;
 
-
-    private void press(KeyEvent keyEvent) {
-
-        System.out.printf("бумс");
-
-    }
 
     public void onExitClick(ActionEvent actionEvent) {
 
@@ -90,7 +76,7 @@ private  TreeItem model = new TreeItem<>("Модели");
                             setText(null);
                         } else if (item != null) {
                             if (item instanceof INodeable) {
-                                setText(((INodeable) item).getNodelLable());
+                                setText(((INodeable) item).getNodelLabel());
                             } else setText(item.toString());
                         }
                     }
@@ -99,33 +85,33 @@ private  TreeItem model = new TreeItem<>("Модели");
             }
         });
 
-        init();
-
-        mainTree.setRoot(root);
-        mainTree.setShowRoot(true);
-    }
-
-    @PostConstruct
-    //Контролер запускается 2 раза - надо думать
-    public void init() {
         ObservableList<Model> models = modelService.getAll();
 
-        models.forEach( m ->  {
-
+        models.forEach(m -> {
             TreeItem<Model> modelTreeItem = new TreeItem<>(m);
-
             model.getChildren().addAll(modelTreeItem);
-
         });
 
 
         root.getChildren().addAll(model);
 
+        mainTree.setRoot(root);
+        mainTree.setShowRoot(false);
+    }
 
+    @PostConstruct
+    public void init() {
 
 
     }
 
+    public Node getView() {
+        return view;
+    }
+
+    public void setView(Node view) {
+        this.view = view;
+    }
 
     public void btnAddClicked(MouseEvent mouseEvent) {
         System.out.println("add new record");

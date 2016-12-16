@@ -47,7 +47,7 @@
                                             <menus>
                                                 <Menu mnemonicParsing="false">
                                                    <graphic>
-                                                       <MenuButton id="insMenuButton" fx:id="menuBtAdd" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#btnAddClicked" prefHeight="32.0" prefWidth="41.0" style="-fx-background-image: url('../icons/add.png');                                                                    -fx-background-repeat: space;                                                                    -fx-arrows-visible: false;                                                                    -fx-collapsible: false;">
+                                                       <MenuButton id="insMenuButton" fx:id="menuBtAdd" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#btnAddClicked" prefHeight="32.0" prefWidth="41.0" style="-fx-background-image: url('./icons/add.png');                                                                    -fx-background-repeat: space;                                                                    -fx-arrows-visible: false;                                                                    -fx-collapsible: false;">
                                                        </MenuButton>
 
                                                    </graphic>
@@ -56,7 +56,7 @@
                                                 <Menu mnemonicParsing="false">
                                                     <graphic>
 
-                                                        <MenuButton id="editMenuButton" fx:id="menuBtnEdit" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="32.0" prefWidth="41.0" style="-fx-background-image: url('../icons/edit.png');                                                                    -fx-background-repeat: space;                                                                    -fx-arrows-visible: false;                                                                    -fx-collapsible: false;">
+                                                        <MenuButton id="editMenuButton" fx:id="menuBtnEdit" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="32.0" prefWidth="41.0" style="-fx-background-image: url('./icons/edit.png');                                                                    -fx-background-repeat: space;                                                                    -fx-arrows-visible: false;                                                                    -fx-collapsible: false;">
 
                                                         </MenuButton>
                                                     </graphic>
