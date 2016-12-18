@@ -3,9 +3,11 @@ package com.av.ui.controlers;
 import com.av.domain.Model;
 import com.av.domain.ifaces.INodeable;
 import com.av.repositories.ModelService;
+import com.av.ui.treeitems.ModelTreeItem;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -32,7 +34,8 @@ public class MainController implements Initializable, Controller {
 
 
     private TreeItem root = new TreeItem<>();
-    private TreeItem model = new TreeItem<>("Модели");
+   // private TreeItem model = new TreeItem<>("Модели");
+   ModelTreeItem modelTreeItem = new ModelTreeItem();
 
     @FXML
     private BorderPane mainPane;
@@ -60,43 +63,23 @@ public class MainController implements Initializable, Controller {
 
     }
 
+    /**
+     * Метод заполняет дерево в навигационной пенели
+     *
+     */
     private void initTree() {
 
 
-        mainTree.setCellFactory(new Callback<TreeView, TreeCell>() {
-            @Override
-            public TreeCell call(TreeView param) {
+        mainTree.setCellFactory(new MainTreeCellFactory());
 
-                TreeCell treeCell = new TreeCell() {
-                    @Override
-                    protected void updateItem(Object item, boolean empty) {
-                        super.updateItem(item, empty);
+        mainTree.setOnMouseClicked(new TreeModelEvent());
 
-                        if (empty) {
-                            setText(null);
-                        } else if (item != null) {
-                            if (item instanceof INodeable) {
-                                setText(((INodeable) item).getNodelLabel());
-                            } else setText(item.toString());
-                        }
-                    }
-                };
-                return treeCell;
-            }
-        });
-
-        ObservableList<Model> models = modelService.getAll();
-
-        models.forEach(m -> {
-            TreeItem<Model> modelTreeItem = new TreeItem<>(m);
-            model.getChildren().addAll(modelTreeItem);
-        });
-
-
-        root.getChildren().addAll(model);
+        root.getChildren().addAll(modelTreeItem);
 
         mainTree.setRoot(root);
         mainTree.setShowRoot(false);
+
+
     }
 
     @PostConstruct
