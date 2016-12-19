@@ -2,18 +2,15 @@ package com.av.ui;/**
  * Created by alexey on 02.12.16.
  */
 
-import com.av.ui.controlers.MainController;
+import com.av.ui.controllers.MainController;
 import com.av.ui.utils.SpringFXMLLoader;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.io.IOException;
 
 public class MainApp extends Application {
 

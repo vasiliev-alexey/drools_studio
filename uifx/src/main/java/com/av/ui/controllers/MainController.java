@@ -1,23 +1,18 @@
-package com.av.ui.controlers;
+package com.av.ui.controllers;
 
-import com.av.domain.Model;
-import com.av.domain.ifaces.INodeable;
 import com.av.repositories.ModelService;
 import com.av.ui.treeitems.ModelTreeItem;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -45,6 +40,11 @@ public class MainController implements Initializable, Controller {
 
     @FXML
     private TreeView mainTree;
+    @FXML
+    private AnchorPane topPanel;
+
+    @FXML
+    private AnchorPane actionPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,7 +72,7 @@ public class MainController implements Initializable, Controller {
 
         mainTree.setCellFactory(new MainTreeCellFactory());
 
-        mainTree.setOnMouseClicked(new TreeModelEvent());
+        mainTree.setOnMouseClicked(new TreeModelEvent(actionPane , topPanel));
 
         root.getChildren().addAll(modelTreeItem);
 

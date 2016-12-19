@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?language javascript?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<TableView fx:id="tableModels" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.av.ui.controllers.ModelTableViewController">
+    <columns>
+        <TableColumn fx:id="codeColumn" minWidth="250.0" prefWidth="-1.0" text="Код"/>
+        <TableColumn fx:id="nameColumn" minWidth="250.0" prefWidth="-1.0" text="Наименование"/>
+    </columns>
+    <placeholder>
+        <Label text="Нет данных"/>
+    </placeholder>
+</TableView>

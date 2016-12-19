@@ -1,12 +1,11 @@
 package com.av.ui.utils;
 
-import com.av.ui.controlers.Controller;
+import com.av.ui.controllers.Controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.util.Callback;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;

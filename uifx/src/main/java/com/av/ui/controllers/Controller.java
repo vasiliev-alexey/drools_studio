@@ -1,4 +1,4 @@
-package com.av.ui.controlers;
+package com.av.ui.controllers;
 
 import javafx.scene.Node;
 
