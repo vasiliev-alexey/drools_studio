@@ -1,4 +1,4 @@
-package com.av.ui.controllers;
+package com.av.ui.factories;
 
 import com.av.domain.ifaces.INodeable;
 import javafx.scene.control.TreeCell;

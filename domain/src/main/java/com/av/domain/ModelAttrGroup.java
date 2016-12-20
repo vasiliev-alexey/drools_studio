@@ -104,4 +104,16 @@ public class ModelAttrGroup {
         result = 31 * result + (getModelAttrList() != null ? getModelAttrList().hashCode() : 0);
         return result;
     }
+
+
+    @Override
+    public String toString() {
+        return "ModelAttrGroup{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", groupType=" + groupType +
+                ", modelAttrList=" + modelAttrList +
+                '}';
+    }
 }

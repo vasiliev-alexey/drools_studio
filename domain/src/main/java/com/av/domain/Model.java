@@ -72,4 +72,15 @@ public class Model implements Serializable  , INodeable {
     public String getNodelLabel() {
         return new StringBuilder().append(code).append(" ").append(name).toString();
     }
+
+
+    @Override
+    public String toString() {
+        return "Model{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", modelAttrGroups=" + modelAttrGroups +
+                '}';
+    }
 }

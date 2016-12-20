@@ -1,6 +1,5 @@
 package com.av.ui.controllers;
 
-import com.av.ui.treeitems.ModelTreeItem;
 import com.av.ui.utils.SpringFXMLLoader;
 import javafx.event.EventHandler;
 import javafx.scene.control.TableView;
@@ -17,32 +16,50 @@ public class TreeModelEvent implements EventHandler<MouseEvent> {
 
     private Pane topPanel;
     private Pane actionPane;
+    private Pane bottomPane;
 
-    public TreeModelEvent(Pane actionPane, Pane topPanel) {
+    public TreeModelEvent(Pane actionPane, Pane topPanel, AnchorPane bottomPane) {
         super();
         this.topPanel = topPanel;
         this.actionPane = actionPane;
+        this.bottomPane = bottomPane;
     }
 
     @Override
     public void handle(MouseEvent event) {
+
+
         TreeView a = (TreeView) event.getSource();
-        ModelTreeItem s = (ModelTreeItem) a.getSelectionModel().getSelectedItem();
 
-        topPanel.getChildren().removeAll();
+        a.disableProperty().setValue(true);
+        try {
+/**/
 
-        ModelTableViewController controller = (ModelTableViewController) SpringFXMLLoader.load("/fxml/ModelTableView.fxml");
-        TableView root = (TableView) controller.getView();
-        root.setPrefWidth(-1.0);
-        AnchorPane.setLeftAnchor(root, 0.0);
-        AnchorPane.setRightAnchor(root, 0.0);
-        AnchorPane.setBottomAnchor(root, 0.0);
-        AnchorPane.setTopAnchor(root, 0.0);
-        topPanel.getChildren().addAll(root);
-        ActionPanelController actionPanelController = (ActionPanelController) SpringFXMLLoader.load("/fxml/ActionPane.fxml");
+            topPanel.getChildren().removeAll();
 
-        HBox actionBox = (HBox) actionPanelController.getView();
-        actionPane.getChildren().addAll(actionBox);
+            ModelTableViewController controller = (ModelTableViewController) SpringFXMLLoader.load("/fxml/ModelTableView.fxml");
+            TableView tableView = (TableView) controller.getView();
+            tableView.setPrefWidth(-1.0);
+            AnchorPane.setLeftAnchor(tableView, 0.0);
+            AnchorPane.setRightAnchor(tableView, 0.0);
+            AnchorPane.setBottomAnchor(tableView, 0.0);
+            AnchorPane.setTopAnchor(tableView, 0.0);
+            topPanel.getChildren().addAll(tableView);
+            ActionPanelController actionPanelController = (ActionPanelController) SpringFXMLLoader.load("/fxml/ActionPane.fxml");
+
+            actionPanelController.setTableModel(((TableView) controller.getView()).getSelectionModel());
+
+            HBox actionBox = (HBox) actionPanelController.getView();
+            actionPane.getChildren().addAll(actionBox);
+        } finally {
+            a.disableProperty().setValue(false);
+            event.consume();
+
+        }
+
+
+
+
 
     }
 }

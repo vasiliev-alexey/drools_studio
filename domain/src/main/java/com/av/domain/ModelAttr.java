@@ -80,4 +80,15 @@ public class ModelAttr {
     public void setModelAttrGroup(ModelAttrGroup modelAttrGroup) {
         this.modelAttrGroup = modelAttrGroup;
     }
+
+
+    @Override
+    public String toString() {
+        return "ModelAttr{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", attrValueType=" + attrValueType +
+                '}';
+    }
 }

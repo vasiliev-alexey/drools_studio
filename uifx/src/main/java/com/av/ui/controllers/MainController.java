@@ -1,12 +1,12 @@
 package com.av.ui.controllers;
 
 import com.av.repositories.ModelService;
+import com.av.ui.factories.MainTreeCellFactory;
 import com.av.ui.treeitems.ModelTreeItem;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -24,10 +24,7 @@ import java.util.ResourceBundle;
  */
 
 
-public class MainController implements Initializable, Controller {
-    private Node view;
-
-
+public class MainController extends AbstractController implements Initializable {
     private TreeItem root = new TreeItem<>();
    // private TreeItem model = new TreeItem<>("Модели");
    ModelTreeItem modelTreeItem = new ModelTreeItem();
@@ -42,6 +39,9 @@ public class MainController implements Initializable, Controller {
     private TreeView mainTree;
     @FXML
     private AnchorPane topPanel;
+
+    @FXML
+    private AnchorPane bottomPane;
 
     @FXML
     private AnchorPane actionPane;
@@ -72,7 +72,7 @@ public class MainController implements Initializable, Controller {
 
         mainTree.setCellFactory(new MainTreeCellFactory());
 
-        mainTree.setOnMouseClicked(new TreeModelEvent(actionPane , topPanel));
+        mainTree.setOnMouseClicked(new TreeModelEvent(actionPane , topPanel  , bottomPane));
 
         root.getChildren().addAll(modelTreeItem);
 
@@ -88,13 +88,6 @@ public class MainController implements Initializable, Controller {
 
     }
 
-    public Node getView() {
-        return view;
-    }
-
-    public void setView(Node view) {
-        this.view = view;
-    }
 
     public void btnAddClicked(MouseEvent mouseEvent) {
         System.out.println("add new record");

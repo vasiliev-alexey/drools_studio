@@ -20,9 +20,9 @@ import java.util.ResourceBundle;
  * Created by vasiliev-alexey on 19.12.16.
  */
 
-public class ModelTableViewController implements Initializable, Controller {
+public class ModelTableViewController extends AbstractController implements Initializable {
 
-    private Node view;
+
 
     private ObservableList<Model> modelData = FXCollections.observableArrayList();
 
@@ -37,14 +37,6 @@ public class ModelTableViewController implements Initializable, Controller {
     @Autowired
     private ModelService modelService;
 
-
-    public Node getView() {
-        return view;
-    }
-
-    public void setView(Node view) {
-        this.view = view;
-    }
 
     @Override
     @FXML
