@@ -36,7 +36,7 @@ public class TestDaoModel {
         Model m = new Model();
         //m.setId(222L);
         m.setCode("code1");
-        m.setName("name1");
+        m.setModelName("name1");
 
         ModelAttrGroup attrGroup = new ModelAttrGroup();
         attrGroup.setCode("mag_code_1");

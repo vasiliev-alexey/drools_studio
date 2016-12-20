@@ -1,12 +1,15 @@
 package com.av.ui.controllers;
 
+import com.av.domain.Event;
 import com.av.repositories.ModelService;
 import com.av.ui.factories.MainTreeCellFactory;
+import com.av.ui.managers.ModelManager;
 import com.av.ui.treeitems.ModelTreeItem;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -46,6 +49,11 @@ public class MainController extends AbstractController implements Initializable 
     @FXML
     private AnchorPane actionPane;
 
+    @Autowired
+    private  TreeModelEvent modelEvent;
+    @Autowired
+    private ModelManager modelManager;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -72,19 +80,26 @@ public class MainController extends AbstractController implements Initializable 
 
         mainTree.setCellFactory(new MainTreeCellFactory());
 
-        mainTree.setOnMouseClicked(new TreeModelEvent(actionPane , topPanel  , bottomPane));
+        mainTree.setOnMouseClicked(modelEvent);
+        TreeItem<ModelManager> eventTreeItem = new TreeItem<ModelManager>();
 
-        root.getChildren().addAll(modelTreeItem);
+        eventTreeItem.setValue(modelManager);
+
+
+        root.getChildren().addAll(modelTreeItem  , eventTreeItem);
 
         mainTree.setRoot(root);
         mainTree.setShowRoot(false);
 
+        init();
 
     }
 
     @PostConstruct
     public void init() {
-
+        modelEvent.setActionPane(actionPane);
+        modelEvent.setBottomPane(bottomPane);
+        modelEvent.setTopPanel(topPanel);
 
     }
 
@@ -92,4 +107,4 @@ public class MainController extends AbstractController implements Initializable 
     public void btnAddClicked(MouseEvent mouseEvent) {
         System.out.println("add new record");
     }
-}
+}//

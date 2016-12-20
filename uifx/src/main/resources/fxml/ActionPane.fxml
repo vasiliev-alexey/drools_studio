@@ -7,11 +7,11 @@
       minWidth="-Infinity" prefHeight="32.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.ActionPanelController">
     <children>
-        <Button fx:id="addBtn" mnemonicParsing="false" onMouseClicked="#addItem" prefHeight="32.0" prefWidth="32.0"
+        <Button fx:id="addBtn" mnemonicParsing="false" onMousePressed="#addItem" prefHeight="32.0" prefWidth="32.0"
                 style="-fx-background-image: url('/icons/add.png');"/>
         <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                 mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0"
-                style="-fx-background-image: url('/icons/edit.png');" onMouseClicked="#editItem"/>
+                style="-fx-background-image: url('/icons/edit.png');" onMousePressed="#editItem"/>
     </children>
     <padding>
         <Insets left="5.0"/>

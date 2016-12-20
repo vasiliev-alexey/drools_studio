@@ -28,15 +28,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         // Stage - это контейнер, ассоциированный с окном
 
-        // Этот контейнер мы будем считать корневым, т.е. все элементы нашего приложения будут содержаться в нем
-       /*
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(MainApp.class.getClassLoader().getResource("fxml/Main.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-*/
+
         MainController controller = (MainController) SpringFXMLLoader.load("/fxml/Main.fxml");
         Scene root = new Scene((Parent) controller.getView(), 300, 275);
 

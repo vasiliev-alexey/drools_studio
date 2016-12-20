@@ -6,6 +6,8 @@
 
     <bean name="conditionService" class="com.av.repositories.ConditionServiceImpl"></bean>
     <bean name="modelService" class="com.av.repositories.ModelServiceImpl"></bean>
+<bean id="eventService" class="com.av.repositories.EventServiceImpl"></bean>
+
 
     <import resource="infrastructure.xml"></import>
 

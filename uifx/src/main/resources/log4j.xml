@@ -11,8 +11,15 @@
     </appender>
 
     <root>
-        <level value="Error"/>
+        <level value="Info"/>
         <appender-ref ref="console"/>
+
     </root>
+    <logger name="org.springframework">
+        <level value="off"/>
+    </logger>
+    <logger name="org.hibernate">
+        <level value="off"/>
+    </logger>
 
 </log4j:configuration>

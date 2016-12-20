@@ -2,6 +2,7 @@ package com.av.ui.controllers;
 
 import com.av.domain.Model;
 import com.av.repositories.ModelService;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,7 +44,9 @@ public class ModelTableViewController extends AbstractController implements Init
     public void initialize(URL location, ResourceBundle resources) {
 
         codeColumn.setCellValueFactory(new PropertyValueFactory<Model, String>("code"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Model, String>("name"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
+
+
 
         modelData = modelService.getAll();
         tableModels.setItems(modelData);

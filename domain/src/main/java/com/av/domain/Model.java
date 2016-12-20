@@ -1,6 +1,9 @@
 package com.av.domain;
 
-import com.av.domain.ifaces.INodeable;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -14,52 +17,74 @@ import java.util.List;
 
 @Entity
 @Table(name = "model")
-public class Model implements Serializable  , INodeable {
+public class Model implements Serializable {
+
+    private LongProperty id;
 
     @Id
-    @GeneratedValue
     @Column(name = "id")
-    private Long id;
+    public Long getId() {
+        return idProperty().get();
+    }
+
+    public LongProperty idProperty() {
+        if (id == null) id = new SimpleLongProperty(this, "id") ;
+        return id;
+    }
+
+
+    public void setId(Long id) {
+        idProperty().set(id);
+    }
+
+
 
     @NotEmpty
     @Column(name = "code", length = 50)
-    private String code;
+    public String getCode() {
+        return codeProperty().get();
+    }
+
+    public StringProperty codeProperty() {
+        if (code == null) code = new SimpleStringProperty(this, "code");
+        return code;
+
+    }
+
+    public void setCode(String code) {
+        codeProperty().set(code);
+    }
+
+    private StringProperty code;
+
+    private List<ModelAttrGroup> modelAttrGroups;
+
+
+    private StringProperty modelName;
 
     @NotEmpty
     @Column(name = "name", length = 150)
-    private String name;
+    public String getModelName() {
+        return modelNameProperty().get();
+    }
+
+    public StringProperty modelNameProperty() {
+        if (modelName == null) modelName = new SimpleStringProperty(this, "modelName");
+        return modelName;
+    }
+
+
+    public void setModelName(String modelName) {
+        modelNameProperty().set(modelName);
+    }
+
+
+
+
 
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "model_id")
-    private List<ModelAttrGroup> modelAttrGroups;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
     public List<ModelAttrGroup> getModelAttrGroups() {
         return modelAttrGroups;
     }
@@ -68,19 +93,15 @@ public class Model implements Serializable  , INodeable {
         this.modelAttrGroups = modelAttrGroups;
     }
 
-    @Override
-    public String getNodelLabel() {
-        return new StringBuilder().append(code).append(" ").append(name).toString();
-    }
-
 
     @Override
     public String toString() {
         return "Model{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                ", name='" + name + '\'' +
+                "id=" + id.getValue() +
+                ", code='" + code.getValue() + '\'' +
+                ", name='" + modelName.getValue() + '\'' +
                 ", modelAttrGroups=" + modelAttrGroups +
                 '}';
     }
+
 }
