@@ -1,9 +1,10 @@
 package com.av.ui.controllers;
 
-import com.av.domain.Event;
 import com.av.ui.managers.AbstractDataManager;
+import com.av.ui.managers.EventManager;
 import com.av.ui.managers.ModelManager;
 import com.av.ui.utils.SpringFXMLLoader;
+import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeItem;
@@ -32,35 +33,43 @@ public class TreeModelEvent implements EventHandler<MouseEvent> {
         topPanel.getChildren().clear();
 
 
+        ActionPanelController actionPanelController = null;
+        Controller controller = null;
+        TableView tableView = new TableView();
+
+
+
+
+
         TreeView a = (TreeView) event.getSource();
 
         a.disableProperty().setValue(true);
 
         TreeItem selectedItem =  (TreeItem) a.getSelectionModel().getSelectedItem();
+        actionPanelController = (ActionPanelController) SpringFXMLLoader.load("/fxml/ActionPane.fxml");
 
         try {
-/**/
-            if (selectedItem.getValue() instanceof ModelManager) {
-                topPanel.getChildren().removeAll();
 
-                Controller controller =   SpringFXMLLoader.load("/fxml/ModelTableView.fxml");
-                TableView tableView = (TableView) controller.getView();
-                tableView.setPrefWidth(-1.0);
-                AnchorPane.setLeftAnchor(tableView, 0.0);
-                AnchorPane.setRightAnchor(tableView, 0.0);
-                AnchorPane.setBottomAnchor(tableView, 0.0);
-                AnchorPane.setTopAnchor(tableView, 0.0);
-                topPanel.getChildren().addAll(tableView);
-                ActionPanelController actionPanelController = (ActionPanelController) SpringFXMLLoader.load("/fxml/ActionPane.fxml");
-                actionPanelController.setDataManager((AbstractDataManager) selectedItem.getValue());
+            controller = SpringFXMLLoader.load(((AbstractDataManager)selectedItem.getValue()).getViewName());
 
-                actionPanelController.setTableSelectionModel(((TableView) controller.getView()).getSelectionModel());
+            tableView = (TableView) controller.getView();
+            tableView.setPrefWidth(-1.0);
+            AnchorPane.setLeftAnchor(tableView, 0.0);
+            AnchorPane.setRightAnchor(tableView, 0.0);
+            AnchorPane.setBottomAnchor(tableView, -1d);
 
-                HBox actionBox = (HBox) actionPanelController.getView();
-                actionPane.getChildren().addAll(actionBox);
-            } else if (selectedItem instanceof TreeItem && ((TreeItem) selectedItem).getValue() instanceof Event) {
-                System.out.println("Логика для события");
-            }
+            tableView.setFixedCellSize(25);
+            tableView.prefHeightProperty().bind(Bindings.size(tableView.getItems()).multiply(tableView.getFixedCellSize()).add(30));
+
+            AnchorPane.setTopAnchor(tableView, 0.0);
+
+            topPanel.getChildren().addAll(tableView);
+            actionPanelController.setDataManager((AbstractDataManager) selectedItem.getValue());
+
+            actionPanelController.setTableSelectionModel(((TableView) controller.getView()).getSelectionModel());
+            HBox actionBox = (HBox) actionPanelController.getView();
+            actionPane.getChildren().addAll(actionBox);
+
         } finally {
             a.disableProperty().setValue(false);
             event.consume();

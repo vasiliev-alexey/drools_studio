@@ -3,6 +3,7 @@ package com.av.ui.controllers;
 import com.av.domain.Event;
 import com.av.repositories.ModelService;
 import com.av.ui.factories.MainTreeCellFactory;
+import com.av.ui.managers.EventManager;
 import com.av.ui.managers.ModelManager;
 import com.av.ui.treeitems.ModelTreeItem;
 import javafx.application.Platform;
@@ -30,7 +31,7 @@ import java.util.ResourceBundle;
 public class MainController extends AbstractController implements Initializable {
     private TreeItem root = new TreeItem<>();
    // private TreeItem model = new TreeItem<>("Модели");
-   ModelTreeItem modelTreeItem = new ModelTreeItem();
+ //  ModelTreeItem modelTreeItem = new ModelTreeItem();
 
     @FXML
     private BorderPane mainPane;
@@ -53,6 +54,9 @@ public class MainController extends AbstractController implements Initializable 
     private  TreeModelEvent modelEvent;
     @Autowired
     private ModelManager modelManager;
+
+    @Autowired
+    private EventManager eventManager;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -81,9 +85,12 @@ public class MainController extends AbstractController implements Initializable 
         mainTree.setCellFactory(new MainTreeCellFactory());
 
         mainTree.setOnMouseClicked(modelEvent);
-        TreeItem<ModelManager> eventTreeItem = new TreeItem<ModelManager>();
+        TreeItem<ModelManager> modelTreeItem = new TreeItem<ModelManager>();
+        modelTreeItem.setValue(modelManager);
 
-        eventTreeItem.setValue(modelManager);
+        TreeItem<EventManager> eventTreeItem = new TreeItem<>();
+        eventTreeItem.setValue(eventManager );
+
 
 
         root.getChildren().addAll(modelTreeItem  , eventTreeItem);

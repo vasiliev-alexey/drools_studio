@@ -13,6 +13,12 @@ public abstract class AbstractDataManager<T>  implements StandardAction<T>{
     protected TableSelectionModel<T>  tableSelectionModel;
 
 
+    protected String  viewName;
+
+
+
+
 
     public abstract String getLabel() ;
+    public abstract String getViewName();
 }

@@ -44,13 +44,13 @@ public class ActionPanelController extends  AbstractController implements Initia
 
     public void editItem(MouseEvent mouseEvent) {
 
-        Model model = (Model) tableSelectionModel.getSelectedItem();
-        logger.info("Edit model" + model);
+        Object model =   tableSelectionModel.getSelectedItem();
+        logger.info("Edit data object" + model);
         if(!tableSelectionModel.isEmpty()) {
-            model.setModelName("1111111111111111");
+
             dataManager.editItem(model);
         } else  {
-            logger.info("model not selected");
+            logger.info("object not selected");
         }
 
     }

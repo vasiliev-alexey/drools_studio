@@ -44,7 +44,7 @@
                                     <AnchorPane fx:id="actionPane" maxHeight="-Infinity" prefWidth="32.0" />
                                 </content>
                               </TitledPane>
-                               <AnchorPane fx:id="topPanel" AnchorPane.bottomAnchor="-1.0" />
+                               <AnchorPane fx:id="topPanel" pickOnBounds="false" AnchorPane.bottomAnchor="-1.0" />
                            </children>
                         </VBox>
                      </children>
