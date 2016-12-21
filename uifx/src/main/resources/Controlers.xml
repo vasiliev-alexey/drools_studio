@@ -6,9 +6,10 @@
 
 
     <bean name="mainController"  class="com.av.ui.controllers.MainController"></bean>
-    <bean id="ModelTableViewController" class="com.av.ui.controllers.ModelTableViewController"></bean>
+    <bean id="modelTableViewController" class="com.av.ui.controllers.ModelTableViewController"></bean>
     <bean id="actionPanelController" class="com.av.ui.controllers.ActionPanelController"></bean>
+    <bean id="eventTableViewController" class="com.av.ui.controllers.EventTableViewController"></bean>
 
-    <bean id = "bottomPane" class="javafx.scene.layout.AnchorPane"></bean>
+    <bean id = "bottomPane" class="javafx.scene.layout.AnchorPane" scope="singleton"></bean>
 
 </beans>

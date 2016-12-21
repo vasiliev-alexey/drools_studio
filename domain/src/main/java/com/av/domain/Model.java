@@ -24,6 +24,8 @@ public class Model implements Serializable {
     private StringProperty code;
     private List<ModelAttrGroup> modelAttrGroups;
     private StringProperty modelName;
+    private StringProperty packageName;
+
 
     @Id
     @Column(name = "id")
@@ -37,7 +39,7 @@ public class Model implements Serializable {
     }
 
     public LongProperty idProperty() {
-        if (id == null) id = new SimpleLongProperty(this, "id") ;
+        if (id == null) id = new SimpleLongProperty(this, "id");
         return id;
     }
 
@@ -72,8 +74,9 @@ public class Model implements Serializable {
         return modelName;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "model_id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}
+            , mappedBy = "model")
+
     public List<ModelAttrGroup> getModelAttrGroups() {
         return modelAttrGroups;
     }
@@ -82,6 +85,21 @@ public class Model implements Serializable {
         this.modelAttrGroups = modelAttrGroups;
     }
 
+    @Column(name = "package")
+    @NotEmpty
+    public String getPackageName() {
+        return packageNameProperty().get();
+    }
+
+    public void setPackageName(String packageName) {
+        packageNameProperty().set(packageName);
+    }
+
+    public StringProperty packageNameProperty() {
+        if (packageName == null) packageName = new SimpleStringProperty(this, "packageName");
+
+        return packageName;
+    }
 
     @Override
     public String toString() {

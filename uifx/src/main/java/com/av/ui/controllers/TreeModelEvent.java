@@ -31,6 +31,7 @@ public class TreeModelEvent implements EventHandler<MouseEvent> {
 
         actionPane.getChildren().clear();
         topPanel.getChildren().clear();
+        bottomPane.getChildren().clear();
 
 
         ActionPanelController actionPanelController = null;

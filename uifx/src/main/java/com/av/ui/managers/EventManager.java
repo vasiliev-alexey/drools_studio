@@ -3,11 +3,15 @@ package com.av.ui.managers;
 import com.av.domain.Event;
 import org.springframework.stereotype.Service;
 
+import java.util.logging.Logger;
+
 /**
  * Created by vasiliev-alexey on 21.12.16.
  */
 @Service
 public class EventManager extends AbstractDataManager <Event> {
+
+    private static Logger logger = Logger.getLogger(EventManager.class.getName());
 
     @Override
     public String getLabel() {
@@ -21,14 +25,14 @@ public class EventManager extends AbstractDataManager <Event> {
 
     @Override
     public Event addItem() {
-        System.out.println("adddddddddddddddd");
+        logger.info("add item  Event");
 
         return null;
     }
 
     @Override
     public Event editItem(Event event) {
-        System.out.println("eeeeeeeeeeeeeeeeddddddddddddddd");
+        logger.info("edit item  Event");
         return  new Event();
     }
 }

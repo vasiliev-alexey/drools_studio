@@ -26,6 +26,7 @@ public class ModelAttrGroup {
 
 
     @ManyToOne
+    @JoinColumn(name = "model_id")
     private Model model;
 
     @OneToMany(mappedBy = "modelAttrGroup", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})

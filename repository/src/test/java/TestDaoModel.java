@@ -37,6 +37,7 @@ public class TestDaoModel {
         //m.setId(222L);
         m.setCode("code1");
         m.setModelName("name1");
+        m.setPackageName("com.av.bo");
 
         ModelAttrGroup attrGroup = new ModelAttrGroup();
         attrGroup.setCode("mag_code_1");

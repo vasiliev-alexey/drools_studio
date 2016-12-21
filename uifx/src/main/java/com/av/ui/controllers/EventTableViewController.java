@@ -10,6 +10,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 
@@ -19,7 +20,7 @@ import java.util.ResourceBundle;
 /**
  * Created by vasiliev-alexey on 21.12.16.
  */
-@org.springframework.stereotype.Controller
+//@org.springframework.stereotype.Controller
 public class EventTableViewController extends   AbstractController implements Initializable {
 
 
@@ -50,6 +51,9 @@ public class EventTableViewController extends   AbstractController implements In
         events = FXCollections.observableArrayList(eventService.findAll());
         tableModels.setItems(events);
         tableModels.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+
+
     }
 
 
