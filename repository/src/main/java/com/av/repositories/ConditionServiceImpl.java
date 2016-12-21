@@ -20,7 +20,7 @@ public class ConditionServiceImpl implements ConditionService {
 
     @Override
     public AbstractCondition Save(AbstractCondition condition) {
-        if (condition.getId() == null) {
+        if (condition.getId() == null || condition.getId() == 0) {
             emf.persist(condition);
         } else {
             emf.merge(condition);

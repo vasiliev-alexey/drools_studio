@@ -1,30 +1,71 @@
 package com.av.domain;
 
-import com.av.domain.ifaces.INodeable;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by vasiliev-alexey on 20.12.16.
  */
-public class Event implements Serializable, INodeable {
+@Entity
+@Table(name = "event")
+public class Event implements Serializable {
+
+
+    private LongProperty id;
+    private StringProperty code;
+    private StringProperty name;
 
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private Long id;
+    public Long getId() {
+        return idProperty().get();
+    }
+
+    public void setId(Long id) {
+        idProperty().set(id);
+    }
+
+    public LongProperty idProperty() {
+        if (id == null) id = new SimpleLongProperty(this, "id");
+        return id;
+    }
 
     @NotEmpty
     @Column(name = "code", length = 50)
-    private String code;
+    public String getCode() {
+        return codeProperty().get();
+    }
+
+    public void setCode(String code) {
+        codeProperty().set(code);
+    }
+
+    public StringProperty codeProperty() {
+        if (code == null) code = new SimpleStringProperty(this, "code");
+        return code;
+    }
 
     @NotEmpty
     @Column(name = "name", length = 150)
-    private String name;
+    public String getName() {
+        return nameProperty().get();
+    }
+
+    public void setName(String name) {
+        nameProperty().set(name);
+    }
+
+    public StringProperty nameProperty() {
+        if (name == null) name = new SimpleStringProperty(this, "name");
+        return name;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -49,38 +90,12 @@ public class Event implements Serializable, INodeable {
     @Override
     public String toString() {
         return "Event{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                ", name='" + name + '\'' +
+                "id=" + id.get() +
+                ", code='" + code.get() + '\'' +
+                ", name='" + name.get() + '\'' +
                 '}';
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getNodelLabel() {
-        return String.format("%s %s", code, name);
-    }
 }

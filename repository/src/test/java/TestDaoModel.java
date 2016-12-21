@@ -54,11 +54,12 @@ public class TestDaoModel {
         attrGroup.setModelAttrList(new ArrayList<>());
         attrGroup.getModelAttrList().add(attr);
 
-        Model p = service.Save(m);
+       service.Save(m);
 
-        System.out.println(p.getId());
+        System.out.println(m.getId());
+       // System.out.println(m.getModelAttrGroups().get(0).getId());
 
-        Assert.notNull(p);
+        Assert.notNull(m);
 
 
     }

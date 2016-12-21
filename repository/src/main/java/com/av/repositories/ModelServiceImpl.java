@@ -33,8 +33,8 @@ public class ModelServiceImpl implements ModelService {
     public Model Save(Model model) {
 
 
-        if(model.getId() == null) {
-            emf.persist(model);
+        if(model.getId() ==0) {
+             emf.persist(model);
         } else  {
             emf.merge(model);
         }

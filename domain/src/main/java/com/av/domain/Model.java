@@ -17,14 +17,23 @@ import java.util.List;
 
 @Entity
 @Table(name = "model")
+
 public class Model implements Serializable {
 
     private LongProperty id;
+    private StringProperty code;
+    private List<ModelAttrGroup> modelAttrGroups;
+    private StringProperty modelName;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue
     public Long getId() {
         return idProperty().get();
+    }
+
+    public void setId(Long id) {
+        idProperty().setValue(id);
     }
 
     public LongProperty idProperty() {
@@ -32,17 +41,14 @@ public class Model implements Serializable {
         return id;
     }
 
-
-    public void setId(Long id) {
-        idProperty().set(id);
-    }
-
-
-
     @NotEmpty
     @Column(name = "code", length = 50)
     public String getCode() {
         return codeProperty().get();
+    }
+
+    public void setCode(String code) {
+        codeProperty().set(code);
     }
 
     public StringProperty codeProperty() {
@@ -51,37 +57,20 @@ public class Model implements Serializable {
 
     }
 
-    public void setCode(String code) {
-        codeProperty().set(code);
-    }
-
-    private StringProperty code;
-
-    private List<ModelAttrGroup> modelAttrGroups;
-
-
-    private StringProperty modelName;
-
     @NotEmpty
     @Column(name = "name", length = 150)
     public String getModelName() {
         return modelNameProperty().get();
     }
 
-    public StringProperty modelNameProperty() {
-        if (modelName == null) modelName = new SimpleStringProperty(this, "modelName");
-        return modelName;
-    }
-
-
     public void setModelName(String modelName) {
         modelNameProperty().set(modelName);
     }
 
-
-
-
-
+    public StringProperty modelNameProperty() {
+        if (modelName == null) modelName = new SimpleStringProperty(this, "modelName");
+        return modelName;
+    }
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "model_id")

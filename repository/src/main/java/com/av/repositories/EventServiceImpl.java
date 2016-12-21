@@ -25,7 +25,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event save(Event event) {
-        if (event.getId() == null) {
+        if (event.getId() == 0) {
             emf.persist(event);
         } else {
             emf.merge(event);
