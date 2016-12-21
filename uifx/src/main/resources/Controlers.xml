@@ -7,7 +7,7 @@
 
     <bean name="mainController"  class="com.av.ui.controllers.MainController"></bean>
     <bean id="ModelTableViewController" class="com.av.ui.controllers.ModelTableViewController"></bean>
-    <!--bean id="ActionPanelController22" class="com.av.ui.controllers.ActionPanelController"></bean-->
+    <bean id="actionPanelController" class="com.av.ui.controllers.ActionPanelController"></bean>
 
 
 </beans>

@@ -1,7 +1,9 @@
 package com.av.ui.managers;
 
 import com.av.domain.Model;
+import com.av.repositories.ModelService;
 import javafx.scene.control.TableSelectionModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,9 @@ import java.util.logging.Logger;
 @Lazy
 public class ModelManager extends AbstractDataManager<Model>{
 
+@Autowired
+    private ModelService modelService;
+
 
     private static Logger modelManagerLogger = Logger.getLogger(ModelManager.class.getName());
 
@@ -26,16 +31,20 @@ public class ModelManager extends AbstractDataManager<Model>{
 
 
     @Override
-    public void EditItem(Model item) {
+    public Model editItem(Model item) {
+
+        modelService.Save(item);
+
         modelManagerLogger.log(Level.INFO , "Edit:" + item);
+        return item;
     }
 
     @Override
-    public Model addItem(Model model) {
+    public Model addItem( ) {
 
         modelManagerLogger.log(Level.INFO , "add item");
+        return new Model();
 
-        return model;
     }
 
     @Override

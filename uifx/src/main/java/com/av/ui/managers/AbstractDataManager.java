@@ -12,7 +12,7 @@ public abstract class AbstractDataManager<T>  implements StandardAction<T>{
 
     protected TableSelectionModel<T>  tableSelectionModel;
 
-    public  abstract  T addItem (T t) ;
+
 
     public abstract String getLabel() ;
 }

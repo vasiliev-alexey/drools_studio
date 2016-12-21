@@ -72,7 +72,7 @@ public class Model implements Serializable {
         return modelName;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "model_id")
     public List<ModelAttrGroup> getModelAttrGroups() {
         return modelAttrGroups;

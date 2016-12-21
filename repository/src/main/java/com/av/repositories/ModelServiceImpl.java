@@ -21,7 +21,7 @@ import javax.persistence.criteria.Root;
 
 
 @Repository
-@Transactional
+@Transactional (propagation = Propagation.REQUIRED)
 public class ModelServiceImpl implements ModelService {
 
     @PersistenceContext
