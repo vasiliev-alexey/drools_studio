@@ -9,5 +9,6 @@
     <bean id="ModelTableViewController" class="com.av.ui.controllers.ModelTableViewController"></bean>
     <bean id="actionPanelController" class="com.av.ui.controllers.ActionPanelController"></bean>
 
+    <bean id = "bottomPane" class="javafx.scene.layout.AnchorPane"></bean>
 
 </beans>

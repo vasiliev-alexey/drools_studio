@@ -10,10 +10,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -45,6 +42,7 @@ public class MainController extends AbstractController implements Initializable 
     private AnchorPane topPanel;
 
     @FXML
+    @Autowired
     private AnchorPane bottomPane;
 
     @FXML
@@ -57,6 +55,14 @@ public class MainController extends AbstractController implements Initializable 
 
     @Autowired
     private EventManager eventManager;
+
+    @FXML
+    private AnchorPane downPanel;
+
+    @FXML
+    private SplitPane splitpane;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -97,6 +103,8 @@ public class MainController extends AbstractController implements Initializable 
 
         mainTree.setRoot(root);
         mainTree.setShowRoot(false);
+        splitpane.getItems().removeAll(downPanel);
+        splitpane.getItems().addAll(bottomPane);
 
         init();
 
@@ -107,6 +115,7 @@ public class MainController extends AbstractController implements Initializable 
         modelEvent.setActionPane(actionPane);
         modelEvent.setBottomPane(bottomPane);
         modelEvent.setTopPanel(topPanel);
+
 
     }
 

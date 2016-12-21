@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 
-<TableView fx:id="tableModels" maxHeight="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.ModelTableViewController">
+<TableView fx:id="tableModels" maxHeight="-Infinity" onMouseClicked="#mouseEnterd" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.ModelTableViewController">
     <columns>
         <TableColumn fx:id="codeColumn" minWidth="250.0" prefWidth="-1.0" text="Код" />
         <TableColumn fx:id="nameColumn" minWidth="250.0" prefWidth="-1.0" text="Наименование" />

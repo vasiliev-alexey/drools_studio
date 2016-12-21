@@ -8,10 +8,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.URL;
@@ -39,6 +43,10 @@ public class ModelTableViewController extends AbstractController implements Init
     private ModelService modelService;
 
 
+    @Autowired
+    private AnchorPane bottomPane;
+
+
     @Override
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
@@ -54,5 +62,13 @@ public class ModelTableViewController extends AbstractController implements Init
     }
 
 
+    public void mouseEnterd(MouseEvent mouseEvent) {
 
+
+        bottomPane.getChildren().addAll(new Label("ddddddddddddddddddddddddddddddd"));
+
+
+
+
+    }
 }

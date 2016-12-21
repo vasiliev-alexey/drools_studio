@@ -26,7 +26,6 @@ public class ModelManager extends AbstractDataManager<Model>{
     }
     @Override
     public Model editItem(Model item) {
-
         modelService.Save(item);
         modelManagerLogger.log(Level.INFO , "Edit:" + item);
         return item;
