@@ -19,7 +19,7 @@
         <level value="off"/>
     </logger>
     <logger name="org.hibernate">
-        <level value="off"/>
+        <level value="all"/>
     </logger>
 
 </log4j:configuration>
