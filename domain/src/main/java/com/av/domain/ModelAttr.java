@@ -1,14 +1,15 @@
 package com.av.domain;
 
-import javax.jws.WebParam;
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Vasiliev.Alexey on 22.11.16.
  */
 @Entity
 @Table(name = "model_attr")
-public class ModelAttr {
+
+public class ModelAttr implements Serializable {
 
     @Id
     @GeneratedValue
@@ -20,8 +21,8 @@ public class ModelAttr {
     @Column(name = "name")
     private String name;
 
-    @Column(name ="value_type")
-    private StandardValueType  attrValueType;
+    @Column(name = "value_type")
+    private StandardValueType attrValueType;
 
     @ManyToOne
     @JoinColumn(name = "attr_group_id")

@@ -17,6 +17,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "model")
+@Access(AccessType.PROPERTY)
 
 public class Model implements Serializable {
 
@@ -76,7 +77,6 @@ public class Model implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}
             , mappedBy = "model")
-
     public List<ModelAttrGroup> getModelAttrGroups() {
         return modelAttrGroups;
     }

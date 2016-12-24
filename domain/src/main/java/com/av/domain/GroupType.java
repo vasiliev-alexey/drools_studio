@@ -4,7 +4,7 @@ package com.av.domain;
  * Created by Vasiliev.Alexey on 29.11.16.
  */
 public enum GroupType {
-    HEADER ("Заголовок") , LINE1("Строка 1"), LINE2("Строка 2"), LINE3("Строка 3");
+    HEADER("Заголовок"), LINE1("Строка 1"), LINE2("Строка 2"), LINE3("Строка 3");
 
     private String description;
 
@@ -16,4 +16,9 @@ public enum GroupType {
     public String toString() {
         return description;
     }
+
+    public static GroupType getByName(String name){
+        return   GroupType.valueOf(name);
+    }
+
 }

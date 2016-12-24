@@ -1,6 +1,12 @@
 package com.av.domain;
 
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,54 +14,67 @@ import java.util.List;
  */
 @Entity
 @Table(name = "model_attr_group")
-public class ModelAttrGroup {
+@Access(AccessType.PROPERTY)
+public class ModelAttrGroup implements Serializable {
+
+
+    private StringProperty code;
+    private LongProperty id;
+    private StringProperty name;
+
+    private GroupType groupType;
+
+    private Model model;
+
+    private List<ModelAttr> modelAttrList;
 
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private Long id;
-
-    @Column(name = "code")
-    private String code;
-    @Column(name = "name")
-    private String name;
-
-    @Column (name = "group_type")
-    @Enumerated(EnumType.STRING)
-    private GroupType groupType;
-
-
-    @ManyToOne
-    @JoinColumn(name = "model_id")
-    private Model model;
-
-    @OneToMany(mappedBy = "modelAttrGroup", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    private List<ModelAttr> modelAttrList;
-
     public Long getId() {
-        return id;
+        return idProperty().get();
     }
 
     public void setId(Long id) {
-        this.id = id;
+        idProperty().set(id);
     }
 
-    public String getCode() {
-        return code;
+    public LongProperty idProperty() {
+        if (id == null) id = new SimpleLongProperty(this, "id");
+        return id;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
+    @Column(name = "name")
     public String getName() {
-        return name;
+        return nameProperty().get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        nameProperty().set(name);
     }
 
+    public StringProperty nameProperty() {
+        if (name == null) name = new SimpleStringProperty(this, "name");
+        return name;
+    }
+
+    @Column(name = "code")
+    public String getCode() {
+        return codeProperty().get();
+    }
+
+    public void setCode(String code) {
+        codeProperty().set(code);
+    }
+
+
+    public StringProperty codeProperty() {
+        if (code == null) code = new SimpleStringProperty(this, "code");
+        return code;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "model_id")
     public Model getModel() {
         return model;
     }
@@ -64,6 +83,7 @@ public class ModelAttrGroup {
         this.model = model;
     }
 
+    @OneToMany(mappedBy = "modelAttrGroup", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     public List<ModelAttr> getModelAttrList() {
         return modelAttrList;
     }
@@ -72,6 +92,8 @@ public class ModelAttrGroup {
         this.modelAttrList = modelAttrList;
     }
 
+    @Column(name = "group_type")
+    @Enumerated(EnumType.STRING)
     public GroupType getGroupType() {
         return groupType;
     }
@@ -106,15 +128,38 @@ public class ModelAttrGroup {
         return result;
     }
 
-
     @Override
     public String toString() {
         return "ModelAttrGroup{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                ", name='" + name + '\'' +
-                ", groupType=" + groupType +
-                ", modelAttrList=" + modelAttrList +
+                //    "code=" + code +
+                //    ", id=" + id +
+                //     ", name=" + name +
+                //     ", groupType=" + groupType +
                 '}';
     }
+
+  /*
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+
+
+        out.writeLong(getId());
+        out.writeObject(getCode());
+        out.writeObject(getName());
+        out.writeObject(getGroupType());
+        out.writeObject(getModel());
+        out.writeObject(getModelAttrList());
+
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        setId(in.readLong());
+        setCode((String) in.readObject());
+        setName((String)in.readObject());
+        setGroupType((GroupType) in.readObject());
+        setModel((Model) in.readObject());
+        setModelAttrList((List<ModelAttr>)in.readObject());
+    }
+    */
 }

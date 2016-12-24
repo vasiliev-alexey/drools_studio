@@ -1,8 +1,10 @@
 package com.av.domain;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Vasiliev.Alexey on 22.11.16.

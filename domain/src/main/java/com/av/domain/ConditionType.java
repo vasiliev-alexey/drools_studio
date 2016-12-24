@@ -1,4 +1,5 @@
 package com.av.domain;
+
 /**
  * Created by Vasiliev.Alexey on 22.11.16.
  */
