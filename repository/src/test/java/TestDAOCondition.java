@@ -12,7 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
-
 /**
  * Created by Vasiliev.Alexey on 27.11.16.
  */
@@ -24,7 +23,7 @@ public class TestDAOCondition {
     @Autowired
     @Qualifier("conditionService")
 
-    private ConditionService  conditionService;
+    private ConditionService conditionService;
 
 
     @Test
@@ -39,9 +38,10 @@ public class TestDAOCondition {
 
 
         conditionService.Save(constantCondition);
-        Assert.assertNotNull("Объект долженг быть сохранен" , constantCondition.getId() );
+        Assert.assertNotNull("Объект долженг быть сохранен", constantCondition.getId());
 
     }
+
     @Test
     public void ConstantDateConditionShouldBeSave() {
         ConstantCondition constantCondition = new ConstantCondition();
@@ -51,7 +51,7 @@ public class TestDAOCondition {
         constantCondition.setDateValue(LocalDate.now());
 
         conditionService.Save(constantCondition);
-        Assert.assertNotNull("Объект c датой должен быть сохранен" , constantCondition.getId() );
+        Assert.assertNotNull("Объект c датой должен быть сохранен", constantCondition.getId());
 
     }
 
@@ -64,7 +64,7 @@ public class TestDAOCondition {
         constantCondition.setDoubleValue(1D);
 
         conditionService.Save(constantCondition);
-        Assert.assertNotNull("Объект c датой должен быть сохранен" , constantCondition.getId() );
+        Assert.assertNotNull("Объект c датой должен быть сохранен", constantCondition.getId());
 
     }
 

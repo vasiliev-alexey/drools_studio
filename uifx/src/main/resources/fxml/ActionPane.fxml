@@ -3,9 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
-<HBox fx:id="cmdBox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="32.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.ActionPanelController">
+<HBox xmlns:fx="http://javafx.com/fxml/1" fx:id="cmdBox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity"
+      minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="600.0" spacing="5.0"
+      xmlns="http://javafx.com/javafx/8" fx:controller="com.av.ui.controllers.ActionPanelController">
     <children>
         <Button fx:id="addBtn" mnemonicParsing="false" onMousePressed="#addItem" prefHeight="32.0" prefWidth="32.0"
                 style="-fx-background-image: url('/icons/add.png');"/>

@@ -4,7 +4,6 @@ import com.av.domain.Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +20,7 @@ import javax.persistence.criteria.Root;
 
 
 @Repository
-@Transactional (propagation = Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 public class ModelServiceImpl implements ModelService {
 
     @PersistenceContext
@@ -33,9 +32,9 @@ public class ModelServiceImpl implements ModelService {
     public Model Save(Model model) {
 
 
-        if(model.getId() ==0) {
-             emf.persist(model);
-        } else  {
+        if (model.getId() == 0) {
+            emf.persist(model);
+        } else {
             emf.merge(model);
         }
         return model;
@@ -52,7 +51,14 @@ public class ModelServiceImpl implements ModelService {
         Root<Model> rootEntry = cq.from(Model.class);
         CriteriaQuery<Model> all = cq.select(rootEntry);
         TypedQuery<Model> allQuery = emf.createQuery(all);
-        return FXCollections.observableArrayList( allQuery.getResultList());
+        return FXCollections.observableArrayList(allQuery.getResultList());
 
+    }
+
+    @Override
+    public Model refresh(Model model) {
+        System.out.println("refress ");
+        model = emf.find(Model.class, model.getId());
+        return model;
     }
 }

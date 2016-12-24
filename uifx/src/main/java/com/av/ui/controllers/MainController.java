@@ -1,16 +1,17 @@
 package com.av.ui.controllers;
 
-import com.av.domain.Event;
 import com.av.repositories.ModelService;
 import com.av.ui.factories.MainTreeCellFactory;
 import com.av.ui.managers.EventManager;
 import com.av.ui.managers.ModelManager;
-import com.av.ui.treeitems.ModelTreeItem;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -26,43 +27,34 @@ import java.util.ResourceBundle;
 
 
 public class MainController extends AbstractController implements Initializable {
+    @Autowired()
+    ModelService modelService;
+    // private TreeItem model = new TreeItem<>("Модели");
+    //  ModelTreeItem modelTreeItem = new ModelTreeItem();
     private TreeItem root = new TreeItem<>();
-   // private TreeItem model = new TreeItem<>("Модели");
- //  ModelTreeItem modelTreeItem = new ModelTreeItem();
-
     @FXML
     private BorderPane mainPane;
-
     @FXML
     private MenuButton menuBtAdd;
-
     @FXML
     private TreeView mainTree;
     @FXML
     private AnchorPane topPanel;
-
     @FXML
     @Autowired
     private AnchorPane bottomPane;
-
     @FXML
     private AnchorPane actionPane;
-
     @Autowired
-    private  TreeModelEvent modelEvent;
+    private TreeModelEvent modelEvent;
     @Autowired
     private ModelManager modelManager;
-
     @Autowired
     private EventManager eventManager;
-
     @FXML
     private AnchorPane downPanel;
-
     @FXML
     private SplitPane splitpane;
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -70,10 +62,6 @@ public class MainController extends AbstractController implements Initializable 
         initTree();
 
     }
-
-    @Autowired()
-    ModelService modelService;
-
 
     public void onExitClick(ActionEvent actionEvent) {
 
@@ -83,7 +71,6 @@ public class MainController extends AbstractController implements Initializable 
 
     /**
      * Метод заполняет дерево в навигационной пенели
-     *
      */
     private void initTree() {
 
@@ -95,11 +82,10 @@ public class MainController extends AbstractController implements Initializable 
         modelTreeItem.setValue(modelManager);
 
         TreeItem<EventManager> eventTreeItem = new TreeItem<>();
-        eventTreeItem.setValue(eventManager );
+        eventTreeItem.setValue(eventManager);
 
 
-
-        root.getChildren().addAll(modelTreeItem  , eventTreeItem);
+        root.getChildren().addAll(modelTreeItem, eventTreeItem);
 
         mainTree.setRoot(root);
         mainTree.setShowRoot(false);

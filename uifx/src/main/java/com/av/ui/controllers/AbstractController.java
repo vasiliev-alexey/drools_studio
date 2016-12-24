@@ -7,7 +7,7 @@ import javafx.scene.Node;
  */
 public class AbstractController implements Controller {
 
-   protected Node view;
+    protected Node view;
 
     @Override
     public Node getView() {

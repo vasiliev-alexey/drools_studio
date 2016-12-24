@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
 
 
-    <bean name="mainController"  class="com.av.ui.controllers.MainController"></bean>
+    <bean name="mainController" class="com.av.ui.controllers.MainController"></bean>
     <bean id="modelTableViewController" class="com.av.ui.controllers.ModelTableViewController"></bean>
     <bean id="actionPanelController" class="com.av.ui.controllers.ActionPanelController"></bean>
     <bean id="eventTableViewController" class="com.av.ui.controllers.EventTableViewController"></bean>
 
-    <bean id = "bottomPane" class="javafx.scene.layout.AnchorPane" scope="singleton"></bean>
-    <bean id ="modelFormController" class="com.av.ui.controllers.dilalogs.ModelFormController"></bean>
+    <bean id="bottomPane" class="javafx.scene.layout.AnchorPane" scope="singleton"></bean>
+    <bean id="modelFormController" class="com.av.ui.controllers.dilalogs.ModelFormController"></bean>
 
 </beans>

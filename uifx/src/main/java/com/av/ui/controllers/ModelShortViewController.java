@@ -13,20 +13,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.*;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.StringJoiner;
 
 /**
  * Created by vasiliev-alexey on 21.12.16.
  */
 @org.springframework.stereotype.Controller
 @Lazy
-public class ModelShortViewController extends AbstractController implements Initializable{
-
+public class ModelShortViewController extends AbstractController implements Initializable {
 
 
     private Model model;
@@ -46,20 +42,18 @@ public class ModelShortViewController extends AbstractController implements Init
     @FXML
     private TableView<ModelAttrGroup> tableGroup;
     @FXML
-    private TableColumn<ModelAttrGroup , String> codeColumn;
+    private TableColumn<ModelAttrGroup, String> codeColumn;
     @FXML
-    private TableColumn<ModelAttrGroup , String> nameColumn;
+    private TableColumn<ModelAttrGroup, String> nameColumn;
 
     @FXML
-    private  TableColumn<ModelAttrGroup, String> typeColumn;
+    private TableColumn<ModelAttrGroup, String> typeColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
 
-
-
-      //  txtPackage.textProperty().bind(model.);
+        //  txtPackage.textProperty().bind(model.);
 
 
     }
@@ -71,6 +65,7 @@ public class ModelShortViewController extends AbstractController implements Init
         nameColumn.setCellValueFactory(new PropertyValueFactory<ModelAttrGroup, String>("name"));
         codeColumn.setCellValueFactory(new PropertyValueFactory<ModelAttrGroup, String>("code"));
 
+
         typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGroupType().toString()));
         txtCode.textProperty().bind(this.model.codeProperty());
         txtName.textProperty().bind(this.model.modelNameProperty());
@@ -80,7 +75,7 @@ public class ModelShortViewController extends AbstractController implements Init
         tableGroup.setFixedCellSize(25);
         tableGroup.prefHeightProperty().bind(Bindings.size(tableGroup.getItems()).multiply(tableGroup.getFixedCellSize()).add(30));
 
-       // codeColumn.textProperty().bind(groups.);
+        // codeColumn.textProperty().bind(groups.);
 
     }
 }

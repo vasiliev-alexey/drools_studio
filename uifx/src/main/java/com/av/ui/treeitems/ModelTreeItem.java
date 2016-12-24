@@ -8,16 +8,15 @@ import javafx.scene.control.TreeItem;
 public class ModelTreeItem extends TreeItem<String> {
 
 
-
     public ModelTreeItem() {
         super();
         setValue("Модели");
     }
+
     @Override
     public boolean isLeaf() {
         return true;
     }
-
 
 
 }

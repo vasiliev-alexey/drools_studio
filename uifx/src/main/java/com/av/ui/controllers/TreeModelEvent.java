@@ -1,8 +1,6 @@
 package com.av.ui.controllers;
 
 import com.av.ui.managers.AbstractDataManager;
-import com.av.ui.managers.EventManager;
-import com.av.ui.managers.ModelManager;
 import com.av.ui.utils.SpringFXMLLoader;
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
@@ -39,19 +37,16 @@ public class TreeModelEvent implements EventHandler<MouseEvent> {
         TableView tableView = new TableView();
 
 
-
-
-
         TreeView a = (TreeView) event.getSource();
 
         a.disableProperty().setValue(true);
 
-        TreeItem selectedItem =  (TreeItem) a.getSelectionModel().getSelectedItem();
+        TreeItem selectedItem = (TreeItem) a.getSelectionModel().getSelectedItem();
         actionPanelController = (ActionPanelController) SpringFXMLLoader.load("/fxml/ActionPane.fxml");
 
         try {
 
-            controller = SpringFXMLLoader.load(((AbstractDataManager)selectedItem.getValue()).getViewName());
+            controller = SpringFXMLLoader.load(((AbstractDataManager) selectedItem.getValue()).getViewName());
 
             tableView = (TableView) controller.getView();
             tableView.setPrefWidth(-1.0);
@@ -77,6 +72,7 @@ public class TreeModelEvent implements EventHandler<MouseEvent> {
 
         }
     }
+
     public void setTopPanel(Pane topPanel) {
         this.topPanel = topPanel;
     }

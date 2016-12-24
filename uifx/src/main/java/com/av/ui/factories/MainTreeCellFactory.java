@@ -1,6 +1,5 @@
 package com.av.ui.factories;
 
-import com.av.domain.ifaces.INodeable;
 import com.av.ui.managers.AbstractDataManager;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeView;
@@ -9,7 +8,7 @@ import javafx.util.Callback;
 /**
  * Created by vasiliev-alexey on 17.12.16.
  */
-public class MainTreeCellFactory implements Callback<TreeView, TreeCell>{
+public class MainTreeCellFactory implements Callback<TreeView, TreeCell> {
     @Override
     public TreeCell call(TreeView param) {
 
@@ -22,7 +21,7 @@ public class MainTreeCellFactory implements Callback<TreeView, TreeCell>{
                     setText(null);
                 } else if (item != null) {
                     if (item instanceof AbstractDataManager) {
-                        setText( ((AbstractDataManager)item).getLabel());
+                        setText(((AbstractDataManager) item).getLabel());
                     } else setText(item.toString());
                 }
             }

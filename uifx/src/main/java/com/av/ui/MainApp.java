@@ -16,7 +16,7 @@ public class MainApp extends Application {
 
     public static void main(String[] args) {
 
-       ApplicationContext context =
+        ApplicationContext context =
                 new ClassPathXmlApplicationContext("classpath*:repository-beans.xml");
 
         launch(args);
@@ -31,7 +31,6 @@ public class MainApp extends Application {
 
         MainController controller = (MainController) SpringFXMLLoader.load("/fxml/Main.fxml");
         Scene root = new Scene((Parent) controller.getView(), 300, 275);
-
 
 
         // создаем сцену с заданными шириной и высотой и содержащую наш корневым контейнером, и связываем ее с окном

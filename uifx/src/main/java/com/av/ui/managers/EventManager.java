@@ -9,7 +9,7 @@ import java.util.logging.Logger;
  * Created by vasiliev-alexey on 21.12.16.
  */
 @Service
-public class EventManager extends AbstractDataManager <Event> {
+public class EventManager extends AbstractDataManager<Event> {
 
     private static Logger logger = Logger.getLogger(EventManager.class.getName());
 
@@ -20,7 +20,7 @@ public class EventManager extends AbstractDataManager <Event> {
 
     @Override
     public String getViewName() {
-       return  "/fxml/EventTableView.fxml";
+        return "/fxml/EventTableView.fxml";
     }
 
     @Override
@@ -33,6 +33,6 @@ public class EventManager extends AbstractDataManager <Event> {
     @Override
     public Event editItem(Event event) {
         logger.info("edit item  Event");
-        return  new Event();
+        return new Event();
     }
 }

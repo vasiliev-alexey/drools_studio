@@ -5,6 +5,7 @@ package com.av.ui.managers;
  */
 public interface StandardAction<T> {
     public abstract T addItem();
+
     public abstract T editItem(T t);
 
 }

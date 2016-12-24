@@ -2,26 +2,17 @@ package com.av.ui.managers;
 
 import com.av.domain.Model;
 import com.av.repositories.ModelService;
-import com.av.ui.controllers.Controller;
 import com.av.ui.controllers.dilalogs.ModelFormController;
 import com.av.ui.utils.SpringFXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.TableSelectionModel;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-
 import org.springframework.stereotype.Service;
 
-import javax.xml.bind.attachment.AttachmentMarshaller;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -55,6 +46,7 @@ public class ModelManager extends AbstractDataManager<Model> {
         dialogStage.setScene(scene);
         controller.setModel(item);
         controller.setDialogStage(dialogStage);
+
         dialogStage.showAndWait();
 
         if (controller.isOkClicked()) {
@@ -62,6 +54,9 @@ public class ModelManager extends AbstractDataManager<Model> {
             modelService.Save(item);
 
             modelManagerLogger.info("model saved");
+        } else {
+            item = modelService.refresh(item);
+
         }
 
 

@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.ModelShortViewController">
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+      fx:controller="com.av.ui.controllers.ModelShortViewController">
     <children>
         <GridPane alignment="BASELINE_CENTER" hgap="5.0" vgap="3.0">
             <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="95.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0"
+                                   prefWidth="95.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <Label text="Код модели" />
-                <Label text="Наименование" GridPane.rowIndex="1" />
-                <Label text="Пакет" GridPane.rowIndex="2" />
-                <TextField fx:id="txtCode" editable="false" prefHeight="25.0" prefWidth="224.0" GridPane.columnIndex="1" />
-                <TextField fx:id="txtName" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField fx:id="txtPackage" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2"    />
+                <Label text="Код модели"/>
+                <Label text="Наименование" GridPane.rowIndex="1"/>
+                <Label text="Пакет" GridPane.rowIndex="2"/>
+                <TextField fx:id="txtCode" editable="false" prefHeight="25.0" prefWidth="224.0"
+                           GridPane.columnIndex="1"/>
+                <TextField fx:id="txtName" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TextField fx:id="txtPackage" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
             </children>
-         <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </VBox.margin>
+            <VBox.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </VBox.margin>
         </GridPane>
-      <TableView fx:id="tableGroup">
-        <columns>
-          <TableColumn fx:id="codeColumn" editable="false" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="203.0" text="Код группы" />
-          <TableColumn fx:id="nameColumn" editable="false" maxWidth="1.7976931348623157E308" minWidth="250.0" prefWidth="-1.0" text="Наименование группы" />
-            <TableColumn fx:id="typeColumn" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Тип" />
+        <TableView fx:id="tableGroup">
+            <columns>
+                <TableColumn fx:id="codeColumn" editable="false" maxWidth="1.7976931348623157E308" minWidth="-1.0"
+                             prefWidth="203.0" text="Код группы"/>
+                <TableColumn fx:id="nameColumn" editable="false" maxWidth="1.7976931348623157E308" minWidth="250.0"
+                             prefWidth="-1.0" text="Наименование группы"/>
+                <TableColumn fx:id="typeColumn" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Тип"/>
 
 
-        </columns>
-      </TableView>
+            </columns>
+        </TableView>
     </children>
 </VBox>

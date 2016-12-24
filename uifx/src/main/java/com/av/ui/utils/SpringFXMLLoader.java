@@ -16,9 +16,9 @@ import java.io.InputStream;
  */
 public class SpringFXMLLoader {
 
-    private static Logger LOG = Logger.getLogger(SpringFXMLLoader.class);
     private static final ApplicationContext APPLICATION_CONTEXT =
             new ClassPathXmlApplicationContext("classpath*:main-config.xml");
+    private static Logger LOG = Logger.getLogger(SpringFXMLLoader.class);
 
     public static Controller load(String url) {
         InputStream fxmlStream = null;

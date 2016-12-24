@@ -55,10 +55,10 @@ public class TestDaoModel {
         attrGroup.setModelAttrList(new ArrayList<>());
         attrGroup.getModelAttrList().add(attr);
 
-       service.Save(m);
+        service.Save(m);
 
         System.out.println(m.getId());
-       // System.out.println(m.getModelAttrGroups().get(0).getId());
+        // System.out.println(m.getModelAttrGroups().get(0).getId());
 
         Assert.notNull(m);
 

@@ -1,6 +1,5 @@
-import com.av.domain.*;
+import com.av.domain.Event;
 import com.av.repositories.EventService;
-import com.av.repositories.ModelService;
 import org.joda.time.DateTimeUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,8 +9,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
-
-import java.util.ArrayList;
 
 /**
  * Created by vasiliev-alexey on 21.12.16.
