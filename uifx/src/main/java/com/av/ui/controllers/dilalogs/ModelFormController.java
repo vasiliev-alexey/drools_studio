@@ -6,7 +6,6 @@ import com.av.domain.ModelAttrGroup;
 import com.av.ui.controllers.AbstractController;
 import com.av.ui.treeitems.EditCell;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,8 +15,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -30,7 +29,6 @@ import java.util.function.Function;
 public class ModelFormController extends AbstractController {
 
     private Model model;
-    private Model savedModel;
     private boolean okClicked = false;
     private ObservableList<ModelAttrGroup> groups = FXCollections.observableArrayList();
     private Stage dialogStage;
@@ -47,7 +45,7 @@ public class ModelFormController extends AbstractController {
     @FXML
     private TableColumn<ModelAttrGroup, String> nameColumn;
     @FXML
-    private TableColumn<ModelAttrGroup, String> typeColumn;
+    private TableColumn<ModelAttrGroup, GroupType> typeColumn;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
@@ -57,6 +55,26 @@ public class ModelFormController extends AbstractController {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
+    private  void initTtable() {
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        nameColumn.setCellFactory(column -> EditCell.createStringEditCell());
+
+        codeColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
+        codeColumn.setCellFactory(column -> EditCell.createStringEditCell());
+
+
+        codeColumn.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setCode(event.getNewValue()));
+
+
+        typeColumn.setCellValueFactory(cellData -> cellData.getValue().groupTypeProperty());
+        typeColumn.setCellFactory(ComboBoxTableCell.forTableColumn(GroupType.values()));
+
+        txtCode.textProperty().bindBidirectional(this.model.codeProperty());
+        txtName.textProperty().bindBidirectional(this.model.modelNameProperty());
+        txtPackage.textProperty().bindBidirectional(this.model.packageNameProperty());
+    }
+
 
     public boolean isOkClicked() {
 
@@ -71,55 +89,14 @@ public class ModelFormController extends AbstractController {
         return col;
     }
 
-    private <T, String> void bindColumn(TableColumn col, Function<T, StringProperty> property) {
-        col.setCellFactory(column -> EditCell.createStringEditCell());
-
-    }
-
-    public Model getModel() {
-        return model;
-    }
-
-    public void setModel(Model model) {
+        public void setModel(Model model) {
         groups.clear();
         this.model = model;
-
         groups = FXCollections.observableArrayList(model.getModelAttrGroups());
-        nameColumn.setCellValueFactory(new PropertyValueFactory<ModelAttrGroup, String>("name"));
-
-        codeColumn.setCellValueFactory(new PropertyValueFactory<ModelAttrGroup, String>("code"));
-        codeColumn.setCellFactory(column -> EditCell.createStringEditCell());
-
-
-        codeColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ModelAttrGroup, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<ModelAttrGroup, String> event) {
-
-                event.getTableView().getItems().get(event.getTablePosition().getRow()).setCode(event.getNewValue());
-
-
-            }
-        });
-
-
-        typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGroupType().toString()));
-        typeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        typeColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ModelAttrGroup, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<ModelAttrGroup, String> event) {
-                event.getRowValue().setGroupType(GroupType.getByName(event.getNewValue()));
-
-
-            }
-        });
-        txtCode.textProperty().bindBidirectional(this.model.codeProperty());
-        txtName.textProperty().bindBidirectional(this.model.modelNameProperty());
-        txtPackage.textProperty().bindBidirectional(this.model.packageNameProperty());
-
         tableGroup.setItems(groups);
-        tableGroup.setFixedCellSize(30);
+        tableGroup.setFixedCellSize(25);
         tableGroup.prefHeightProperty().bind(Bindings.size(tableGroup.getItems()).multiply(tableGroup.getFixedCellSize()).add(30));
-
+        initTtable();
 
     }
 
@@ -132,7 +109,6 @@ public class ModelFormController extends AbstractController {
 
     @FXML
     private void handleCancel() {
-        savedModel = null;
         dialogStage.close();
     }
 }

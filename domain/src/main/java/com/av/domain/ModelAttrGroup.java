@@ -1,32 +1,42 @@
 package com.av.domain;
 
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by alexey on 22.11.16.
+ * Created by vasiliev-alexey on 22.11.16.
  */
 @Entity
 @Table(name = "model_attr_group")
 @Access(AccessType.PROPERTY)
+@SuppressWarnings("WeakerAccess")
 public class ModelAttrGroup implements Serializable {
 
 
     private StringProperty code;
     private LongProperty id;
     private StringProperty name;
-
-    private GroupType groupType;
-
+    private ObjectProperty<GroupType> groupType;
     private Model model;
-
     private List<ModelAttr> modelAttrList;
+
+    @Column(name = "group_type")
+    @Enumerated(EnumType.STRING)
+    public GroupType getGroupType() {
+        return groupTypeProperty().get();
+    }
+
+    public void setGroupType(GroupType groupType) {
+        groupTypeProperty().set(groupType);
+    }
+
+    public ObjectProperty<GroupType> groupTypeProperty() {
+        if (groupType == null) groupType = new SimpleObjectProperty<>();
+        return groupType;
+    }
 
     @Id
     @GeneratedValue
@@ -38,6 +48,7 @@ public class ModelAttrGroup implements Serializable {
     public void setId(Long id) {
         idProperty().set(id);
     }
+
 
     public LongProperty idProperty() {
         if (id == null) id = new SimpleLongProperty(this, "id");
@@ -92,15 +103,6 @@ public class ModelAttrGroup implements Serializable {
         this.modelAttrList = modelAttrList;
     }
 
-    @Column(name = "group_type")
-    @Enumerated(EnumType.STRING)
-    public GroupType getGroupType() {
-        return groupType;
-    }
-
-    public void setGroupType(GroupType groupType) {
-        this.groupType = groupType;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -109,12 +111,7 @@ public class ModelAttrGroup implements Serializable {
 
         ModelAttrGroup that = (ModelAttrGroup) o;
 
-        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
-        if (!getCode().equals(that.getCode())) return false;
-        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) return false;
-        if (getGroupType() != that.getGroupType()) return false;
-        if (getModel() != null ? !getModel().equals(that.getModel()) : that.getModel() != null) return false;
-        return getModelAttrList() != null ? getModelAttrList().equals(that.getModelAttrList()) : that.getModelAttrList() == null;
+        return (getId() != null ? getId().equals(that.getId()) : that.getId() == null) && getCode().equals(that.getCode()) && (getName() != null ? getName().equals(that.getName()) : that.getName() == null) && getGroupType() == that.getGroupType() && (getModel() != null ? getModel().equals(that.getModel()) : that.getModel() == null) && (getModelAttrList() != null ? getModelAttrList().equals(that.getModelAttrList()) : that.getModelAttrList() == null);
     }
 
     @Override
