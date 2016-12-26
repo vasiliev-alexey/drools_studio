@@ -95,3 +95,4 @@ drools_studio.iml
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 /.idea/
+/validators/validators.iml
