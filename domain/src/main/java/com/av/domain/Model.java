@@ -7,6 +7,7 @@ import javafx.beans.property.StringProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class Model implements Serializable {
         return id;
     }
 
-    @NotEmpty
+    @NotNull(message = "Код модели должен быть заполнен")
     @Column(name = "code", length = 50)
     public String getCode() {
         return codeProperty().get();
@@ -60,7 +61,7 @@ public class Model implements Serializable {
 
     }
 
-    @NotEmpty
+    @NotNull(message = "Имя модели должно быть заполнено" )
     @Column(name = "name", length = 150)
     public String getModelName() {
         return modelNameProperty().get();
@@ -86,7 +87,7 @@ public class Model implements Serializable {
     }
 
     @Column(name = "package")
-    @NotEmpty
+    @NotNull
     public String getPackageName() {
         return packageNameProperty().get();
     }

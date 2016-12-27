@@ -1,3 +1,4 @@
+import com.av.validators.ModelBaenValidationService;
 import com.av.validators.ModelValidator;
 import org.junit.Assert;
 
@@ -12,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.validation.MapBindingResult;
 import org.springframework.validation.ObjectError;
 
+import javax.validation.ConstraintViolation;
 import java.util.*;
 
 /**
@@ -27,6 +29,9 @@ public class TestModelValidator {
     @Autowired
     @Qualifier("modelValidator")
     private ModelValidator modelValidator;
+
+    @Autowired
+    private ModelBaenValidationService modelBaenValidationService;
 
     @Test
     public void modelNameEmptyShouldThrowError() {
@@ -51,15 +56,18 @@ public class TestModelValidator {
         Assert.assertTrue("Ошибка Код модели не заполнено" , codeErr.isPresent());
     }
 
-    public void modelPackageEmptyShouldThrowError() {
+
+    @Test
+    public  void tstModel() {
+
         Model m = new Model();
-        m.setModelName("Tst1");
-        Map<String,String> map = new HashMap<String,String>();
-        MapBindingResult err = new MapBindingResult(map, Model.class.getName());
-        modelValidator.validate(m , err);
-        List<ObjectError> list = err.getAllErrors();
-        Optional<ObjectError> codeErr = list.stream().filter(e ->  ModelValidator.CODEEMPTY.equals(e.getCode())).findFirst();
-        Assert.assertTrue("Ошибка Код модели не заполнено" , codeErr.isPresent());
+        Set<ConstraintViolation<Model>> err = modelBaenValidationService.validateModel(m);
+
+
+        err.forEach( e -> {
+            System.out.println(e);
+        });
+
     }
 
 
