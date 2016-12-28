@@ -1,6 +1,9 @@
 package com.av.domain;
 
+import javafx.beans.property.*;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -8,88 +11,83 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "model_attr")
-
+@Access(AccessType.PROPERTY)
 public class ModelAttr implements Serializable {
+
+
+    private LongProperty id;
+    private StringProperty code;
+    private StringProperty name;
+    private ObjectProperty<StandardValueType> attrValueType;
+    private ModelAttrGroup modelAttrGroup;
 
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private Long id;
-
-    @Column(name = "code")
-    private String code;
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "value_type")
-    private StandardValueType attrValueType;
-
-    @ManyToOne
-    @JoinColumn(name = "attr_group_id")
-    private ModelAttrGroup modelAttrGroup;
-
     public Long getId() {
-        return id;
+        return idProperty().get();
     }
 
     public void setId(Long id) {
-        this.id = id;
+        idProperty().set(id);
     }
 
+    public LongProperty idProperty() {
+        if (id == null) id = new SimpleLongProperty(this, "id");
+        return id;
+    }
+
+    @Column(name = "code")
+    @NotNull(message = "{com.av.domain.code_empty}")
     public String getCode() {
-        return code;
+        return codeProperty().get();
     }
 
     public void setCode(String code) {
-        this.code = code;
+        codeProperty().set(code);
     }
 
+    public StringProperty codeProperty() {
+        if (code == null) code = new SimpleStringProperty(this, "code");
+        return code;
+    }
+
+    @Column(name = "name")
+    @NotNull(message = "{com.av.domain.ModelAttr.name_empty}")
     public String getName() {
-        return name;
+        return nameProperty().get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        nameProperty().set(name);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ModelAttr)) return false;
-
-        ModelAttr modelAttr = (ModelAttr) o;
-
-        if (!getId().equals(modelAttr.getId())) return false;
-        if (!getCode().equals(modelAttr.getCode())) return false;
-        return getName() != null ? getName().equals(modelAttr.getName()) : modelAttr.getName() == null;
-
+    public StringProperty nameProperty() {
+        if (name == null) name = new SimpleStringProperty(this, "name");
+        return name;
     }
 
-    @Override
-    public int hashCode() {
-        int result = getId().hashCode();
-        result = 31 * result + getCode().hashCode();
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        return result;
+    @Column(name = "value_type")
+    @NotNull(message = "{com.av.domain.ModelAttr.attrValueType_empty}")
+    public StandardValueType getAttrValueType() {
+        return attrValueTypeProperty().get();
     }
 
+    public void setAttrValueType(StandardValueType attrValueType) {
+        attrValueTypeProperty().set(attrValueType);
+    }
 
+    public ObjectProperty<StandardValueType> attrValueTypeProperty() {
+        if (attrValueType == null) attrValueType = new SimpleObjectProperty<StandardValueType>();
+        return attrValueType;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "attr_group_id")
     public ModelAttrGroup getModelAttrGroup() {
         return modelAttrGroup;
     }
-
     public void setModelAttrGroup(ModelAttrGroup modelAttrGroup) {
         this.modelAttrGroup = modelAttrGroup;
-    }
-
-
-    @Override
-    public String toString() {
-        return "ModelAttr{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                ", name='" + name + '\'' +
-                ", attrValueType=" + attrValueType +
-                '}';
     }
 }

@@ -1,7 +1,4 @@
-import com.av.domain.GroupType;
-import com.av.domain.Model;
-import com.av.domain.ModelAttr;
-import com.av.domain.ModelAttrGroup;
+import com.av.domain.*;
 import com.av.repositories.ModelService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,6 +47,7 @@ public class TestDaoModel {
         ModelAttr attr = new ModelAttr();
         attr.setCode("att_1");
         attr.setName("att_1_name");
+        attr.setAttrValueType(StandardValueType.String);
         attr.setModelAttrGroup(attrGroup);
 
         attrGroup.setModelAttrList(new ArrayList<>());

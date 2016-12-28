@@ -1,3 +1,4 @@
+import com.av.domain.ModelAttrGroup;
 import com.av.validators.ModelBaenValidationService;
 import com.av.validators.ModelValidator;
 import org.junit.Assert;
@@ -61,6 +62,11 @@ public class TestModelValidator {
     public  void tstModel() {
 
         Model m = new Model();
+        ModelAttrGroup mag = new ModelAttrGroup();
+        List<ModelAttrGroup> lmag = new ArrayList<>();
+        lmag.add(mag);
+        m.setModelAttrGroups(lmag);
+
         Set<ConstraintViolation<Model>> err = modelBaenValidationService.validateModel(m);
 
 

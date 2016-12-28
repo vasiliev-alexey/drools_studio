@@ -3,6 +3,7 @@ package com.av.domain;
 import javafx.beans.property.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,7 +13,6 @@ import java.util.List;
 @Entity
 @Table(name = "model_attr_group")
 @Access(AccessType.PROPERTY)
-@SuppressWarnings("WeakerAccess")
 public class ModelAttrGroup implements Serializable {
 
 
@@ -25,6 +25,7 @@ public class ModelAttrGroup implements Serializable {
 
     @Column(name = "group_type")
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "{com.av.domain.modelAttrGroup.GroupType_empty}")
     public GroupType getGroupType() {
         return groupTypeProperty().get();
     }
@@ -56,6 +57,7 @@ public class ModelAttrGroup implements Serializable {
     }
 
     @Column(name = "name")
+    @NotNull(message = "{com.av.domain.modelAttrGroup.name_empty}")
     public String getName() {
         return nameProperty().get();
     }
@@ -70,6 +72,7 @@ public class ModelAttrGroup implements Serializable {
     }
 
     @Column(name = "code")
+    @NotNull(message = "{com.av.domain.modelAttrGroup.code_empty}")
     public String getCode() {
         return codeProperty().get();
     }
@@ -107,21 +110,24 @@ public class ModelAttrGroup implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ModelAttrGroup)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         ModelAttrGroup that = (ModelAttrGroup) o;
 
-        return (getId() != null ? getId().equals(that.getId()) : that.getId() == null) && getCode().equals(that.getCode()) && (getName() != null ? getName().equals(that.getName()) : that.getName() == null) && getGroupType() == that.getGroupType() && (getModel() != null ? getModel().equals(that.getModel()) : that.getModel() == null) && (getModelAttrList() != null ? getModelAttrList().equals(that.getModelAttrList()) : that.getModelAttrList() == null);
+        if (code != null ? !code.equals(that.code) : that.code != null) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (groupType != null ? !groupType.equals(that.groupType) : that.groupType != null) return false;
+        return modelAttrList != null ? modelAttrList.equals(that.modelAttrList) : that.modelAttrList == null;
     }
 
     @Override
     public int hashCode() {
-        int result = getId() != null ? getId().hashCode() : 0;
-        result = 31 * result + getCode().hashCode();
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + getGroupType().hashCode();
-        result = 31 * result + (getModel() != null ? getModel().hashCode() : 0);
-        result = 31 * result + (getModelAttrList() != null ? getModelAttrList().hashCode() : 0);
+        int result = code != null ? code.hashCode() : 0;
+        result = 31 * result + (id != null ? id.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (groupType != null ? groupType.hashCode() : 0);
+        result = 31 * result + (modelAttrList != null ? modelAttrList.hashCode() : 0);
         return result;
     }
 
