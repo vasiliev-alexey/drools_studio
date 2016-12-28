@@ -1,5 +1,5 @@
 import com.av.domain.ModelAttrGroup;
-import com.av.validators.ModelBaenValidationService;
+import com.av.validators.ModelBeanValidationService;
 import com.av.validators.ModelValidator;
 import org.junit.Assert;
 
@@ -32,7 +32,7 @@ public class TestModelValidator {
     private ModelValidator modelValidator;
 
     @Autowired
-    private ModelBaenValidationService modelBaenValidationService;
+    private ModelBeanValidationService modelBaenValidationService;
 
     @Test
     public void modelNameEmptyShouldThrowError() {

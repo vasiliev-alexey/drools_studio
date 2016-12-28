@@ -5,9 +5,11 @@ import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
@@ -45,7 +47,9 @@ public class Model implements Serializable {
         return id;
     }
 
-    @NotNull(message = "Код модели должен быть заполнен")
+    @NotNull(message =  "{com.av.domain.Model.code_empty}"  )
+    @Size(min = 1, message = "{com.av.domain.Model.code_empty}" )
+
     @Column(name = "code", length = 50)
     public String getCode() {
         return codeProperty().get();
@@ -61,7 +65,8 @@ public class Model implements Serializable {
 
     }
 
-    @NotNull(message = "Имя модели должно быть заполнено" )
+    @NotNull(message =  "{com.av.domain.Model.name_empty}"  )
+    @Size(min = 1, message = "{com.av.domain.Model.name_empty}" )
     @Column(name = "name", length = 150)
     public String getModelName() {
         return modelNameProperty().get();

@@ -6,7 +6,7 @@
 
     <bean name="conditionService" class="com.av.repositories.ConditionServiceImpl"></bean>
     <bean name="modelService" class="com.av.repositories.ModelServiceImpl"></bean>
-
+    <import resource="validator-beans.xml"></import>
     <import resource="infrastructure.xml"></import>
 
 </beans>

@@ -56,8 +56,8 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Model refresh(Model model) {
-        System.out.println("refress ");
         model = emf.find(Model.class, model.getId());
         return model;
     }

@@ -4,6 +4,7 @@ import com.av.domain.Model;
 import com.av.repositories.ModelService;
 import com.av.ui.controllers.dilalogs.ModelFormController;
 import com.av.ui.utils.SpringFXMLLoader;
+import com.av.validators.ModelBeanValidationService;
 import javafx.scene.Scene;
 import javafx.scene.control.TableSelectionModel;
 import javafx.scene.layout.AnchorPane;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,6 +29,9 @@ public class ModelManager extends AbstractDataManager<Model> {
     private static Logger modelManagerLogger = Logger.getLogger(ModelManager.class.getName());
     @Autowired
     private ModelService modelService;
+
+    @Autowired
+    private ModelBeanValidationService validationService;
 
     public void setTableselectionModel(TableSelectionModel tableselectionModel) {
         this.tableSelectionModel = tableselectionModel;
@@ -51,9 +57,23 @@ public class ModelManager extends AbstractDataManager<Model> {
 
         if (controller.isOkClicked()) {
             modelManagerLogger.info("model save");
-            modelService.Save(item);
 
-            modelManagerLogger.info("model saved");
+            Set<ConstraintViolation<Model>> constraintViolations = validationService.validateModel(item);
+
+            if(constraintViolations.isEmpty()) {
+                modelService.Save(item);
+                modelManagerLogger.info("model saved");
+            } else {
+                System.out.println("model has error");
+            }
+
+
+
+
+
+
+
+
         } else {
             item = modelService.refresh(item);
 

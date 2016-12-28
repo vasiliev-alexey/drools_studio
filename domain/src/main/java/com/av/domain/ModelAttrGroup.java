@@ -4,6 +4,7 @@ import javafx.beans.property.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class ModelAttrGroup implements Serializable {
     @Column(name = "group_type")
     @Enumerated(EnumType.STRING)
     @NotNull(message = "{com.av.domain.modelAttrGroup.GroupType_empty}")
+    @Size(min = 1 , message = "{com.av.domain.modelAttrGroup.GroupType_empty}")
     public GroupType getGroupType() {
         return groupTypeProperty().get();
     }
@@ -58,6 +60,7 @@ public class ModelAttrGroup implements Serializable {
 
     @Column(name = "name")
     @NotNull(message = "{com.av.domain.modelAttrGroup.name_empty}")
+    @Size(min=1 , message =  "{com.av.domain.modelAttrGroup.name_empty}" )
     public String getName() {
         return nameProperty().get();
     }
@@ -73,6 +76,7 @@ public class ModelAttrGroup implements Serializable {
 
     @Column(name = "code")
     @NotNull(message = "{com.av.domain.modelAttrGroup.code_empty}")
+    @Size(min=1 , message =  "{com.av.domain.modelAttrGroup.code_empty}" )
     public String getCode() {
         return codeProperty().get();
     }
