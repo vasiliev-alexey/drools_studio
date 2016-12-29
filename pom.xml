@@ -14,7 +14,7 @@
 
     <properties>
       <org.aspectj-version>1.7.4</org.aspectj-version>
-        <spring.data-version>1.10.1.RELEASE</spring.data-version>
+        <spring.data-version>1.10.2.RELEASE</spring.data-version>
     </properties>
 
     <modules>
@@ -50,6 +50,31 @@
             <artifactId>spring-data-jpa</artifactId>
             <version>${spring.data-version}</version>
 
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.3.3.RELEASE</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>4.3.3.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>4.3.3.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>4.3.3.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -136,6 +161,15 @@
             <artifactId>javax.el-api</artifactId>
             <version>2.2.4</version>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/com.github.ben-manes.caffeine/caffeine -->
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>2.3.4</version>
+        </dependency>
+
 
     </dependencies>
     <build>
