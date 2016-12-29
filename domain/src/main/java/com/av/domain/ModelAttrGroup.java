@@ -27,7 +27,6 @@ public class ModelAttrGroup implements Serializable {
     @Column(name = "group_type")
     @Enumerated(EnumType.STRING)
     @NotNull(message = "{com.av.domain.modelAttrGroup.GroupType_empty}")
-    @Size(min = 1 , message = "{com.av.domain.modelAttrGroup.GroupType_empty}")
     public GroupType getGroupType() {
         return groupTypeProperty().get();
     }
