@@ -79,7 +79,25 @@
     <bean name="conditionService" class="com.av.repositories.ConditionServiceImpl"></bean>
 
 
-    <bean id="cacheManager" class="org.springframework.cache.caffeine.CaffeineCacheManager"></bean>
+    <bean id="cacheManager" class="org.springframework.cache.caffeine.CaffeineCacheManager">
+        <property name="cacheNames">
+            <value>model</value>
+        </property>
+
+
+
+        <property name="caffeineSpec" >
+            <bean class="com.github.benmanes.caffeine.cache.CaffeineSpec">
+<constructor-arg value="maximumSize=500,expireAfterAccess=600s"></constructor-arg>
+            </bean>
+
+        </property>
+
+
+
+    </bean>
+
     <cache:annotation-driven></cache:annotation-driven>
+
 
 </beans>
