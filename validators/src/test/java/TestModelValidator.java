@@ -45,7 +45,7 @@ public class TestModelValidator {
     }
 
 
-    @Test
+    //@Test
     public void modelCodeEmptyShouldThrowError() {
         Model m = new Model();
         m.setModelName("Tst1");
