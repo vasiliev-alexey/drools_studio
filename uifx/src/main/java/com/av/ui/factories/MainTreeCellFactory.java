@@ -21,7 +21,9 @@ public class MainTreeCellFactory implements Callback<TreeView, TreeCell> {
                     setText(null);
                 } else if (item != null) {
                     if (item instanceof AbstractDataManager) {
+
                         setText(((AbstractDataManager) item).getLabel());
+                        setGraphic(((AbstractDataManager) item).getIcon());
                     } else setText(item.toString());
                 }
             }

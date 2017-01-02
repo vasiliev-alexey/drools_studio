@@ -5,8 +5,11 @@ import com.av.repositories.ModelService;
 import com.av.ui.controllers.dialogs.ModelFormController;
 import com.av.ui.utils.SpringFXMLLoader;
 import com.av.validators.ModelBeanValidationService;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TableSelectionModel;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -101,5 +104,12 @@ public class ModelManager extends AbstractDataManager<Model> {
     @Override
     public String getViewName() {
         return "/fxml/ModelTableView.fxml";
+    }
+
+
+    @Override
+    public Node getIcon() {
+        return new ImageView( new Image(
+                getClass().getResourceAsStream("/icons/model.png")));
     }
 }
