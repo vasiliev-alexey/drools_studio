@@ -45,12 +45,13 @@ public class ModelManager extends AbstractDataManager<Model> {
         AnchorPane view = (AnchorPane) controller.getView();
 
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Edit Model");
+
+        dialogStage.setTitle("Редактирование модели");
         dialogStage.initModality(Modality.APPLICATION_MODAL);
 
         Scene scene = new Scene(view);
         dialogStage.setScene(scene);
-        controller.setModel(dialogStage , item , true);
+        controller.setDependencyValue(dialogStage , item , false);
 
 
         dialogStage.showAndWait();

@@ -1,5 +1,6 @@
 package com.av.ui.controllers;
 
+import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -11,6 +12,7 @@ import javafx.scene.layout.Pane;
 public class AbstractController implements Controller {
 
     protected Node view;
+
 
     protected static void setReadOnly(Pane mainPane) {
         mainPane.getChildren().forEach( node ->  {

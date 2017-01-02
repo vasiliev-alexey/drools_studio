@@ -102,6 +102,13 @@ public class ModelFormController extends AbstractController {
         attrType.setCellValueFactory(cellData -> cellData.getValue().attrValueTypeProperty());
         attrType.setCellFactory(ComboBoxTableCell.forTableColumn(StandardValueType.values()));
 
+        attrTable.prefWidthProperty().bind(mainPane.prefWidthProperty());
+        attrCode.prefWidthProperty().bind(attrTable.prefWidthProperty().multiply(0.25));
+        attrName.prefWidthProperty().bind(attrTable.prefWidthProperty().multiply(0.5));
+        attrType.prefWidthProperty().bind(attrTable.prefWidthProperty().multiply(0.25));
+
+        tableGroup.getSelectionModel().selectFirst();
+
     }
 
 
@@ -119,11 +126,9 @@ public class ModelFormController extends AbstractController {
             return col;
         }
     */
-    public void setModel(Stage dialogStage, Model model, boolean readOnly) {
+    public void setDependencyValue(Stage dialogStage, Model model, boolean readOnly) {
         this.dialogStage = dialogStage;
         this.model = model;
-        groups.clear();
-
         groups = FXCollections.observableArrayList(model.getModelAttrGroups());
         tableGroup.setItems(groups);
         tableGroup.setFixedCellSize(25);
