@@ -62,9 +62,9 @@ public class ModelManager extends AbstractDataManager<Model> {
 
             if(constraintViolations.isEmpty()) {
                 modelService.Save(item);
-                modelManagerLogger.info("model saved");
+                modelManagerLogger.info("model saved - completed");
             } else {
-                System.out.println("model has error");
+                System.out.println("model has error - save rejected");
             }
 
 

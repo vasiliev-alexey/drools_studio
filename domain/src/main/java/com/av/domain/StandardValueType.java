@@ -5,6 +5,16 @@ package com.av.domain;
  */
 public enum StandardValueType {
 
-    Date, String, Double
+    Date("Дата"), String("Текст"), Double("Число плавающей точности");
+    private String description;
+
+    StandardValueType(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return description;
+    }
 
 }

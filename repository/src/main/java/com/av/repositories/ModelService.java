@@ -2,7 +2,9 @@ package com.av.repositories;
 
 import com.av.domain.Model;
 import javafx.collections.ObservableList;
+import org.hibernate.annotations.Cache;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 
 
 /**
@@ -10,10 +12,11 @@ import org.springframework.cache.annotation.CacheEvict;
  */
 public interface ModelService {
 
-    @CacheEvict
+    @CacheEvict (cacheNames = "model" )
     Model Save(Model model);
 
 
+   @Cacheable(cacheNames = "model")
     ObservableList<Model> getAll();
 
 

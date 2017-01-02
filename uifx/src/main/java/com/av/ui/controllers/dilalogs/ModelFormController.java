@@ -1,8 +1,6 @@
 package com.av.ui.controllers.dilalogs;
 
-import com.av.domain.GroupType;
-import com.av.domain.Model;
-import com.av.domain.ModelAttrGroup;
+import com.av.domain.*;
 import com.av.ui.controllers.AbstractController;
 import com.av.ui.treeitems.EditCell;
 import javafx.beans.binding.Bindings;
@@ -10,7 +8,6 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,10 +25,15 @@ import java.util.function.Function;
  */
 public class ModelFormController extends AbstractController {
 
+
+
     private Model model;
     private boolean okClicked = false;
     private ObservableList<ModelAttrGroup> groups = FXCollections.observableArrayList();
     private Stage dialogStage;
+
+    private ModelAttrGroup selectedMag;
+
     @FXML
     private TextField txtCode;
     @FXML
@@ -39,24 +41,36 @@ public class ModelFormController extends AbstractController {
     @FXML
     private TextField txtPackage;
     @FXML
-    private TableView<ModelAttrGroup> tableGroup;
+    private TableView<ModelAttrGroup>         tableGroup;
+
     @FXML
     private TableColumn<ModelAttrGroup, String> codeColumn;
     @FXML
     private TableColumn<ModelAttrGroup, String> nameColumn;
+
     @FXML
     private TableColumn<ModelAttrGroup, GroupType> typeColumn;
+
+    @FXML
+    private TableView attrTable;
+    @FXML
+    private TableColumn<ModelAttr , String> attrCode;
+    @FXML
+    private TableColumn <ModelAttr , String>attrName;
+    @FXML
+    private TableColumn<ModelAttr , StandardValueType> attrType;
+
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
-
+/*
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-
-    private  void initTtable() {
+*/
+    private  void initTable() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameColumn.setCellFactory(column -> EditCell.createStringEditCell());
 
@@ -73,6 +87,25 @@ public class ModelFormController extends AbstractController {
         txtCode.textProperty().bindBidirectional(this.model.codeProperty());
         txtName.textProperty().bindBidirectional(this.model.modelNameProperty());
         txtPackage.textProperty().bindBidirectional(this.model.packageNameProperty());
+
+
+        tableGroup.getSelectionModel().selectedItemProperty().addListener((obs , oldVal , newVal) -> {
+
+            if(newVal != null) {
+
+                attrTable.setItems(FXCollections.observableArrayList(newVal.getModelAttrList()));
+            }
+
+        });
+
+        attrCode.setCellValueFactory(cellData -> cellData.getValue().codeProperty());
+        attrCode.setCellFactory(column -> EditCell.createStringEditCell());
+        attrName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        attrName.setCellFactory(column -> EditCell.createStringEditCell());
+
+        attrType.setCellValueFactory(cellData -> cellData.getValue().attrValueTypeProperty());
+        attrType.setCellFactory(ComboBoxTableCell.forTableColumn(StandardValueType.values()));
+
     }
 
 
@@ -80,7 +113,7 @@ public class ModelFormController extends AbstractController {
 
         return okClicked;
     }
-
+/*/
     private <T> TableColumn<T, String> createColumn(String title, Function<T, StringProperty> property) {
         TableColumn<T, String> col = new TableColumn<>(title);
         col.setCellValueFactory(cellData -> property.apply(cellData.getValue()));
@@ -88,7 +121,7 @@ public class ModelFormController extends AbstractController {
         col.setCellFactory(column -> EditCell.createStringEditCell());
         return col;
     }
-
+*/
         public void setModel(Model model) {
         groups.clear();
         this.model = model;
@@ -96,7 +129,7 @@ public class ModelFormController extends AbstractController {
         tableGroup.setItems(groups);
         tableGroup.setFixedCellSize(25);
         tableGroup.prefHeightProperty().bind(Bindings.size(tableGroup.getItems()).multiply(tableGroup.getFixedCellSize()).add(30));
-        initTtable();
+        initTable();
 
     }
 
