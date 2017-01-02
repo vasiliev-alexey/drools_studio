@@ -3,6 +3,7 @@ package com.av.domain;
 import javafx.beans.property.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -101,6 +102,7 @@ public class ModelAttrGroup implements Serializable {
     }
 
     @OneToMany(mappedBy = "modelAttrGroup", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @Valid
     public List<ModelAttr> getModelAttrList() {
         return modelAttrList;
     }

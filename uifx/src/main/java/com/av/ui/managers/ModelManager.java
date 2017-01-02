@@ -1,10 +1,12 @@
 package com.av.ui.managers;
 
+import com.av.domain.Error;
 import com.av.domain.Model;
 import com.av.repositories.ModelService;
 import com.av.ui.controllers.dialogs.ModelFormController;
 import com.av.ui.utils.SpringFXMLLoader;
-import com.av.validators.ModelBeanValidationService;
+import com.av.validators.ModelBeanValidationServiceImpl;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TableSelectionModel;
@@ -34,7 +36,7 @@ public class ModelManager extends AbstractDataManager<Model> {
     private ModelService modelService;
 
     @Autowired
-    private ModelBeanValidationService validationService;
+    private ModelBeanValidationServiceImpl validationService;
 
     public void setTableselectionModel(TableSelectionModel tableselectionModel) {
         this.tableSelectionModel = tableselectionModel;
@@ -62,15 +64,16 @@ public class ModelManager extends AbstractDataManager<Model> {
         if (controller.isOkClicked()) {
             modelManagerLogger.info("model save");
 
-            Set<ConstraintViolation<Model>> constraintViolations = validationService.validateModel(item);
+            ObservableList<Error> constraintViolations = validationService.validateModel(item);
 
             if(constraintViolations.isEmpty()) {
                 modelService.Save(item);
                 modelManagerLogger.info("model saved - completed");
             } else {
                 System.out.println("model has error - save rejected");
-            }
 
+                showErrorsDialog(constraintViolations);
+            }
 
 
 

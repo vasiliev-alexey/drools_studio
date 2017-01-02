@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
+
+<GridPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.dialogs.ErrorsDialogController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="262.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="126.0" minHeight="0.0" prefHeight="4.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <HBox id="HBox" alignment="CENTER" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" GridPane.rowIndex="2">
+            <children>
+                <Button mnemonicParsing="false" onAction="#handleOk" prefWidth="80.0" text="OK" />
+            </children>
+        </HBox>
+        <TableView fx:id="errorTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <columns>
+                <TableColumn fx:id="errType" prefWidth="181.0" text="Атрибут" />
+                <TableColumn fx:id="errMessage" minWidth="0.0" prefWidth="418.0" text="Ошибка" />
+            </columns>
+        </TableView>
+    </children>
+</GridPane>

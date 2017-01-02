@@ -72,24 +72,14 @@ public class MainController extends AbstractController implements Initializable 
      * Метод заполняет дерево в навигационной пенели
      */
     private void initTree() {
-
-
         mainTree.setCellFactory(new MainTreeCellFactory());
 
         mainTree.setOnMouseClicked(modelEvent);
         TreeItem<ModelManager> modelTreeItem = new TreeItem<ModelManager>();
 
         modelTreeItem.setValue(modelManager);
-
-
-
-
-
-
-
         TreeItem<EventManager> eventTreeItem = new TreeItem<>();
         eventTreeItem.setValue(eventManager);
-
 
         root.getChildren().addAll(modelTreeItem, eventTreeItem);
 
@@ -112,7 +102,5 @@ public class MainController extends AbstractController implements Initializable 
     }
 
 
-    public void btnAddClicked(MouseEvent mouseEvent) {
-        System.out.println("add new record");
-    }
+
 }//

@@ -1,6 +1,9 @@
+import com.av.domain.Error;
 import com.av.domain.ModelAttrGroup;
-import com.av.validators.ModelBeanValidationService;
+import com.av.validators.ModelBeanValidationServiceImpl;
 import com.av.validators.ModelValidator;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import org.junit.Assert;
 
 import com.av.domain.Model;
@@ -32,7 +35,7 @@ public class TestModelValidator {
     private ModelValidator modelValidator;
 
     @Autowired
-    private ModelBeanValidationService modelBaenValidationService;
+    private ModelBeanValidationServiceImpl modelBaenValidationService;
 
     @Test
     public void modelNameEmptyShouldThrowError() {
@@ -67,7 +70,7 @@ public class TestModelValidator {
         lmag.add(mag);
         m.setModelAttrGroups(lmag);
 
-        Set<ConstraintViolation<Model>> err = modelBaenValidationService.validateModel(m);
+        ObservableList<Error> err = modelBaenValidationService.validateModel(m);
 
 
         err.forEach( e -> {

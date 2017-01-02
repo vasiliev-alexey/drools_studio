@@ -27,7 +27,6 @@ public class ModelFormController extends AbstractController {
     private ObservableList<ModelAttrGroup> groups = FXCollections.observableArrayList();
     private Stage dialogStage;
 
-    private ModelAttrGroup selectedMag;
 
     @FXML
     private AnchorPane mainPane;
@@ -57,7 +56,6 @@ public class ModelFormController extends AbstractController {
     private TableColumn<ModelAttr, String> attrName;
     @FXML
     private TableColumn<ModelAttr, StandardValueType> attrType;
-
 
 
     /*
@@ -108,7 +106,6 @@ public class ModelFormController extends AbstractController {
         attrType.prefWidthProperty().bind(attrTable.prefWidthProperty().multiply(0.25));
 
         tableGroup.getSelectionModel().selectFirst();
-
     }
 
 
