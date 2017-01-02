@@ -67,7 +67,10 @@ public class ModelTableViewController extends AbstractController implements Init
         });
 
 
+
+
     }
+
 
 
     public void mouseEnterd(MouseEvent mouseEvent) {

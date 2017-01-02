@@ -11,6 +11,6 @@
     <bean id="eventTableViewController" class="com.av.ui.controllers.EventTableViewController"></bean>
 
     <bean id="bottomPane" class="javafx.scene.layout.AnchorPane" scope="singleton"></bean>
-    <bean id="modelFormController" class="com.av.ui.controllers.dilalogs.ModelFormController"></bean>
+    <bean id="modelFormController" class="com.av.ui.controllers.dialogs.ModelFormController" scope="prototype"></bean>
 
 </beans>

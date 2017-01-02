@@ -2,7 +2,7 @@ package com.av.ui.managers;
 
 import com.av.domain.Model;
 import com.av.repositories.ModelService;
-import com.av.ui.controllers.dilalogs.ModelFormController;
+import com.av.ui.controllers.dialogs.ModelFormController;
 import com.av.ui.utils.SpringFXMLLoader;
 import com.av.validators.ModelBeanValidationService;
 import javafx.scene.Scene;
@@ -50,8 +50,8 @@ public class ModelManager extends AbstractDataManager<Model> {
 
         Scene scene = new Scene(view);
         dialogStage.setScene(scene);
-        controller.setModel(item);
-        controller.setDialogStage(dialogStage);
+        controller.setModel(dialogStage , item , true);
+
 
         dialogStage.showAndWait();
 

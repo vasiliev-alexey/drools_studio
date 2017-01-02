@@ -1,10 +1,9 @@
-package com.av.ui.controllers.dilalogs;
+package com.av.ui.controllers.dialogs;
 
 import com.av.domain.*;
 import com.av.ui.controllers.AbstractController;
 import com.av.ui.treeitems.EditCell;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,17 +13,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.function.Function;
 
 /**
  * Created by vasiliev-alexey on 23.12.16.
  */
 public class ModelFormController extends AbstractController {
-
 
 
     private Model model;
@@ -35,13 +30,16 @@ public class ModelFormController extends AbstractController {
     private ModelAttrGroup selectedMag;
 
     @FXML
+    private AnchorPane mainPane;
+
+    @FXML
     private TextField txtCode;
     @FXML
     private TextField txtName;
     @FXML
     private TextField txtPackage;
     @FXML
-    private TableView<ModelAttrGroup>         tableGroup;
+    private TableView<ModelAttrGroup> tableGroup;
 
     @FXML
     private TableColumn<ModelAttrGroup, String> codeColumn;
@@ -54,23 +52,21 @@ public class ModelFormController extends AbstractController {
     @FXML
     private TableView attrTable;
     @FXML
-    private TableColumn<ModelAttr , String> attrCode;
+    private TableColumn<ModelAttr, String> attrCode;
     @FXML
-    private TableColumn <ModelAttr , String>attrName;
+    private TableColumn<ModelAttr, String> attrName;
     @FXML
-    private TableColumn<ModelAttr , StandardValueType> attrType;
+    private TableColumn<ModelAttr, StandardValueType> attrType;
 
 
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
-    }
-/*
-    @FXML
-    public void initialize(URL location, ResourceBundle resources) {
 
-    }
-*/
-    private  void initTable() {
+    /*
+        @FXML
+        public void initialize(URL location, ResourceBundle resources) {
+
+        }
+    */
+    private void initTable() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameColumn.setCellFactory(column -> EditCell.createStringEditCell());
 
@@ -89,9 +85,9 @@ public class ModelFormController extends AbstractController {
         txtPackage.textProperty().bindBidirectional(this.model.packageNameProperty());
 
 
-        tableGroup.getSelectionModel().selectedItemProperty().addListener((obs , oldVal , newVal) -> {
+        tableGroup.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
 
-            if(newVal != null) {
+            if (newVal != null) {
 
                 attrTable.setItems(FXCollections.observableArrayList(newVal.getModelAttrList()));
             }
@@ -113,25 +109,34 @@ public class ModelFormController extends AbstractController {
 
         return okClicked;
     }
-/*/
-    private <T> TableColumn<T, String> createColumn(String title, Function<T, StringProperty> property) {
-        TableColumn<T, String> col = new TableColumn<>(title);
-        col.setCellValueFactory(cellData -> property.apply(cellData.getValue()));
 
-        col.setCellFactory(column -> EditCell.createStringEditCell());
-        return col;
-    }
-*/
-        public void setModel(Model model) {
-        groups.clear();
+    /*/
+        private <T> TableColumn<T, String> createColumn(String title, Function<T, StringProperty> property) {
+            TableColumn<T, String> col = new TableColumn<>(title);
+            col.setCellValueFactory(cellData -> property.apply(cellData.getValue()));
+
+            col.setCellFactory(column -> EditCell.createStringEditCell());
+            return col;
+        }
+    */
+    public void setModel(Stage dialogStage, Model model, boolean readOnly) {
+        this.dialogStage = dialogStage;
         this.model = model;
+        groups.clear();
+
         groups = FXCollections.observableArrayList(model.getModelAttrGroups());
         tableGroup.setItems(groups);
         tableGroup.setFixedCellSize(25);
         tableGroup.prefHeightProperty().bind(Bindings.size(tableGroup.getItems()).multiply(tableGroup.getFixedCellSize()).add(30));
         initTable();
 
+
+        if (readOnly) {
+            setReadOnly(mainPane);
+        }
+
     }
+
 
     public void handleOk(ActionEvent actionEvent) {
 
