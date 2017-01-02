@@ -19,7 +19,7 @@ public interface ModelService {
    @Cacheable(cacheNames = "model")
     ObservableList<Model> getAll();
 
-
+    @CacheEvict (cacheNames = "model" )
     Model refresh(Model model);
 
 }

@@ -19,8 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import javax.validation.ConstraintViolation;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,17 +54,14 @@ public class ModelManager extends AbstractDataManager<Model> {
 
         Scene scene = new Scene(view);
         dialogStage.setScene(scene);
-        controller.setDependencyValue(dialogStage , item , false);
-
+        controller.setDependencyValue(dialogStage, item, false);
 
         dialogStage.showAndWait();
 
         if (controller.isOkClicked()) {
             modelManagerLogger.info("model save");
-
             ObservableList<Error> constraintViolations = validationService.validateModel(item);
-
-            if(constraintViolations.isEmpty()) {
+            if (constraintViolations.isEmpty()) {
                 modelService.Save(item);
                 modelManagerLogger.info("model saved - completed");
             } else {
@@ -74,22 +69,10 @@ public class ModelManager extends AbstractDataManager<Model> {
 
                 showErrorsDialog(constraintViolations);
             }
-
-
-
-
-
-
-
         } else {
             item = modelService.refresh(item);
 
         }
-
-
-        //
-
-
         return item;
     }
 
@@ -112,7 +95,7 @@ public class ModelManager extends AbstractDataManager<Model> {
 
     @Override
     public Node getIcon() {
-        return new ImageView( new Image(
+        return new ImageView(new Image(
                 getClass().getResourceAsStream("/icons/model.png")));
     }
 }
