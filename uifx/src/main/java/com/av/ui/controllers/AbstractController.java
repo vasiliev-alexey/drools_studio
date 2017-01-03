@@ -38,4 +38,9 @@ public class AbstractController implements Controller {
         this.view = view;
 
     }
+
+     public     void refresh() {
+
+     } ;
+
 }

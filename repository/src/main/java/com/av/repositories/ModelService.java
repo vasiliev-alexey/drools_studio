@@ -12,14 +12,14 @@ import org.springframework.cache.annotation.Cacheable;
  */
 public interface ModelService {
 
-    @CacheEvict (cacheNames = "model" )
+    @CacheEvict (cacheNames = "model"  , allEntries = true)
     Model Save(Model model);
 
 
    @Cacheable(cacheNames = "model")
     ObservableList<Model> getAll();
 
-    @CacheEvict (cacheNames = "model" )
+    //@CacheEvict (cacheNames = "model" )
     Model refresh(Model model);
 
 }

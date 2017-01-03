@@ -2,7 +2,9 @@ package com.av.ui.managers;
 
 import com.av.domain.Error;
 import com.av.domain.Model;
+import com.av.domain.ModelAttrGroup;
 import com.av.repositories.ModelService;
+import com.av.ui.controllers.ModelTableViewController;
 import com.av.ui.controllers.dialogs.ModelFormController;
 import com.av.ui.utils.SpringFXMLLoader;
 import com.av.validators.ModelBeanValidationServiceImpl;
@@ -19,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,6 +39,9 @@ public class ModelManager extends AbstractDataManager<Model> {
 
     @Autowired
     private ModelBeanValidationServiceImpl validationService;
+
+    @Autowired
+    private ModelTableViewController modelTableViewController;
 
     public void setTableselectionModel(TableSelectionModel tableselectionModel) {
         this.tableSelectionModel = tableselectionModel;
@@ -70,7 +77,7 @@ public class ModelManager extends AbstractDataManager<Model> {
                 showErrorsDialog(constraintViolations);
             }
         } else {
-            item = modelService.refresh(item);
+           // item = modelService.refresh(item);
 
         }
         return item;
@@ -79,7 +86,17 @@ public class ModelManager extends AbstractDataManager<Model> {
     @Override
     public Model addItem() {
         modelManagerLogger.log(Level.INFO, "add item");
-        return new Model();
+
+        Model  newModel = new Model();
+        List<ModelAttrGroup> mag = new ArrayList<>();
+        newModel.setModelAttrGroups(mag);
+
+
+        newModel =  editItem(newModel);
+
+        modelTableViewController.refresh();
+
+        return newModel;
     }
 
     @Override

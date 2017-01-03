@@ -89,4 +89,12 @@ public class ModelTableViewController extends AbstractController implements Init
 
 
     }
+
+    @Override
+    public void refresh() {
+        modelData.removeAll(modelData);
+        modelData.addAll(modelService.getAll());
+
+
+    }
 }

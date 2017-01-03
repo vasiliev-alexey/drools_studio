@@ -26,9 +26,11 @@ public class Model implements Serializable {
 
     private LongProperty id;
     private StringProperty code;
-    private List<ModelAttrGroup> modelAttrGroups;
+    private List<ModelAttrGroup> modelAttrGroups ;
     private StringProperty modelName;
     private StringProperty packageName;
+
+
 
 
     @Id
@@ -111,11 +113,11 @@ public class Model implements Serializable {
     @Override
     public String toString() {
         return "Model{" +
-                "id=" + id.getValue() +
-                ", code='" + code.getValue() + '\'' +
-                ", name='" + modelName.getValue() + '\'' +
+                "id=" + id +
+                ", code=" + code +
                 ", modelAttrGroups=" + modelAttrGroups +
+                ", modelName=" + modelName +
+                ", packageName=" + packageName +
                 '}';
     }
-
 }
