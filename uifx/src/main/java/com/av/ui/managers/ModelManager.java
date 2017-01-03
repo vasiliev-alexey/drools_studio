@@ -84,6 +84,14 @@ public class ModelManager extends AbstractDataManager<Model> {
     }
 
     @Override
+    public void removeItem(Model model) {
+
+        modelService.remove(model);
+        modelTableViewController.refresh();
+
+    }
+
+    @Override
     public Model addItem() {
         modelManagerLogger.log(Level.INFO, "add item");
 

@@ -35,4 +35,9 @@ public class EventManager extends AbstractDataManager<Event> {
         logger.info("edit item  Event");
         return new Event();
     }
+
+    @Override
+    public void removeItem(Event event) {
+
+    }
 }
