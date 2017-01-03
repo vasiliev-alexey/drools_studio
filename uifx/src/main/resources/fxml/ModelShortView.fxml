@@ -32,11 +32,11 @@
         </GridPane>
         <TableView fx:id="tableGroup">
             <columns>
-                <TableColumn fx:id="codeColumn" editable="false" maxWidth="1.7976931348623157E308" minWidth="-1.0"
+                <TableColumn fx:id="codeColumn" editable="false" maxWidth="1.8" minWidth="-1.0"
                              prefWidth="203.0" text="Код группы"/>
-                <TableColumn fx:id="nameColumn" editable="false" maxWidth="1.7976931348623157E308" minWidth="250.0"
+                <TableColumn fx:id="nameColumn" editable="false" maxWidth="1.8" minWidth="250.0"
                              prefWidth="-1.0" text="Наименование группы"/>
-                <TableColumn fx:id="typeColumn" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Тип"/>
+                <TableColumn fx:id="typeColumn" maxWidth="1.8" prefWidth="100.0" text="Тип"/>
 
 
             </columns>
