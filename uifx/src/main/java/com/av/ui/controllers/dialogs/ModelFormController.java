@@ -72,12 +72,10 @@ public class ModelFormController extends AbstractController {
     @FXML
     private Button delAttrBtn;
 
-    /*
-        @FXML
-        public void initialize(URL location, ResourceBundle resources) {
 
-        }
-    */
+    /**
+     * метод для высталния начальных свойств для таблиц формы редактрования
+     */
     private void initTable() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameColumn.setCellFactory(column -> EditCell.createStringEditCell());
@@ -135,20 +133,21 @@ public class ModelFormController extends AbstractController {
     }
 
 
+    /**
+     *
+     * @return возвращет свойство что была нажата кнопка OK
+     */
     public boolean isOkClicked() {
 
         return okClicked;
     }
 
-    /*/
-        private <T> TableColumn<T, String> createColumn(String title, Function<T, StringProperty> property) {
-            TableColumn<T, String> col = new TableColumn<>(title);
-            col.setCellValueFactory(cellData -> property.apply(cellData.getValue()));
-
-            col.setCellFactory(column -> EditCell.createStringEditCell());
-            return col;
-        }
-    */
+    /**
+     *
+     * @param dialogStage - диалоговое окно - родитель
+     * @param model  - модель для редактирования
+     * @param readOnly - флаг только для чтения
+     */
     public void setDependencyValue(Stage dialogStage, Model model, boolean readOnly) {
         this.dialogStage = dialogStage;
         this.model = model;
@@ -165,7 +164,11 @@ public class ModelFormController extends AbstractController {
 
     }
 
-
+    /**
+     *
+     * @param actionEvent -
+     */
+    @FXML
     public void handleOk(ActionEvent actionEvent) {
 
         okClicked = true;
@@ -174,12 +177,18 @@ public class ModelFormController extends AbstractController {
     }
 
     @FXML
+    /**
+     * событие по нажатию на кнопку Отмена
+     */
     private void handleCancel() {
         dialogStage.close();
     }
 
 
-
+    /**
+     *
+     * @param actionEvent - Событие по нажатию на кнопку табличных редакторов
+     */
 
     @FXML
     private void tableMouseClick(ActionEvent actionEvent) {

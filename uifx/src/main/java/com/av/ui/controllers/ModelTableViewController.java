@@ -53,8 +53,8 @@ public class ModelTableViewController extends AbstractController implements Init
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
 
-        codeColumn.setCellValueFactory(new PropertyValueFactory<Model, String>("code"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
+        codeColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("modelName"));
 
 
         modelData = modelService.getAll();
@@ -65,15 +65,14 @@ public class ModelTableViewController extends AbstractController implements Init
         tableModels.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             mouseEnterd(null);
         });
-
-
-
-
     }
 
 
-
-    public void mouseEnterd(MouseEvent mouseEvent) {
+    /**
+     *  метод слушает событие прохождения над гридом  с моделями для прорисовки сокращенного вида
+     * @param mouseEvent - событие по прохождению курсора мыши над таблицей с моделями
+     */
+    private void mouseEnterd(MouseEvent mouseEvent) {
         bottomPane.getChildren().clear();
         shortViewController = (ModelShortViewController) SpringFXMLLoader.load("/fxml/ModelShortView.fxml");
         Node view = shortViewController.getView();
