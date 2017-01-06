@@ -113,11 +113,11 @@ public class Model implements Serializable {
     @Override
     public String toString() {
         return "Model{" +
-                "id=" + id.getValue() +
-                ", code=" + code.getValue() +
+                "id=" + idProperty().getValue() +
+                ", code=" + codeProperty().getValue() +
                 ", modelAttrGroups=" + modelAttrGroups +
-                ", modelName=" + modelName.getValue() +
-                ", packageName=" + packageName.getValue() +
+                ", modelName=" + modelNameProperty().getValue() +
+                ", packageName=" + packageNameProperty().getValue() +
                 '}';
     }
 }

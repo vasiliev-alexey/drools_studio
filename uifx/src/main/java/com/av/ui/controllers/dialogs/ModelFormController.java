@@ -8,11 +8,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -57,6 +59,18 @@ public class ModelFormController extends AbstractController {
     @FXML
     private TableColumn<ModelAttr, StandardValueType> attrType;
 
+    @FXML
+    private Button addGroupBtn;
+
+    @FXML
+    private Button delGroupBtn;
+
+
+    @FXML
+    private Button addAttrBtn;
+
+    @FXML
+    private Button delAttrBtn;
 
     /*
         @FXML
@@ -82,6 +96,9 @@ public class ModelFormController extends AbstractController {
         txtName.textProperty().bindBidirectional(this.model.modelNameProperty());
         txtPackage.textProperty().bindBidirectional(this.model.packageNameProperty());
 
+        codeColumn.prefWidthProperty().bind(tableGroup.prefWidthProperty().multiply(0.25));
+        nameColumn.prefWidthProperty().bind(tableGroup.prefWidthProperty().multiply(0.5));
+        typeColumn.prefWidthProperty().bind(tableGroup.prefWidthProperty().multiply(0.25));
 
         tableGroup.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
 
@@ -92,6 +109,8 @@ public class ModelFormController extends AbstractController {
 
         });
 
+
+
         attrCode.setCellValueFactory(cellData -> cellData.getValue().codeProperty());
         attrCode.setCellFactory(column -> EditCell.createStringEditCell());
         attrName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
@@ -100,12 +119,19 @@ public class ModelFormController extends AbstractController {
         attrType.setCellValueFactory(cellData -> cellData.getValue().attrValueTypeProperty());
         attrType.setCellFactory(ComboBoxTableCell.forTableColumn(StandardValueType.values()));
 
-        attrTable.prefWidthProperty().bind(mainPane.prefWidthProperty());
+        tableGroup.prefWidthProperty().bind(mainPane.widthProperty().subtract(60d));
+        attrTable.prefWidthProperty().bind(tableGroup.prefWidthProperty());
+
         attrCode.prefWidthProperty().bind(attrTable.prefWidthProperty().multiply(0.25));
         attrName.prefWidthProperty().bind(attrTable.prefWidthProperty().multiply(0.5));
         attrType.prefWidthProperty().bind(attrTable.prefWidthProperty().multiply(0.25));
 
+
         tableGroup.getSelectionModel().selectFirst();
+        delGroupBtn.disableProperty().bind(Bindings.isEmpty( tableGroup.getSelectionModel().getSelectedItems()));
+        delAttrBtn.disableProperty().bind(  delGroupBtn.disableProperty());
+        addAttrBtn.disableProperty().bind(delGroupBtn.disabledProperty());
+
     }
 
 
@@ -151,4 +177,48 @@ public class ModelFormController extends AbstractController {
     private void handleCancel() {
         dialogStage.close();
     }
+
+
+
+
+    @FXML
+    private void tableMouseClick(ActionEvent actionEvent) {
+        if( actionEvent.getSource() == addAttrBtn) {
+
+            ModelAttr modelAttr = new ModelAttr();
+            modelAttr.setModelAttrGroup(tableGroup.getSelectionModel().getSelectedItem());
+            tableGroup.getSelectionModel().getSelectedItem().getModelAttrList().add(modelAttr);
+            attrTable.getItems().addAll(modelAttr);
+            attrTable.getSelectionModel().selectLast();
+
+
+        }
+        else if (actionEvent.getSource() == delAttrBtn) {
+            Object modelAttr =    attrTable.getSelectionModel().getSelectedItem();
+            tableGroup.getSelectionModel().getSelectedItem().getModelAttrList().remove(modelAttr);
+            attrTable.getItems().removeAll(modelAttr);
+        }
+
+        else if (actionEvent.getSource() == delGroupBtn) {
+            model.getModelAttrGroups().remove(tableGroup.getSelectionModel().getSelectedItem());
+            groups.removeAll(tableGroup.getSelectionModel().getSelectedItem());
+            attrTable.getItems().clear();
+
+        }
+
+        else  if(actionEvent.getSource() == addGroupBtn) {
+
+            ModelAttrGroup mag = new ModelAttrGroup();
+            mag.setModel(model);
+            model.getModelAttrGroups().add (mag);
+            groups.addAll(mag);
+
+            tableGroup.getSelectionModel().selectLast();
+
+        }
+
+    }
+
+
+
 }

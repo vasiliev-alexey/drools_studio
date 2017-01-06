@@ -121,19 +121,23 @@ public class ModelAttrGroup implements Serializable {
 
         ModelAttrGroup that = (ModelAttrGroup) o;
 
-        if (code != null ? !code.getValue().equals(that.code.getValue()) : that.code.getValue() != null) return false;
-        if (id != null ? !id.getValue().equals(that.id.getValue()) : that.id.getValue() != null) return false;
-        if (name != null ? !name.getValue().equals(that.name) : that.name.getValue() != null) return false;
-        if (groupType != null ? !groupType.getValue().equals(that.groupType.getValue()) : that.groupType.getValue() != null) return false;
+        if (codeProperty().getValue() != null ? !codeProperty().getValue().equals(that.codeProperty().getValue())
+                : that.codeProperty().getValue() != null) return false;
+        if (idProperty().getValue() != null ? !idProperty().getValue().equals(that.idProperty().getValue())
+                : that.idProperty().getValue() != null) return false;
+        if (nameProperty().getValue() != null ? !nameProperty().getValue().equals(that.nameProperty())
+                : that.nameProperty().getValue() != null) return false;
+        if (groupTypeProperty().getValue() != null ? !groupTypeProperty().getValue().equals(that.groupTypeProperty().getValue())
+                : that.groupTypeProperty().getValue() != null) return false;
         return modelAttrList != null ? modelAttrList.equals(that.modelAttrList) : that.modelAttrList == null;
     }
 
     @Override
     public int hashCode() {
-        int result = code != null ? code.hashCode() : 0;
-        result = 31 * result + (id.getValue() != null ? id.getValue().hashCode() : 0);
-        result = 31 * result + (name.getValue() != null ? name.getValue().hashCode() : 0);
-        result = 31 * result + (groupType.getValue() != null ? groupType.getValue().hashCode() : 0);
+        int result = codeProperty().getValue() != null ? code.getValue().hashCode() : 0;
+        result = 31 * result + (idProperty().getValue() != null ? id.getValue().hashCode() : 0);
+        result = 31 * result + (nameProperty().getValue() != null ? name.getValue().hashCode() : 0);
+        result = 31 * result + (groupTypeProperty().getValue() != null ? groupType.getValue().hashCode() : 0);
         result = 31 * result + (modelAttrList != null ? modelAttrList.hashCode() : 0);
         return result;
     }

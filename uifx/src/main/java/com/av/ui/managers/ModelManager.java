@@ -77,7 +77,7 @@ public class ModelManager extends AbstractDataManager<Model> {
                 showErrorsDialog(constraintViolations);
             }
         } else {
-           // item = modelService.refresh(item);
+
 
         }
         return item;
