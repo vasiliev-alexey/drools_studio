@@ -84,7 +84,7 @@ public class Model implements Serializable {
     }
 
     @Valid
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL }  , orphanRemoval = true
             , mappedBy = "model")
     public List<ModelAttrGroup> getModelAttrGroups() {
         return modelAttrGroups;

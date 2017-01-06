@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class ModelAttrGroup implements Serializable {
     private StringProperty name;
     private ObjectProperty<GroupType> groupType;
     private Model model;
-    private List<ModelAttr> modelAttrList;
+    private List<ModelAttr> modelAttrList = new ArrayList<>();
 
     @Column(name = "group_type")
     @Enumerated(EnumType.STRING)
@@ -101,7 +102,8 @@ public class ModelAttrGroup implements Serializable {
         this.model = model;
     }
 
-    @OneToMany(mappedBy = "modelAttrGroup", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "modelAttrGroup", fetch = FetchType.EAGER, cascade = {CascadeType.ALL}
+    , orphanRemoval = true)
     @Valid
     public List<ModelAttr> getModelAttrList() {
         return modelAttrList;
@@ -119,19 +121,19 @@ public class ModelAttrGroup implements Serializable {
 
         ModelAttrGroup that = (ModelAttrGroup) o;
 
-        if (code != null ? !code.equals(that.code) : that.code != null) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (groupType != null ? !groupType.equals(that.groupType) : that.groupType != null) return false;
+        if (code != null ? !code.getValue().equals(that.code.getValue()) : that.code.getValue() != null) return false;
+        if (id != null ? !id.getValue().equals(that.id.getValue()) : that.id.getValue() != null) return false;
+        if (name != null ? !name.getValue().equals(that.name) : that.name.getValue() != null) return false;
+        if (groupType != null ? !groupType.getValue().equals(that.groupType.getValue()) : that.groupType.getValue() != null) return false;
         return modelAttrList != null ? modelAttrList.equals(that.modelAttrList) : that.modelAttrList == null;
     }
 
     @Override
     public int hashCode() {
         int result = code != null ? code.hashCode() : 0;
-        result = 31 * result + (id != null ? id.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (groupType != null ? groupType.hashCode() : 0);
+        result = 31 * result + (id.getValue() != null ? id.getValue().hashCode() : 0);
+        result = 31 * result + (name.getValue() != null ? name.getValue().hashCode() : 0);
+        result = 31 * result + (groupType.getValue() != null ? groupType.getValue().hashCode() : 0);
         result = 31 * result + (modelAttrList != null ? modelAttrList.hashCode() : 0);
         return result;
     }
@@ -139,35 +141,11 @@ public class ModelAttrGroup implements Serializable {
     @Override
     public String toString() {
         return "ModelAttrGroup{" +
-                //    "code=" + code +
-                //    ", id=" + id +
-                //     ", name=" + name +
-                //     ", groupType=" + groupType +
+                "code=" + code.getValue() +
+                ", id=" + id.getValue() +
+                ", name=" + name.getValue() +
+                ", groupType=" + groupType.getValue() +
+                ", modelAttrList=" + modelAttrList +
                 '}';
     }
-
-  /*
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-
-
-        out.writeLong(getId());
-        out.writeObject(getCode());
-        out.writeObject(getName());
-        out.writeObject(getGroupType());
-        out.writeObject(getModel());
-        out.writeObject(getModelAttrList());
-
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        setId(in.readLong());
-        setCode((String) in.readObject());
-        setName((String)in.readObject());
-        setGroupType((GroupType) in.readObject());
-        setModel((Model) in.readObject());
-        setModelAttrList((List<ModelAttr>)in.readObject());
-    }
-    */
 }
