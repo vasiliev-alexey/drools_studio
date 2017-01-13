@@ -97,3 +97,5 @@ drools_studio.iml
 /.idea/
 /validators/validators.iml
 /LICENSE.txt
+/data_interface/data_interface.iml
+/repository/drools.studio.data_repository.iml

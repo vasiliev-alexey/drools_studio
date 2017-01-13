@@ -1,4 +1,4 @@
-package com.av.repositories;
+package com.av.data.services;
 
 import com.av.domain.Model;
 import javafx.collections.ObservableList;

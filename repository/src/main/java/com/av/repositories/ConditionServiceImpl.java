@@ -1,5 +1,6 @@
 package com.av.repositories;
 
+import com.av.data.services.ConditionService;
 import com.av.domain.AbstractCondition;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

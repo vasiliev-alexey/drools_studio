@@ -1,5 +1,6 @@
 package com.av.repositories;
 
+import com.av.data.services.EventService;
 import com.av.domain.Event;
 import javafx.collections.FXCollections;
 import org.springframework.stereotype.Repository;

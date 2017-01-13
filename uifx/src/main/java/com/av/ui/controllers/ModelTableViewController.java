@@ -1,7 +1,8 @@
 package com.av.ui.controllers;
 
+import com.av.data.services.ModelService;
 import com.av.domain.Model;
-import com.av.repositories.ModelService;
+
 import com.av.ui.utils.SpringFXMLLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

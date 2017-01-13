@@ -22,6 +22,7 @@
         <module>repository</module>
         <module>uifx</module>
         <module>validators</module>
+        <module>data_interface</module>
     </modules>
 
     <dependencies>
