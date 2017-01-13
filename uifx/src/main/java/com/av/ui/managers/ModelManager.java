@@ -1,9 +1,10 @@
 package com.av.ui.managers;
 
+import com.av.data.services.ModelService;
 import com.av.domain.Error;
 import com.av.domain.Model;
 import com.av.domain.ModelAttrGroup;
-import com.av.repositories.ModelService;
+
 import com.av.ui.controllers.ModelTableViewController;
 import com.av.ui.controllers.dialogs.ModelFormController;
 import com.av.ui.utils.SpringFXMLLoader;

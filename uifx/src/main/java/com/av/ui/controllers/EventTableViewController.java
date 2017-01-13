@@ -1,7 +1,8 @@
 package com.av.ui.controllers;
 
+import com.av.data.services.EventService;
 import com.av.domain.Event;
-import com.av.repositories.EventService;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

@@ -1,6 +1,7 @@
 package com.av.ui.controllers;
 
-import com.av.repositories.ModelService;
+
+import com.av.data.services.ModelService;
 import com.av.ui.factories.MainTreeCellFactory;
 import com.av.ui.managers.EventManager;
 import com.av.ui.managers.ModelManager;
@@ -8,10 +9,10 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ import java.util.ResourceBundle;
 
 public class MainController extends AbstractController implements Initializable {
     @Autowired()
-    ModelService modelService;
+    private ModelService modelService;
     // private TreeItem model = new TreeItem<>("Модели");
     //  ModelTreeItem modelTreeItem = new ModelTreeItem();
     private TreeItem root = new TreeItem<>();
