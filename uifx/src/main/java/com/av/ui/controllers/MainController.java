@@ -8,10 +8,9 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -73,17 +72,14 @@ public class MainController extends AbstractController implements Initializable 
      * Метод заполняет дерево в навигационной пенели
      */
     private void initTree() {
-
-
         mainTree.setCellFactory(new MainTreeCellFactory());
 
         mainTree.setOnMouseClicked(modelEvent);
         TreeItem<ModelManager> modelTreeItem = new TreeItem<ModelManager>();
-        modelTreeItem.setValue(modelManager);
 
+        modelTreeItem.setValue(modelManager);
         TreeItem<EventManager> eventTreeItem = new TreeItem<>();
         eventTreeItem.setValue(eventManager);
-
 
         root.getChildren().addAll(modelTreeItem, eventTreeItem);
 
@@ -106,7 +102,5 @@ public class MainController extends AbstractController implements Initializable 
     }
 
 
-    public void btnAddClicked(MouseEvent mouseEvent) {
-        System.out.println("add new record");
-    }
+
 }//

@@ -3,7 +3,9 @@ package com.av.domain;
 import javafx.beans.property.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -38,7 +40,8 @@ public class ModelAttr implements Serializable {
     }
 
     @Column(name = "code")
-    @NotNull(message = "{com.av.domain.code_empty}")
+    @NotNull(message = "{com.av.domain.ModelAttr.code_empty}")
+    @Size(min = 1 , message =   "{com.av.domain.ModelAttr.code_empty}")
     public String getCode() {
         return codeProperty().get();
     }
@@ -54,6 +57,7 @@ public class ModelAttr implements Serializable {
 
     @Column(name = "name")
     @NotNull(message = "{com.av.domain.ModelAttr.name_empty}")
+    @Size(min = 1 , message =  "{com.av.domain.ModelAttr.name_empty}")
     public String getName() {
         return nameProperty().get();
     }

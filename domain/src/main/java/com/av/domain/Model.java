@@ -26,9 +26,11 @@ public class Model implements Serializable {
 
     private LongProperty id;
     private StringProperty code;
-    private List<ModelAttrGroup> modelAttrGroups;
+    private List<ModelAttrGroup> modelAttrGroups ;
     private StringProperty modelName;
     private StringProperty packageName;
+
+
 
 
     @Id
@@ -82,7 +84,7 @@ public class Model implements Serializable {
     }
 
     @Valid
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL }  , orphanRemoval = true
             , mappedBy = "model")
     public List<ModelAttrGroup> getModelAttrGroups() {
         return modelAttrGroups;
@@ -111,11 +113,11 @@ public class Model implements Serializable {
     @Override
     public String toString() {
         return "Model{" +
-                "id=" + id.getValue() +
-                ", code='" + code.getValue() + '\'' +
-                ", name='" + modelName.getValue() + '\'' +
+                "id=" + idProperty().getValue() +
+                ", code=" + codeProperty().getValue() +
                 ", modelAttrGroups=" + modelAttrGroups +
+                ", modelName=" + modelNameProperty().getValue() +
+                ", packageName=" + packageNameProperty().getValue() +
                 '}';
     }
-
 }

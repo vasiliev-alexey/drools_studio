@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.ArrayList;
+
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created by Vasiliev.Alexey on 25.11.16.
@@ -28,7 +32,7 @@ public class TestDaoModel {
 
 
     @Test
-    public void ModelshouldBeSave() {
+    public void modelShouldBeSave() {
 
         Model m = new Model();
         //m.setId(222L);
@@ -61,6 +65,21 @@ public class TestDaoModel {
         Assert.notNull(m);
 
 
+
+    }
+
+    @Test
+    @Transactional
+    public void modelShouldBeDelete() {
+        Model m = new Model();
+        m.setCode("XXX");
+        m.setModelName("XXX");
+        m.setPackageName("XXX");
+        service.Save(m);
+        assertTrue ( "model not saved", m.getId() > 0  );
+        service.remove(m);
+
+        assertFalse("Модель должна быть удалена" , service.getAll().contains(m));
     }
 
 }

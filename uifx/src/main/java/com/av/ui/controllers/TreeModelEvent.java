@@ -33,8 +33,8 @@ public class TreeModelEvent implements EventHandler<MouseEvent> {
 
 
         ActionPanelController actionPanelController = null;
-        Controller controller = null;
-        TableView tableView = new TableView();
+        Controller controller;
+        TableView tableView;
 
 
         TreeView a = (TreeView) event.getSource();

@@ -62,4 +62,10 @@ public class ModelServiceImpl implements ModelService {
         model = emf.find(Model.class, model.getId());
         return model;
     }
+
+    @Override
+    public void remove(Model model) {
+
+        emf.remove(model);
+    }
 }
