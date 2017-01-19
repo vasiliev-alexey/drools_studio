@@ -1,23 +1,17 @@
 package com.av.ui.managers;
 
-import com.av.domain.Error;
+import com.av.domain.settings.Error;
 import com.av.ui.controllers.dialogs.ErrorsDialogController;
 import com.av.ui.utils.SpringFXMLLoader;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TableSelectionModel;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import javax.validation.ConstraintViolation;
-import java.util.Set;
 
 /**
  * Created by vasiliev-alexey on 20.12.16.

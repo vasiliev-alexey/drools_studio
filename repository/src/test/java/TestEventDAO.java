@@ -1,5 +1,5 @@
 import com.av.data.services.EventService;
-import com.av.domain.Event;
+import com.av.domain.accounting.Event;
 
 import org.joda.time.DateTimeUtils;
 import org.junit.Test;

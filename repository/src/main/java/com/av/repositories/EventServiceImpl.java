@@ -1,7 +1,7 @@
 package com.av.repositories;
 
 import com.av.data.services.EventService;
-import com.av.domain.Event;
+import com.av.domain.accounting.Event;
 import javafx.collections.FXCollections;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

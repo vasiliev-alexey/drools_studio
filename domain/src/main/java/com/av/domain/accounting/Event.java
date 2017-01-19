@@ -1,4 +1,4 @@
-package com.av.domain;
+package com.av.domain.accounting;
 
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleLongProperty;

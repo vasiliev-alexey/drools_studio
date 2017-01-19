@@ -1,4 +1,4 @@
-import com.av.domain.Model;
+import com.av.domain.settings.Model;
 import org.junit.Test;
 
 /**

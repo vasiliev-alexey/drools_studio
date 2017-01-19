@@ -1,6 +1,6 @@
 package com.av.data.services;
 
-import com.av.domain.AbstractCondition;
+import com.av.domain.settings.AbstractCondition;
 
 /**
  * Created by Vasiliev.Alexey on 27.11.16.

@@ -1,11 +1,10 @@
 package com.av.validators;
 
-import com.av.domain.Error;
-import com.av.domain.Model;
+import com.av.domain.settings.Error;
+import com.av.domain.settings.Model;
 import com.av.validators.iface.ModelBeanValidationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.av.domain;
+package com.av.domain.settings;
 
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleLongProperty;
@@ -49,8 +49,8 @@ public class Model implements Serializable {
         return id;
     }
 
-    @NotNull(message =  "{com.av.domain.Model.code_empty}"  )
-    @Size(min = 1, message = "{com.av.domain.Model.code_empty}" )
+    @NotNull(message =  "{com.av.domain.settings.Model.code_empty}"  )
+    @Size(min = 1, message = "{com.av.domain.settings.Model.code_empty}" )
 
     @Column(name = "code", length = 50)
     public String getCode() {
@@ -67,8 +67,8 @@ public class Model implements Serializable {
 
     }
 
-    @NotNull(message =  "{com.av.domain.Model.name_empty}"  )
-    @Size(min = 1, message = "{com.av.domain.Model.name_empty}" )
+    @NotNull(message =  "{com.av.domain.settings.Model.name_empty}"  )
+    @Size(min = 1, message = "{com.av.domain.settings.Model.name_empty}" )
     @Column(name = "name", length = 150)
     public String getModelName() {
         return modelNameProperty().get();

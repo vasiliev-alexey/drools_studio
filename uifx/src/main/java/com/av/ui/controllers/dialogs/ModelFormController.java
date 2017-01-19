@@ -1,6 +1,6 @@
 package com.av.ui.controllers.dialogs;
 
-import com.av.domain.*;
+import com.av.domain.settings.*;
 import com.av.ui.controllers.AbstractController;
 import com.av.ui.treeitems.EditCell;
 import javafx.beans.binding.Bindings;
@@ -14,7 +14,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 

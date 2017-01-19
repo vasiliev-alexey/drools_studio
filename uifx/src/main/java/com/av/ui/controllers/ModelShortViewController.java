@@ -1,7 +1,7 @@
 package com.av.ui.controllers;
 
-import com.av.domain.Model;
-import com.av.domain.ModelAttrGroup;
+import com.av.domain.settings.Model;
+import com.av.domain.settings.ModelAttrGroup;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

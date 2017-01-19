@@ -7,7 +7,7 @@
     <bean name="conditionService" class="com.av.repositories.ConditionServiceImpl"></bean>
     <bean name="modelService" class="com.av.repositories.ModelServiceImpl"></bean>
     <bean id="eventService" class="com.av.repositories.EventServiceImpl"></bean>
-
+    <bean id="accountCalendarService" class="com.av.repositories.AccountCalendarServiceImpl"></bean>
 
     <import resource="infrastructure.xml"></import>
 

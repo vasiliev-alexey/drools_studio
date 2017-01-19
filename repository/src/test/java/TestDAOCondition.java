@@ -1,6 +1,6 @@
 import com.av.data.services.ConditionService;
-import com.av.domain.ConstantCondition;
-import com.av.domain.StandardValueType;
+import com.av.domain.settings.ConstantCondition;
+import com.av.domain.settings.StandardValueType;
 
 import org.joda.time.LocalDate;
 import org.junit.Assert;

@@ -1,4 +1,4 @@
-package com.av.domain;
+package com.av.domain.settings;
 
 /**
  * Created by Vasiliev.Alexey on 29.11.16.

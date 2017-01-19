@@ -1,6 +1,6 @@
 package com.av.data.services;
 
-import com.av.domain.Event;
+import com.av.domain.accounting.Event;
 
 import java.util.List;
 

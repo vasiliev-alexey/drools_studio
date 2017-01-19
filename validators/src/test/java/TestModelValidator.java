@@ -1,12 +1,11 @@
-import com.av.domain.Error;
-import com.av.domain.ModelAttrGroup;
+import com.av.domain.settings.Error;
+import com.av.domain.settings.ModelAttrGroup;
 import com.av.validators.ModelBeanValidationServiceImpl;
 import com.av.validators.ModelValidator;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import org.junit.Assert;
 
-import com.av.domain.Model;
+import com.av.domain.settings.Model;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.validation.MapBindingResult;
 import org.springframework.validation.ObjectError;
 
-import javax.validation.ConstraintViolation;
 import java.util.*;
 
 /**

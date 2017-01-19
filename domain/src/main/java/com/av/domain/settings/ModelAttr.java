@@ -1,9 +1,8 @@
-package com.av.domain;
+package com.av.domain.settings;
 
 import javafx.beans.property.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -40,8 +39,8 @@ public class ModelAttr implements Serializable {
     }
 
     @Column(name = "code")
-    @NotNull(message = "{com.av.domain.ModelAttr.code_empty}")
-    @Size(min = 1 , message =   "{com.av.domain.ModelAttr.code_empty}")
+    @NotNull(message = "{com.av.domain.settings.ModelAttr.code_empty}")
+    @Size(min = 1 , message =   "{com.av.domain.settings.ModelAttr.code_empty}")
     public String getCode() {
         return codeProperty().get();
     }
@@ -56,8 +55,8 @@ public class ModelAttr implements Serializable {
     }
 
     @Column(name = "name")
-    @NotNull(message = "{com.av.domain.ModelAttr.name_empty}")
-    @Size(min = 1 , message =  "{com.av.domain.ModelAttr.name_empty}")
+    @NotNull(message = "{com.av.domain.settings.ModelAttr.name_empty}")
+    @Size(min = 1 , message =  "{com.av.domain.settings.ModelAttr.name_empty}")
     public String getName() {
         return nameProperty().get();
     }
@@ -72,7 +71,7 @@ public class ModelAttr implements Serializable {
     }
 
     @Column(name = "value_type")
-    @NotNull(message = "{com.av.domain.ModelAttr.attrValueType_empty}")
+    @NotNull(message = "{com.av.domain.settings.ModelAttr.attrValueType_empty}")
     public StandardValueType getAttrValueType() {
         return attrValueTypeProperty().get();
     }

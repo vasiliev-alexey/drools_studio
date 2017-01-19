@@ -1,7 +1,7 @@
 package com.av.repositories;
 
 import com.av.data.services.ModelService;
-import com.av.domain.Model;
+import com.av.domain.settings.Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,6 @@
 package com.av.ui.managers;
 
-import com.av.domain.Event;
+import com.av.domain.accounting.Event;
 import org.springframework.stereotype.Service;
 
 import java.util.logging.Logger;

@@ -1,8 +1,7 @@
 package com.av.data.services;
 
-import com.av.domain.Model;
+import com.av.domain.settings.Model;
 import javafx.collections.ObservableList;
-import org.hibernate.annotations.Cache;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 

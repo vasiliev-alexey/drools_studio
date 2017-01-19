@@ -1,4 +1,4 @@
-package com.av.domain;
+package com.av.domain.settings;
 
 import javafx.beans.property.*;
 

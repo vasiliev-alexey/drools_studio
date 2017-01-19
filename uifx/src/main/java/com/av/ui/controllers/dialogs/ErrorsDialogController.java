@@ -1,23 +1,15 @@
 package com.av.ui.controllers.dialogs;
 
-import com.av.domain.Error;
-import com.av.ui.controllers.AbstractController;
+import com.av.domain.settings.Error;
 import com.av.ui.controllers.Controller;
 import com.av.ui.treeitems.EditCell;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import javax.validation.ConstraintViolation;
-import java.util.Set;
 
 /**
  * Created by vasiliev-alexey on 02.01.17.
