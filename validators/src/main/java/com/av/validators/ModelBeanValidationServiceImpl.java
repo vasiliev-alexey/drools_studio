@@ -33,9 +33,8 @@ public class ModelBeanValidationServiceImpl implements ModelBeanValidationServic
         Set<ConstraintViolation<Model>> tmpErr =  validator.validate(model);
 
         if (tmpErr == null || tmpErr.size() == 0) return errors;
-         tmpErr.forEach( e -> {
-             errors.add(new Error(e.getInvalidValue().toString() , e.getMessage()));
-         });
+         tmpErr.forEach( e -> errors.add(new Error(e.getInvalidValue()==null? "N\\A"
+                 :e.getInvalidValue().toString() , e.getMessage())));
 
         return errors;
     }

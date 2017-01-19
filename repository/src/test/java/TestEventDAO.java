@@ -1,5 +1,6 @@
+import com.av.data.services.EventService;
 import com.av.domain.Event;
-import com.av.repositories.EventService;
+
 import org.joda.time.DateTimeUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;

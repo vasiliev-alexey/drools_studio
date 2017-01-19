@@ -73,7 +73,7 @@ public class ModelManager extends AbstractDataManager<Model> {
                 modelService.Save(item);
                 modelManagerLogger.info("model saved - completed");
             } else {
-                System.out.println("model has error - save rejected");
+                modelManagerLogger.info("model has error - save rejected");
 
                 showErrorsDialog(constraintViolations);
             }
