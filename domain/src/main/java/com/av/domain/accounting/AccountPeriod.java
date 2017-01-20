@@ -23,7 +23,6 @@ public class AccountPeriod {
     private StringProperty name;
     private LocalDate startDate;
     private LocalDate endDate;
-    private ObjectProperty<PeriodStatus> periodStatus;
     private AccountCalendar accountCalendar;
 
     @Id
@@ -65,7 +64,7 @@ public class AccountPeriod {
     }
 
     public void setCode(String code) {
-        this.code.set(code);
+        codeProperty().set(code);
     }
 
     public StringProperty codeProperty() {
@@ -100,7 +99,7 @@ public class AccountPeriod {
         this.startDate = startDate;
     }
 
-    @Column(name = "start_date")
+    @Column(name = "end_date")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateAsString")
     @NotNull(message = "{com.av.domain.accounting.AccountPeriod.endDate_empty}")
     public LocalDate getEndDate() {
@@ -111,21 +110,6 @@ public class AccountPeriod {
         this.endDate = endDate;
     }
 
-    @Column(name = "status")
-    @Enumerated(EnumType.STRING)
-    @NotNull(message = "{com.av.domain.accounting.AccountPeriod.PeriodStatus_empty}")
-    public PeriodStatus getPeriodStatus() {
-        return periodStatusProperty().get();
-    }
-
-    public void setPeriodStatus(PeriodStatus periodStatus) {
-        periodStatusProperty().set(periodStatus);
-    }
-
-    public ObjectProperty<PeriodStatus> periodStatusProperty() {
-        if (periodStatus == null) periodStatus = new SimpleObjectProperty<PeriodStatus>();
-        return periodStatus;
-    }
     @ManyToOne
     @JoinColumn(name = "account_calendar_id")
     public AccountCalendar getAccountCalendar() {

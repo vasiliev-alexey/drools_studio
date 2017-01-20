@@ -43,10 +43,10 @@ public class AccountCalendar {
         idProperty().set(id);
     }
 
-   // @Valid
-  //  @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true
-   //         , mappedBy = "accountCalendar")
-    @Transient
+    @Valid
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true
+            , mappedBy = "accountCalendar")
+
     public List<AccountPeriod> getPeriodList() {
         return periodList;
     }
