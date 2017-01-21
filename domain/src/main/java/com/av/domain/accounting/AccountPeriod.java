@@ -5,6 +5,7 @@ import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,6 +25,7 @@ public class AccountPeriod {
     private LocalDate startDate;
     private LocalDate endDate;
     private AccountCalendar accountCalendar;
+    private BooleanProperty adjustmentFlag;
 
     @Id
     @GeneratedValue
@@ -43,6 +45,7 @@ public class AccountPeriod {
 
     @Column(name = "period_num")
     @NotNull(message = "com.av.domain.accounting.AccountPeriod.code_empty}")
+    @Min(value = 0)
     public int getPeriodNum() {
         return periodNumProperty().get();
     }
@@ -118,5 +121,20 @@ public class AccountPeriod {
 
     public void setAccountCalendar(AccountCalendar accountCalendar) {
         this.accountCalendar = accountCalendar;
+    }
+
+    @Type(type = "yes_no")
+    @NotNull
+    public boolean getAdjustmentFlag() {
+        return adjustmentFlagProperty().get();
+    }
+
+    public BooleanProperty adjustmentFlagProperty() {
+        if(adjustmentFlag == null) adjustmentFlag = new SimpleBooleanProperty(this , "adjustmentFlag");
+        return adjustmentFlag;
+    }
+
+    public void setAdjustmentFlag(boolean adjustmentFlag) {
+        adjustmentFlagProperty().set(adjustmentFlag);
     }
 }

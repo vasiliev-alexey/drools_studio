@@ -8,6 +8,7 @@
     <bean name="modelService" class="com.av.repositories.ModelServiceImpl"></bean>
     <bean id="eventService" class="com.av.repositories.EventServiceImpl"></bean>
     <bean id="accountCalendarService" class="com.av.repositories.AccountCalendarServiceImpl"></bean>
+<bean id = "currencyService" class="com.av.repositories.CurrencyServiceImpl"></bean>
 
     <import resource="infrastructure.xml"></import>
 

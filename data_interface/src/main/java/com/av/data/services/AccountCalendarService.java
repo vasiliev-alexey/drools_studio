@@ -14,16 +14,17 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional(propagation = Propagation.REQUIRED)
+
 public interface AccountCalendarService {
-    @CacheEvict(cacheNames = "accountCalendar"  , allEntries = true)
+    @CacheEvict(cacheNames = "accountSettings"  , allEntries = true)
     AccountCalendar Save(AccountCalendar model);
 
 
-    @Cacheable(cacheNames = "accountCalendar")
+    @Cacheable(cacheNames = "accountSettings")
     ObservableList<AccountCalendar> getAll();
 
 
 
-    @CacheEvict (cacheNames = "accountCalendar"  , allEntries = true)
+    @CacheEvict (cacheNames = "accountSettings"  , allEntries = true)
     void remove(AccountCalendar model);
 }
