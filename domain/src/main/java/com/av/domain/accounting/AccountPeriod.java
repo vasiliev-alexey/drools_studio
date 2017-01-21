@@ -125,6 +125,7 @@ public class AccountPeriod {
 
     @Type(type = "yes_no")
     @NotNull
+    @Column(name = "adjustment_flag")
     public boolean getAdjustmentFlag() {
         return adjustmentFlagProperty().get();
     }

@@ -17,6 +17,8 @@
         <spring.data-version>1.10.2.RELEASE</spring.data-version>
     </properties>
 
+
+
     <modules>
         <module>domain</module>
         <module>repository</module>
