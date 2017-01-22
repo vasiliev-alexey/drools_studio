@@ -42,7 +42,7 @@ public class TreeModelEvent implements EventHandler<MouseEvent> {
 
 
         TreeItem selectedItem = (TreeItem) a.getSelectionModel().getSelectedItem();
-        if(!selectedItem.isLeaf() || !(selectedItem.getValue() instanceof AbstractDataManager)) {
+        if(selectedItem == null || !selectedItem.isLeaf() || selectedItem.getValue() == null || !(selectedItem.getValue() instanceof AbstractDataManager)) {
             return;
         }
         a.disableProperty().setValue(true);

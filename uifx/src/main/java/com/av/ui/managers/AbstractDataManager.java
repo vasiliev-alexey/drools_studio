@@ -24,6 +24,8 @@ public abstract class AbstractDataManager<T> implements StandardAction<T> {
     protected TableSelectionModel<T> tableSelectionModel;
 
 
+
+
     private static Logger logger = Logger.getLogger(AbstractDataManager.class.getName());
 
 

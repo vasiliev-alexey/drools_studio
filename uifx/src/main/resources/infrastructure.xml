@@ -84,6 +84,7 @@
            <list>
                <value>model</value>
                 <value>accountSettings</value>
+               <value>currency</value>
            </list>
         </property>
 

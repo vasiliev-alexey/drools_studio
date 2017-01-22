@@ -10,15 +10,15 @@ import org.springframework.cache.annotation.Cacheable;
  */
 public interface CurrencyService {
 
-    @CacheEvict(cacheNames = "accountSettings"  , allEntries = true)
+    @CacheEvict(cacheNames = "currency"  , allEntries = true)
     Currency Save(Currency currency);
 
 
-    @Cacheable(cacheNames = "accountSettings")
+    @Cacheable(cacheNames = "currency")
     ObservableList<Currency> getAll();
 
 
 
-    @CacheEvict (cacheNames = "accountSettings"  , allEntries = true)
+    @CacheEvict (cacheNames = "currency"  , allEntries = true)
     void remove(Currency currency);
 }
