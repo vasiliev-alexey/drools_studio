@@ -16,10 +16,8 @@ import org.springframework.util.Assert;
  */
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-@ContextConfiguration(locations = {"classpath:repository-beans.xml"})
-public class TestEventDAO {
+
+public class TestEventDAO extends AbstractTestDao {
 
 
     @Autowired

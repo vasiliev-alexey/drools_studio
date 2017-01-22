@@ -13,6 +13,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.util.logging.Logger;
+
 /**
  * Created by vasiliev-alexey on 20.12.16.
  */
@@ -22,7 +24,7 @@ public abstract class AbstractDataManager<T> implements StandardAction<T> {
     protected TableSelectionModel<T> tableSelectionModel;
 
 
-
+    private static Logger logger = Logger.getLogger(AbstractDataManager.class.getName());
 
 
     public abstract String getLabel();
@@ -53,4 +55,14 @@ public abstract class AbstractDataManager<T> implements StandardAction<T> {
 
     }
 
+
+    public T editItem(T item) {
+        logger.info("edit item  not implemented");
+        return  item;
+    }
+
+    public void removeItem(T event) {
+        logger.info("remove item  not implemented");
+
+    }
 }

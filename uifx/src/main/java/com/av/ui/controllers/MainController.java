@@ -3,8 +3,7 @@ package com.av.ui.controllers;
 
 import com.av.data.services.ModelService;
 import com.av.ui.factories.MainTreeCellFactory;
-import com.av.ui.managers.EventManager;
-import com.av.ui.managers.ModelManager;
+import com.av.ui.managers.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,6 +50,9 @@ public class MainController extends AbstractController implements Initializable 
     private ModelManager modelManager;
     @Autowired
     private EventManager eventManager;
+
+    @Autowired
+    private CurrencyManager currencyManager;
     @FXML
     private AnchorPane downPanel;
     @FXML
@@ -82,7 +84,17 @@ public class MainController extends AbstractController implements Initializable 
         TreeItem<EventManager> eventTreeItem = new TreeItem<>();
         eventTreeItem.setValue(eventManager);
 
-        root.getChildren().addAll(modelTreeItem, eventTreeItem);
+        TreeItem<AbstractDataManager> accountTreeItem = new TreeItem<>();
+        accountTreeItem.setValue(new AccountingManager());
+
+        TreeItem currencyItem = new TreeItem<>();
+        currencyItem.setValue(currencyManager);
+
+        accountTreeItem.getChildren().addAll(currencyItem);
+
+
+
+        root.getChildren().addAll(modelTreeItem, eventTreeItem , accountTreeItem);
 
         mainTree.setRoot(root);
         mainTree.setShowRoot(false);

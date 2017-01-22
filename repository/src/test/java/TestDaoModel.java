@@ -21,10 +21,8 @@ import static junit.framework.TestCase.assertTrue;
  */
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-@ContextConfiguration(locations = {"classpath:repository-beans.xml"})
-public class TestDaoModel {
+
+public class TestDaoModel extends AbstractTestDao {
 
 
     @Autowired

@@ -39,9 +39,14 @@ public class TreeModelEvent implements EventHandler<MouseEvent> {
 
         TreeView a = (TreeView) event.getSource();
 
-        a.disableProperty().setValue(true);
+
 
         TreeItem selectedItem = (TreeItem) a.getSelectionModel().getSelectedItem();
+        if(!selectedItem.isLeaf() || !(selectedItem.getValue() instanceof AbstractDataManager)) {
+            return;
+        }
+        a.disableProperty().setValue(true);
+
         actionPanelController = (ActionPanelController) SpringFXMLLoader.load("/fxml/ActionPane.fxml");
 
         try {

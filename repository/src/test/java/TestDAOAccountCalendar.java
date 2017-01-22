@@ -18,10 +18,8 @@ import java.util.ArrayList;
 /**
  * Created by vasiliev-alexey on 19.01.17.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-@ContextConfiguration(locations = {"classpath:repository-beans.xml"})
-public class TestDAOAccountCalendar {
+
+public class TestDAOAccountCalendar extends AbstractTestDao {
 
     @Autowired
     @Qualifier("accountCalendarService")

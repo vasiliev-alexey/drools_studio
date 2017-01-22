@@ -9,6 +9,8 @@
     <bean id="modelTableViewController" class="com.av.ui.controllers.ModelTableViewController"></bean>
     <bean id="actionPanelController" class="com.av.ui.controllers.ActionPanelController"></bean>
     <bean id="eventTableViewController" class="com.av.ui.controllers.EventTableViewController"></bean>
+    <bean id="currencyTableViewController" class="com.av.ui.controllers.CurrencyTableViewController"></bean>
+
 
     <bean id="bottomPane" class="javafx.scene.layout.AnchorPane" scope="singleton"></bean>
     <bean id="modelFormController" class="com.av.ui.controllers.dialogs.ModelFormController" scope="prototype"></bean>

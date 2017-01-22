@@ -11,7 +11,7 @@ import org.springframework.cache.annotation.Cacheable;
  */
 public interface ModelService {
 
-    @CacheEvict (cacheNames = "model"  , allEntries = true)
+    @CacheEvict (cacheNames = "model"  )
     Model Save(Model model);
 
 

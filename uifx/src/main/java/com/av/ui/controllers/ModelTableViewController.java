@@ -64,7 +64,7 @@ public class ModelTableViewController extends AbstractController implements Init
 
 
         tableModels.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            mouseEnterd(null);
+            mouseEntered(null);
         });
     }
 
@@ -73,7 +73,7 @@ public class ModelTableViewController extends AbstractController implements Init
      *  метод слушает событие прохождения над гридом  с моделями для прорисовки сокращенного вида
      * @param mouseEvent - событие по прохождению курсора мыши над таблицей с моделями
      */
-    private void mouseEnterd(MouseEvent mouseEvent) {
+    private void mouseEntered(MouseEvent mouseEvent) {
         bottomPane.getChildren().clear();
         shortViewController = (ModelShortViewController) SpringFXMLLoader.load("/fxml/ModelShortView.fxml");
         Node view = shortViewController.getView();
