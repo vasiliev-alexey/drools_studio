@@ -8,10 +8,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +25,7 @@ import java.util.ResourceBundle;
 public class MainController extends AbstractController implements Initializable {
     @Autowired()
     private ModelService modelService;
-    // private TreeItem model = new TreeItem<>("Модели");
-    //  ModelTreeItem modelTreeItem = new ModelTreeItem();
+
     private TreeItem root = new TreeItem<>();
     @FXML
     private BorderPane mainPane;
@@ -105,6 +101,16 @@ public class MainController extends AbstractController implements Initializable 
         mainTree.setShowRoot(false);
         splitpane.getItems().removeAll(downPanel);
         splitpane.getItems().addAll(bottomPane);
+
+        // fix oracle jdk bug
+        mainTree.setCellFactory( data -> new TreeCell<AbstractDataManager>(){
+            @Override
+            protected void updateItem(AbstractDataManager item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? null : item.getLabel());
+                setGraphic(empty ? null : item.getIcon());
+            }
+        });
 
         init();
 
