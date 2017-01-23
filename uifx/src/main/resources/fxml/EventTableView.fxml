@@ -10,6 +10,9 @@
     <columns>
         <TableColumn fx:id="codeColumn" minWidth="250.0" prefWidth="-1.0" text="Код"/>
         <TableColumn fx:id="nameColumn" minWidth="250.0" prefWidth="-1.0" text="Наименование"/>
+        <TableColumn fx:id="modelCode" minWidth="250.0" prefWidth="-1.0" text="Код модели"/>
+        <TableColumn fx:id="modelName" minWidth="250.0" prefWidth="-1.0" text="Наименование модели"/>
+
     </columns>
     <placeholder>
         <Label text="Нет данных"/>

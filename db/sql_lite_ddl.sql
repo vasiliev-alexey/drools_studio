@@ -61,9 +61,12 @@ CREATE TABLE event
 (
     id INTEGER PRIMARY KEY,
     code TEXT,
-    name TEXT
+    name TEXT,
+    model_id INTEGER,
+    FOREIGN KEY (model_id) REFERENCES model (id) DEFERRABLE INITIALLY DEFERRED
 );
 CREATE UNIQUE INDEX Event_code_uindex ON event (code);
+
 CREATE TABLE model
 (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

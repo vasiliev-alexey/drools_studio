@@ -1,6 +1,9 @@
 package com.av.ui.managers;
 
 import com.av.domain.accounting.Event;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.springframework.stereotype.Service;
 
 import java.util.logging.Logger;
@@ -30,7 +33,9 @@ public class EventManager extends AbstractDataManager<Event> {
         return null;
     }
 
-
-
-
+    @Override
+    public Node getIcon() {
+        return new ImageView( new Image(
+                getClass().getResourceAsStream("/icons/event_16x16.png")));
+    }
 }

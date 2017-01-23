@@ -79,7 +79,7 @@ public class MainController extends AbstractController implements Initializable 
         TreeItem<ModelManager> modelTreeItem = new TreeItem<ModelManager>();
 
         modelTreeItem.setValue(modelManager);
-        TreeItem<EventManager> eventTreeItem = new TreeItem<>();
+        TreeItem<AbstractDataManager> eventTreeItem = new TreeItem<>();
         eventTreeItem.setValue(eventManager);
 
         TreeItem<AbstractDataManager> accountTreeItem = new TreeItem<>();
@@ -91,11 +91,11 @@ public class MainController extends AbstractController implements Initializable 
         TreeItem accountCalendarItem = new TreeItem();
         accountCalendarItem.setValue(accountCalendarManager);
 
-        accountTreeItem.getChildren().addAll(currencyItem , accountCalendarItem);
+        accountTreeItem.getChildren().addAll(currencyItem ,  eventTreeItem  ,accountCalendarItem);
 
 
 
-        root.getChildren().addAll(modelTreeItem, eventTreeItem , accountTreeItem);
+        root.getChildren().addAll(modelTreeItem,accountTreeItem);
 
         mainTree.setRoot(root);
         mainTree.setShowRoot(false);

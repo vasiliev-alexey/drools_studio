@@ -2,7 +2,6 @@ package com.av.ui.controllers;
 
 import com.av.data.services.EventService;
 import com.av.domain.accounting.Event;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,6 +31,13 @@ public class EventTableViewController extends AbstractController implements Init
     private TableColumn<Event, String> codeColumn;
     @FXML
     private TableColumn<Event, String> nameColumn;
+    @FXML
+    private TableColumn<Event, String> modelName;
+    @FXML
+    private TableColumn<Event, String> modelCode;
+
+
+
 
     @Autowired
     private EventService eventService;
@@ -44,6 +50,14 @@ public class EventTableViewController extends AbstractController implements Init
         codeColumn.setCellValueFactory(new PropertyValueFactory<Event, String>("code"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Event, String>("name"));
 
+        modelName.setCellValueFactory(data -> {
+            if (data.getValue().modelProperty().getValue() == null) return null;
+            return data.getValue().modelProperty().getValue().modelNameProperty();
+        });
+        modelCode.setCellValueFactory(data -> {
+            if (data.getValue().modelProperty().getValue() == null) return null;
+            return data.getValue().modelProperty().getValue().codeProperty();
+        });
 
         events = FXCollections.observableArrayList(eventService.findAll());
         tableModels.setItems(events);

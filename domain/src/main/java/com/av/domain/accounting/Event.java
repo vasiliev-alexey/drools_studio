@@ -1,9 +1,7 @@
 package com.av.domain.accounting;
 
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import com.av.domain.settings.Model;
+import javafx.beans.property.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -20,6 +18,8 @@ public class Event implements Serializable {
     private LongProperty id;
     private StringProperty code;
     private StringProperty name;
+
+    private ObjectProperty<Model> model;
 
     @Id
     @GeneratedValue
@@ -85,6 +85,21 @@ public class Event implements Serializable {
         result = 31 * result + code.hashCode();
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "model_id"  , insertable = false, updatable = false)
+    public Model getModel() {
+        return modelProperty().get();
+    }
+
+    public ObjectProperty<Model> modelProperty() {
+        if (model == null ) model = new SimpleObjectProperty<>(this , "model");
+        return model;
+    }
+
+    public void setModel(Model model) {
+        modelProperty().set(model);
     }
 
     @Override
