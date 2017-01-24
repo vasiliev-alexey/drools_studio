@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,6 +36,8 @@ public class EventTableViewController extends AbstractController implements Init
     private TableColumn<Event, String> modelName;
     @FXML
     private TableColumn<Event, String> modelCode;
+    @FXML
+    private TableColumn<Event, Boolean> enabled_flag;
 
 
 
@@ -49,7 +52,8 @@ public class EventTableViewController extends AbstractController implements Init
 
         codeColumn.setCellValueFactory(new PropertyValueFactory<Event, String>("code"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Event, String>("name"));
-
+        enabled_flag.setCellValueFactory(new PropertyValueFactory<Event, Boolean>("enabled"));
+        enabled_flag.setCellFactory(CheckBoxTableCell.forTableColumn(enabled_flag));
         modelName.setCellValueFactory(data -> {
             if (data.getValue().modelProperty().getValue() == null) return null;
             return data.getValue().modelProperty().getValue().modelNameProperty();
@@ -62,6 +66,8 @@ public class EventTableViewController extends AbstractController implements Init
         events = FXCollections.observableArrayList(eventService.findAll());
         tableModels.setItems(events);
         tableModels.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+
 
 
     }

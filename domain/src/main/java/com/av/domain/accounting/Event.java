@@ -2,9 +2,11 @@ package com.av.domain.accounting;
 
 import com.av.domain.settings.Model;
 import javafx.beans.property.*;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -18,6 +20,7 @@ public class Event implements Serializable {
     private LongProperty id;
     private StringProperty code;
     private StringProperty name;
+    private BooleanProperty enabled;
 
     private ObjectProperty<Model> model;
 
@@ -88,7 +91,7 @@ public class Event implements Serializable {
     }
 
     @OneToOne
-    @JoinColumn(name = "model_id"  , insertable = false, updatable = false)
+    @JoinColumn(name = "model_id"  )
     public Model getModel() {
         return modelProperty().get();
     }
@@ -100,6 +103,22 @@ public class Event implements Serializable {
 
     public void setModel(Model model) {
         modelProperty().set(model);
+    }
+
+    @Type(type = "yes_no")
+    @NotNull
+    @Column(name = "enabled_flag")
+    public boolean isEnabled() {
+        return enabledProperty().get();
+    }
+
+    public BooleanProperty enabledProperty() {
+        if(enabled == null) enabled = new SimpleBooleanProperty(this , "enabled");
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        enabledProperty().set(enabled);
     }
 
     @Override

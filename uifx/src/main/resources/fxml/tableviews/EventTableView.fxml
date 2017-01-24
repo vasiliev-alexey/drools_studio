@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?language javascript?>
-
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<TableView xmlns:fx="http://javafx.com/fxml/1" fx:id="tableModels" xmlns="http://javafx.com/javafx/8"
-           fx:controller="com.av.ui.controllers.EventTableViewController">
+
+<TableView fx:id="tableModels" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.EventTableViewController">
     <columns>
-        <TableColumn fx:id="codeColumn" minWidth="250.0" prefWidth="-1.0" text="Код"/>
-        <TableColumn fx:id="nameColumn" minWidth="250.0" prefWidth="-1.0" text="Наименование"/>
-        <TableColumn fx:id="modelCode" minWidth="250.0" prefWidth="-1.0" text="Код модели"/>
-        <TableColumn fx:id="modelName" minWidth="250.0" prefWidth="-1.0" text="Наименование модели"/>
+        <TableColumn fx:id="codeColumn" minWidth="250.0" prefWidth="-1.0" text="Код" />
+        <TableColumn fx:id="nameColumn" minWidth="250.0" prefWidth="-1.0" text="Наименование" />
+        <TableColumn fx:id="modelCode" minWidth="250.0" prefWidth="-1.0" text="Код модели" />
+        <TableColumn fx:id="modelName" minWidth="250.0" prefWidth="-1.0" text="Наименование модели" />
+      <TableColumn fx:id="enabled_flag" editable="false" prefWidth="75.0" text="Акт" />
 
     </columns>
     <placeholder>
-        <Label text="Нет данных"/>
+        <Label text="Нет данных" />
     </placeholder>
 </TableView>

@@ -1,6 +1,8 @@
 import com.av.data.services.EventService;
+import com.av.data.services.ModelService;
 import com.av.domain.accounting.Event;
 
+import com.av.domain.settings.Model;
 import org.joda.time.DateTimeUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +26,9 @@ public class TestEventDAO extends AbstractTestDao {
     @Qualifier("eventService")
     private EventService service;
 
+    @Autowired
+    private ModelService modelService;
+
     @Test
     public void EventShouldBeSave() {
 
@@ -34,6 +39,12 @@ public class TestEventDAO extends AbstractTestDao {
 
         event.setName("name_" + l.toString());
         event.setCode(l.toString());
+
+
+        Model model = modelService.getAll().stream().findAny().get();
+        event.setModel(model);
+        event.setEnabled(true);
+
         service.save(event);
 
         Assert.notNull(event);
