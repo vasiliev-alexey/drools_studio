@@ -14,6 +14,7 @@
 
     <bean id="bottomPane" class="javafx.scene.layout.AnchorPane" scope="singleton"></bean>
     <bean id="modelFormController" class="com.av.ui.controllers.dialogs.ModelFormController" scope="prototype"></bean>
+    <bean id="eventFormController" class="com.av.ui.controllers.dialogs.EventFormController" scope="prototype"></bean>
 
     <bean id="errorsDialog" class="com.av.ui.controllers.dialogs.ErrorsDialogController"></bean>
 

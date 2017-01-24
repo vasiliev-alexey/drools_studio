@@ -2,9 +2,9 @@ package com.av.ui.controllers;
 
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 
 /**
  * Created by vasiliev-alexey on 20.12.16.
@@ -25,6 +25,17 @@ public class AbstractController implements Controller {
             else  if(node instanceof Pane) {
                 setReadOnly((Pane) node);
             }
+            else if(node instanceof ComboBox) {
+                //node.setDisable(true);
+              //  ( (ComboBox)node).setEditable(false);
+                node.setStyle("-fx-opacity: 1");
+                ( (ComboBox)node).setVisibleRowCount(0);
+            }
+            else  if (node instanceof CheckBox) {
+                node.setDisable(true);
+                node.setStyle("-fx-opacity: 1");
+            }
+
         });
     }
 
