@@ -36,7 +36,7 @@ public class CurrencyManager extends AbstractDataManager<Currency> {
 
     @Override
     public String getViewName() {
-        return "/fxml/CurrencyTableView.fxml";
+        return "/fxml/tableviews/CurrencyTableView.fxml";
     }
 
 

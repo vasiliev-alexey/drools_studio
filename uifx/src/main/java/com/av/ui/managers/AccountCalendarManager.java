@@ -25,7 +25,7 @@ public class AccountCalendarManager extends AbstractDataManager<AccountCalendar>
 
     @Override
     public String getViewName() {
-        return  "/fxml/AccountCalendarTableView.fxml";
+        return "/fxml/tableviews/AccountCalendarTableView.fxml";
     }
 
 

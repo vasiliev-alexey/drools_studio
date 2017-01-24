@@ -115,7 +115,7 @@ public class ModelManager extends AbstractDataManager<Model> {
 
     @Override
     public String getViewName() {
-        return "/fxml/ModelTableView.fxml";
+        return "/fxml/tableviews/ModelTableView.fxml";
     }
 
 

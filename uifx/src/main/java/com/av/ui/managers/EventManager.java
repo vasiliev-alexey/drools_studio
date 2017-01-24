@@ -23,7 +23,7 @@ public class EventManager extends AbstractDataManager<Event> {
 
     @Override
     public String getViewName() {
-        return "/fxml/EventTableView.fxml";
+        return "/fxml/tableviews/EventTableView.fxml";
     }
 
     @Override
