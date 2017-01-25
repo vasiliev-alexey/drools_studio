@@ -2,12 +2,16 @@ package com.av.domain.accounting;
 
 import com.av.domain.settings.Model;
 import javafx.beans.property.*;
+import javafx.collections.ObservableList;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by vasiliev-alexey on 20.12.16.
@@ -21,8 +25,9 @@ public class Event implements Serializable {
     private StringProperty code;
     private StringProperty name;
     private BooleanProperty enabled;
-
     private ObjectProperty<Model> model;
+    private List<EventRule>  eventRules;
+
 
     @Id
     @GeneratedValue
@@ -120,6 +125,19 @@ public class Event implements Serializable {
     public void setEnabled(boolean enabled) {
         enabledProperty().set(enabled);
     }
+
+    @Valid
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "event", orphanRemoval = true)
+    public List<EventRule> getEventRules() {
+        return eventRules;
+    }
+
+    public void setEventRules(List<EventRule> eventRules) {
+        this.eventRules = eventRules;
+    }
+
+
 
     @Override
     public String toString() {

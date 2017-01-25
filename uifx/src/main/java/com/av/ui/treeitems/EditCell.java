@@ -6,6 +6,7 @@ package com.av.ui.treeitems;
  */
 
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.input.KeyCode;
@@ -54,9 +55,10 @@ public class EditCell<S, T> extends TableCell<S, T> {
         });
         textField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
             if (!isNowFocused) {
-                commitEdit(this.converter.fromString(textField.getText()));
+               commitEdit(this.converter.fromString(textField.getText()));
             }
         });
+
         textField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 textField.setText(converter.toString(getItem()));

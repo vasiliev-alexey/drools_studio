@@ -2,19 +2,26 @@ package com.av.ui.controllers.dialogs;
 
 import com.av.data.services.ModelService;
 import com.av.domain.accounting.Event;
+import com.av.domain.accounting.EventRule;
 import com.av.domain.settings.Model;
 import com.av.ui.controllers.AbstractController;
+import com.av.ui.treeitems.EditCell;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by vasiliev-alexey on 24.01.17.
@@ -24,6 +31,10 @@ public class EventFormController extends AbstractController {
 
     private Event event;
     private Stage dialogStage;
+
+    private List<EventRule> eventRules;
+    @FXML
+    public TableView eventRulesTable;
     @FXML
     private AnchorPane mainPane;
     @FXML
@@ -36,8 +47,17 @@ public class EventFormController extends AbstractController {
     private ComboBox<Model> cmbModelCode;
     @FXML
     private CheckBox enabledFlag;
+
     @FXML
     private GridPane headerPane;
+    @FXML
+    public TableColumn ruleCode;
+    @FXML
+    public TableColumn ruleName;
+    @FXML
+    public TableColumn ruleEnabled;
+    @FXML
+    public TitledPane headerGridPane;
 
     private ObservableList<Model> models;
 
@@ -48,7 +68,7 @@ public class EventFormController extends AbstractController {
 
         this.dialogStage = dialogStage;
         event = item;
-
+        eventRules = item.getEventRules();
 
         if (readOnly) {
             setReadOnly(headerPane);
@@ -63,7 +83,7 @@ public class EventFormController extends AbstractController {
         eventCodeTxb.textProperty().bindBidirectional(event.codeProperty());
         eventNameTxb.textProperty().bindBidirectional(event.nameProperty());
         if (event.modelProperty().getValue() != null) {
-            modelNameTxb.textProperty().bindBidirectional(event.modelProperty().get().modelNameProperty());
+            modelNameTxb.textProperty().bind(event.modelProperty().get().modelNameProperty());
 
             ObservableList<Model> l = FXCollections.observableArrayList();
             l.addAll(event.getModel());
@@ -90,13 +110,37 @@ public class EventFormController extends AbstractController {
         cmbModelCode.valueProperty().addListener((observable, oldValue, newValue) -> {
             modelNameTxb.textProperty().unbind();
             event.modelProperty().setValue(newValue);
-            modelNameTxb.textProperty().bindBidirectional(event.modelProperty().get().modelNameProperty());
+            modelNameTxb.textProperty().bind(event.modelProperty().get().modelNameProperty());
 
         });
 
 
+
         enabledFlag.selectedProperty().bindBidirectional(event.enabledProperty());
 
+        eventRulesTable.getItems().addAll(event.getEventRules());
+        ruleEnabled.setCellFactory(CheckBoxTableCell.forTableColumn(ruleEnabled));
 
+        ruleCode.setCellFactory(d->EditCell.createStringEditCell());
+        ruleName.setCellFactory(d->EditCell.createStringEditCell());
+
+        headerGridPane.expandedProperty().addListener((observable, oldValue, newValue) -> {
+
+            if(newValue) {
+                eventRulesTable.setLayoutY(185);
+            } else  {
+                eventRulesTable.setLayoutY(25);
+            }
+
+        });
+
+
+    }
+
+    public void handleOk(ActionEvent actionEvent) {
+    }
+
+    public void handleCancel(ActionEvent actionEvent) {
+        dialogStage.close();
     }
 }

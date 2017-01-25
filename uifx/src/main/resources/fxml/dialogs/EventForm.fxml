@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0"
-            fx:id="mainPane"
-            xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.dialogs.EventFormController">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.dialogs.EventFormController">
    <children>
-      <TitledPane animated="false" prefHeight="185.0" prefWidth="803.0" text="Заголовок">
+       <TitledPane fx:id="headerGridPane" animated="false" maxHeight="1.7976931348623157E308" prefWidth="803.0" text="Заголовок" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <content>
-            <GridPane minWidth="-Infinity" prefHeight="173.0" prefWidth="685.0" fx:id="headerPane">
+             <GridPane fx:id="headerPane" minWidth="-Infinity" prefWidth="685.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="173.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="173.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="494.0" />
               </columnConstraints>
               <rowConstraints>
@@ -37,5 +48,46 @@
             </GridPane>
          </content>
       </TitledPane>
+       <TableView fx:id="eventRulesTable" editable="true" layoutY="180.0" maxWidth="1.7976931348623157E308" prefHeight="367.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+           <columns>
+               <TableColumn fx:id="ruleCode" prefWidth="150.0" text="Код правила учета">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="code" />
+                   </cellValueFactory>
+                   <cellFactory>
+
+                   </cellFactory>
+
+               </TableColumn>
+               <TableColumn fx:id="ruleName" minWidth="0.0" prefWidth="533.0" text="Наименование правила учета">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="name" />
+                   </cellValueFactory>
+               </TableColumn>
+
+                     <TableColumn fx:id="ruleEnabled" prefWidth="113.0" text="Акт">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="enabledFlag" />
+                   </cellValueFactory>
+
+                     </TableColumn>
+           </columns>
+         <padding>
+            <Insets bottom="30.0" />
+         </padding>
+       </TableView>
+
+
+       <HBox id="HBox" alignment="CENTER" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+           <children>
+               <Button mnemonicParsing="false" onAction="#handleOk" prefWidth="80.0" text="OK" />
+               <Button mnemonicParsing="false" onAction="#handleCancel" prefWidth="80.0" text="Отмена" />
+           </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+       </HBox>
+
+
    </children>
 </AnchorPane>

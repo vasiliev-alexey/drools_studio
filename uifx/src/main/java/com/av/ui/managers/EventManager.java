@@ -54,9 +54,13 @@ public class EventManager extends AbstractDataManager<Event> {
         AnchorPane view = (AnchorPane) controller.getView();
 
         Stage dialogStage = new Stage();
+        view.prefWidthProperty().bind(dialogStage.widthProperty());
+        dialogStage.setWidth(800d);
 
         dialogStage.setTitle("Редактирование учетного события " + item.codeProperty().getValue());
         dialogStage.initModality(Modality.APPLICATION_MODAL);
+
+
 
         Scene scene = new Scene(view);
         dialogStage.setScene(scene);
