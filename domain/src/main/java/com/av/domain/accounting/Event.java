@@ -18,6 +18,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "event")
+@Access(AccessType.PROPERTY)
 public class Event implements Serializable {
 
 

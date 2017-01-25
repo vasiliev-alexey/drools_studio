@@ -79,9 +79,15 @@
     <bean name="conditionService" class="com.av.repositories.ConditionServiceImpl"></bean>
 
 
+
     <bean id="cacheManager" class="org.springframework.cache.caffeine.CaffeineCacheManager">
         <property name="cacheNames">
-            <value>model</value>
+            <list>
+                <value>model</value>
+                <value>accountSettings</value>
+                <value>currency</value>
+                <value>chartOfAccountStructure</value>
+            </list>
         </property>
 
 
