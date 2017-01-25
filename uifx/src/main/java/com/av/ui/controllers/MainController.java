@@ -48,6 +48,9 @@ public class MainController extends AbstractController implements Initializable 
     private EventManager eventManager;
     @Autowired
     private AccountCalendarManager accountCalendarManager;
+    @Autowired
+    private CASManager casManager;
+
 
     @Autowired
     private CurrencyManager currencyManager;
@@ -91,7 +94,11 @@ public class MainController extends AbstractController implements Initializable 
         TreeItem accountCalendarItem = new TreeItem();
         accountCalendarItem.setValue(accountCalendarManager);
 
-        accountTreeItem.getChildren().addAll(currencyItem ,  eventTreeItem  ,accountCalendarItem);
+        TreeItem<AbstractDataManager> casItem = new TreeItem<>();
+        casItem.setValue(casManager);
+
+        accountTreeItem.getChildren().addAll(currencyItem ,  eventTreeItem  ,accountCalendarItem , casItem);
+
 
 
 
