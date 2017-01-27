@@ -11,11 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -74,9 +72,20 @@ public class CASFormController extends AbstractController {
 
     }
     public void handleOk(ActionEvent actionEvent) {
+        Alert  alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.setTitle("Предупреждение");
+        alert.setHeaderText("Сохранение не реализовано");
+
+        alert.showAndWait();
+        dialogStage.close();
+
     }
 
     public void handleCancel(ActionEvent actionEvent) {
+
+        dialogStage.close();
+
     }
 
 }
