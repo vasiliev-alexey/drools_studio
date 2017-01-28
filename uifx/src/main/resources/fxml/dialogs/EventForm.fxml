@@ -20,7 +20,7 @@
    <children>
        <TitledPane fx:id="headerGridPane" animated="false" maxHeight="1.7976931348623157E308" prefWidth="803.0" text="Заголовок" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <content>
-             <GridPane fx:id="headerPane" minWidth="-Infinity" prefWidth="685.0">
+             <GridPane fx:id="headerPane" minWidth="-Infinity" prefHeight="262.0" prefWidth="798.0">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="173.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="494.0" />
@@ -30,6 +30,7 @@
                 <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -44,11 +45,18 @@
                   <ComboBox fx:id="cmbModelCode" prefHeight="26.0" prefWidth="5000.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
                   <Label text="Активно ?" GridPane.rowIndex="4" />
                   <CheckBox fx:id="enabledFlag" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Label text="Струтура ПС" GridPane.rowIndex="5" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <children>
+                        <TextField prefHeight="26.0" prefWidth="566.0" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" text="..." HBox.hgrow="NEVER" />
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
          </content>
       </TitledPane>
-       <TableView fx:id="eventRulesTable" editable="true" layoutY="180.0" maxWidth="1.7976931348623157E308" prefHeight="367.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+       <TableView fx:id="eventRulesTable" editable="true" layoutY="217.0" maxWidth="1.7976931348623157E308" prefHeight="330.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
            <columns>
                <TableColumn fx:id="ruleCode" prefWidth="150.0" text="Код правила учета">
                    <cellValueFactory>
