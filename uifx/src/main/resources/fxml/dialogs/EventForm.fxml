@@ -46,7 +46,8 @@
                   <Label text="Активно ?" GridPane.rowIndex="4" />
                   <CheckBox fx:id="enabledFlag" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                   <Label text="Струтура ПС" GridPane.rowIndex="5" />
-                  <ComboBox maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="604.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
+                  <ComboBox maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="604.0" GridPane.columnIndex="1"
+                            GridPane.hgrow="ALWAYS" GridPane.rowIndex="5"  fx:id="cmbChartStructure"/>
                </children>
             </GridPane>
          </content>

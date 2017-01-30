@@ -50,9 +50,9 @@ public class EventTableViewController extends AbstractController implements Init
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        codeColumn.setCellValueFactory(new PropertyValueFactory<Event, String>("code"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Event, String>("name"));
-        enabled_flag.setCellValueFactory(new PropertyValueFactory<Event, Boolean>("enabled"));
+        codeColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        enabled_flag.setCellValueFactory(new PropertyValueFactory<>("enabled"));
         enabled_flag.setCellFactory(CheckBoxTableCell.forTableColumn(enabled_flag));
         modelName.setCellValueFactory(data -> {
             if (data.getValue().modelProperty().getValue() == null) return null;
