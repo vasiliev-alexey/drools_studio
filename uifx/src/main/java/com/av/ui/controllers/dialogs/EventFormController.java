@@ -108,9 +108,9 @@ public class EventFormController extends AbstractController {
         });
 
         cmbModelCode.valueProperty().addListener((observable, oldValue, newValue) -> {
-            modelNameTxb.textProperty().unbind();
+            //modelNameTxb.textProperty().unbind();
             event.modelProperty().setValue(newValue);
-            modelNameTxb.textProperty().bind(event.modelProperty().get().modelNameProperty());
+            //modelNameTxb.textProperty().bind(event.modelProperty().get().modelNameProperty());
 
         });
 
@@ -129,7 +129,7 @@ public class EventFormController extends AbstractController {
             if(newValue) {
                 eventRulesTable.setLayoutY(185);
             } else  {
-                eventRulesTable.setLayoutY(25);
+                eventRulesTable.setLayoutY(30);
             }
 
         });
