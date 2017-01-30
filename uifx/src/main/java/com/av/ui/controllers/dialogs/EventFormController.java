@@ -1,6 +1,8 @@
 package com.av.ui.controllers.dialogs;
 
+import com.av.data.services.ChartOfAccountStructureService;
 import com.av.data.services.ModelService;
+import com.av.domain.accounting.ChartOfAccountStructure;
 import com.av.domain.accounting.Event;
 import com.av.domain.accounting.EventRule;
 import com.av.domain.settings.Model;
@@ -59,10 +61,17 @@ public class EventFormController extends AbstractController {
     @FXML
     public TitledPane headerGridPane;
 
+    @FXML
+    public ComboBox cmbChartStructure;
+
     private ObservableList<Model> models;
+
+    private ObservableList<ChartOfAccountStructure> chartOfAccountStructures;
 
     @Autowired
     private ModelService modelService;
+    @Autowired
+    private ChartOfAccountStructureService chartOfAccountStructureService;
 
     public void setDependencyValue(Stage dialogStage, Event item, boolean readOnly) {
 
@@ -74,6 +83,7 @@ public class EventFormController extends AbstractController {
             setReadOnly(headerPane);
         } else {
             models = modelService.getAll();
+            chartOfAccountStructures = chartOfAccountStructureService.getAll();
         }
         bind();
     }
@@ -90,9 +100,16 @@ public class EventFormController extends AbstractController {
 
 
             cmbModelCode.getSelectionModel().select(event.getModel());
+
+
+
+
         }
         cmbModelCode.setItems(models);
         cmbModelCode.setConverter(new StringConverter<Model>() {
+
+
+
 
             @Override
             public String toString(Model object) {
@@ -114,6 +131,18 @@ public class EventFormController extends AbstractController {
 
         });
 
+        cmbChartStructure.setItems(chartOfAccountStructures);
+        cmbChartStructure.setConverter(new StringConverter<ChartOfAccountStructure>() {
+            @Override
+            public String toString(ChartOfAccountStructure object) {
+                return object.getName();
+            }
+
+            @Override
+            public ChartOfAccountStructure fromString(String string) {
+                return null;
+            }
+        });
 
 
         enabledFlag.selectedProperty().bindBidirectional(event.enabledProperty());
@@ -127,7 +156,7 @@ public class EventFormController extends AbstractController {
         headerGridPane.expandedProperty().addListener((observable, oldValue, newValue) -> {
 
             if(newValue) {
-                eventRulesTable.setLayoutY(185);
+                eventRulesTable.setLayoutY(headerPane.getRowConstraints().size() * 37);
             } else  {
                 eventRulesTable.setLayoutY(30);
             }
