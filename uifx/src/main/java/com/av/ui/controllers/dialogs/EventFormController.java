@@ -1,6 +1,7 @@
 package com.av.ui.controllers.dialogs;
 
 import com.av.data.services.ChartOfAccountStructureService;
+import com.av.data.services.EventService;
 import com.av.data.services.ModelService;
 import com.av.domain.accounting.ChartOfAccountStructure;
 import com.av.domain.accounting.Event;
@@ -18,6 +19,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +33,8 @@ import java.util.Set;
  */
 public class EventFormController extends AbstractController {
 
-
+@FXML
+    public VBox rulesMainBox;
     private Event event;
     private Stage dialogStage;
 
@@ -62,8 +66,9 @@ public class EventFormController extends AbstractController {
     public TitledPane headerGridPane;
 
     @FXML
-    public ComboBox cmbChartStructure;
-
+    public ComboBox<ChartOfAccountStructure> cmbChartStructure;
+    @FXML
+    public HBox rulesBox;
     private ObservableList<Model> models;
 
     private ObservableList<ChartOfAccountStructure> chartOfAccountStructures;
@@ -72,6 +77,8 @@ public class EventFormController extends AbstractController {
     private ModelService modelService;
     @Autowired
     private ChartOfAccountStructureService chartOfAccountStructureService;
+    @Autowired
+    private EventService eventService;
 
     public void setDependencyValue(Stage dialogStage, Event item, boolean readOnly) {
 
@@ -144,6 +151,14 @@ public class EventFormController extends AbstractController {
             }
         });
 
+        cmbChartStructure.valueProperty().addListener((observable, oldValue, newValue) -> {
+                event.chartOfAccountStructureProperty().setValue(newValue);
+        });
+
+        if(event.chartOfAccountStructureProperty() != null) {
+            cmbChartStructure.getSelectionModel().select(event.getChartOfAccountStructure());
+        }
+
 
         enabledFlag.selectedProperty().bindBidirectional(event.enabledProperty());
 
@@ -156,17 +171,23 @@ public class EventFormController extends AbstractController {
         headerGridPane.expandedProperty().addListener((observable, oldValue, newValue) -> {
 
             if(newValue) {
-                eventRulesTable.setLayoutY(headerPane.getRowConstraints().size() * 37);
+                rulesMainBox.setLayoutY(headerPane.getRowConstraints().size() * 37);
             } else  {
-                eventRulesTable.setLayoutY(30);
+                rulesMainBox.setLayoutY(30);
             }
 
         });
-
+        rulesBox.prefWidthProperty().bind(dialogStage.widthProperty());
+        eventRulesTable.prefWidthProperty().bind(rulesBox.prefWidthProperty().add(-50d));
+        ruleName.prefWidthProperty().bind(eventRulesTable.prefWidthProperty().multiply(0.66d));
+        ruleCode.prefWidthProperty().bind(eventRulesTable.prefWidthProperty().multiply(0.18d));
+        ruleEnabled.prefWidthProperty().bind(eventRulesTable.prefWidthProperty().multiply(0.16d));
 
     }
 
     public void handleOk(ActionEvent actionEvent) {
+        eventService.save(event);
+
     }
 
     public void handleCancel(ActionEvent actionEvent) {

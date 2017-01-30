@@ -1,5 +1,7 @@
+import com.av.data.services.ChartOfAccountStructureService;
 import com.av.data.services.EventService;
 import com.av.data.services.ModelService;
+import com.av.domain.accounting.ChartOfAccountStructure;
 import com.av.domain.accounting.Event;
 
 import com.av.domain.accounting.EventRule;
@@ -32,6 +34,8 @@ public class TestEventDAO extends AbstractTestDao {
 
     @Autowired
     private ModelService modelService;
+    @Autowired
+    private ChartOfAccountStructureService chartOfAccountStructureService;
 
     @Test
     public void EventShouldBeSave() {
@@ -49,6 +53,10 @@ public class TestEventDAO extends AbstractTestDao {
         event.setModel(model);
         event.setEnabled(true);
 
+       ChartOfAccountStructure chartOfAccountStructure=
+               chartOfAccountStructureService.getAll().stream().findFirst().get();
+
+        event.setChartOfAccountStructure(chartOfAccountStructure);
         service.save(event);
 
         Assert.notNull(event);

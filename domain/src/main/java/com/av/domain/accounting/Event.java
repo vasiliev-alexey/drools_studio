@@ -27,6 +27,7 @@ public class Event implements Serializable {
     private StringProperty name;
     private BooleanProperty enabled;
     private ObjectProperty<Model> model;
+    private ObjectProperty<ChartOfAccountStructure> chartOfAccountStructure;
     private List<EventRule>  eventRules;
 
 
@@ -137,8 +138,23 @@ public class Event implements Serializable {
     public void setEventRules(List<EventRule> eventRules) {
         this.eventRules = eventRules;
     }
+    @OneToOne
+    @JoinColumn(name = "chart_of_account_structure_id"  )
+    public ChartOfAccountStructure getChartOfAccountStructure() {
+        return chartOfAccountStructureProperty().get();
+    }
 
+    public ObjectProperty<ChartOfAccountStructure> chartOfAccountStructureProperty() {
+        if(chartOfAccountStructure == null) {
+            chartOfAccountStructure = new SimpleObjectProperty<>(this , "chartOfAccountStructure");
 
+        }
+        return chartOfAccountStructure;
+    }
+
+    public void setChartOfAccountStructure(ChartOfAccountStructure chartOfAccountStructure) {
+        chartOfAccountStructureProperty().set(chartOfAccountStructure);
+    }
 
     @Override
     public String toString() {
