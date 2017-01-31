@@ -1,7 +1,8 @@
 import com.av.data.services.ConditionService;
-import com.av.domain.settings.ConstantCondition;
-import com.av.domain.settings.StandardValueType;
+import com.av.data.services.ModelService;
+import com.av.domain.settings.*;
 
+import org.joda.time.DateTimeUtils;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,7 +24,8 @@ public class TestDAOCondition extends AbstractTestDao {
     @Qualifier("conditionService")
 
     private ConditionService conditionService;
-
+    @Autowired
+    private ModelService modelService;
 
     @Test
     public void ConstantConditionShouldBeSave() {
@@ -66,5 +68,23 @@ public class TestDAOCondition extends AbstractTestDao {
         Assert.assertNotNull("Объект c датой должен быть сохранен", constantCondition.getId());
 
     }
+
+    @Test
+    public void DocumentAttributeShouldBeSave() {
+
+      ModelAttr attr=   modelService.getAll().filtered(m -> m.getModelAttrGroups() != null).filtered(m -> m.getModelAttrGroups().size() != 0).get(0).getModelAttrGroups().get(0).getModelAttrList().get(0);
+        String rnd = Long.toString(DateTimeUtils.currentTimeMillis());
+        DocumentAttribute documentAttribute = new DocumentAttribute();
+        documentAttribute.setCode("code_doc_" + rnd);
+        documentAttribute.setName("Name_doc_" + rnd);
+        documentAttribute.setConditionType(ConditionType.DOCUMENT_ATTRIBUTE);
+        documentAttribute.setAttr(attr);
+
+        conditionService.Save(documentAttribute);
+        Assert.assertNotNull("Объект атрибута должен быть сохранен", documentAttribute.getId());
+
+    }
+
+
 
 }
