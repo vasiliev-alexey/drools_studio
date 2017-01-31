@@ -9,6 +9,7 @@ import com.av.domain.accounting.EventRule;
 import com.av.domain.settings.Model;
 import com.av.ui.controllers.AbstractController;
 import com.av.ui.treeitems.EditCell;
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -33,14 +34,27 @@ import java.util.Set;
  */
 public class EventFormController extends AbstractController {
 
-@FXML
+    @FXML
     public VBox rulesMainBox;
-    private Event event;
-    private Stage dialogStage;
-
-    private List<EventRule> eventRules;
+    @FXML
+    public Button btnCondition;
     @FXML
     public TableView eventRulesTable;
+    @FXML
+    public TableColumn ruleCode;
+    @FXML
+    public TableColumn ruleName;
+    @FXML
+    public TableColumn ruleEnabled;
+    @FXML
+    public TitledPane headerGridPane;
+    @FXML
+    public ComboBox<ChartOfAccountStructure> cmbChartStructure;
+    @FXML
+    public HBox rulesBox;
+    private Event event;
+    private Stage dialogStage;
+    private List<EventRule> eventRules;
     @FXML
     private AnchorPane mainPane;
     @FXML
@@ -53,22 +67,8 @@ public class EventFormController extends AbstractController {
     private ComboBox<Model> cmbModelCode;
     @FXML
     private CheckBox enabledFlag;
-
     @FXML
     private GridPane headerPane;
-    @FXML
-    public TableColumn ruleCode;
-    @FXML
-    public TableColumn ruleName;
-    @FXML
-    public TableColumn ruleEnabled;
-    @FXML
-    public TitledPane headerGridPane;
-
-    @FXML
-    public ComboBox<ChartOfAccountStructure> cmbChartStructure;
-    @FXML
-    public HBox rulesBox;
     private ObservableList<Model> models;
 
     private ObservableList<ChartOfAccountStructure> chartOfAccountStructures;
@@ -109,13 +109,9 @@ public class EventFormController extends AbstractController {
             cmbModelCode.getSelectionModel().select(event.getModel());
 
 
-
-
         }
         cmbModelCode.setItems(models);
         cmbModelCode.setConverter(new StringConverter<Model>() {
-
-
 
 
             @Override
@@ -152,27 +148,29 @@ public class EventFormController extends AbstractController {
         });
 
         cmbChartStructure.valueProperty().addListener((observable, oldValue, newValue) -> {
-                event.chartOfAccountStructureProperty().setValue(newValue);
+            event.chartOfAccountStructureProperty().setValue(newValue);
         });
 
-        if(event.chartOfAccountStructureProperty() != null) {
+        if (event.chartOfAccountStructureProperty() != null) {
             cmbChartStructure.getSelectionModel().select(event.getChartOfAccountStructure());
         }
 
+        cmbChartStructure.disableProperty().bind(Bindings.isNotEmpty(FXCollections.observableArrayList(eventRules)));
+        cmbModelCode.disableProperty().bind(cmbChartStructure.disabledProperty());
 
         enabledFlag.selectedProperty().bindBidirectional(event.enabledProperty());
 
         eventRulesTable.getItems().addAll(event.getEventRules());
         ruleEnabled.setCellFactory(CheckBoxTableCell.forTableColumn(ruleEnabled));
 
-        ruleCode.setCellFactory(d->EditCell.createStringEditCell());
-        ruleName.setCellFactory(d->EditCell.createStringEditCell());
+        ruleCode.setCellFactory(d -> EditCell.createStringEditCell());
+        ruleName.setCellFactory(d -> EditCell.createStringEditCell());
 
         headerGridPane.expandedProperty().addListener((observable, oldValue, newValue) -> {
 
-            if(newValue) {
+            if (newValue) {
                 rulesMainBox.setLayoutY(headerPane.getRowConstraints().size() * 37);
-            } else  {
+            } else {
                 rulesMainBox.setLayoutY(30);
             }
 
@@ -182,6 +180,9 @@ public class EventFormController extends AbstractController {
         ruleName.prefWidthProperty().bind(eventRulesTable.prefWidthProperty().multiply(0.66d));
         ruleCode.prefWidthProperty().bind(eventRulesTable.prefWidthProperty().multiply(0.18d));
         ruleEnabled.prefWidthProperty().bind(eventRulesTable.prefWidthProperty().multiply(0.16d));
+
+
+        btnCondition.disableProperty().bind(Bindings.isEmpty( eventRulesTable.getSelectionModel().getSelectedItems()));
 
     }
 

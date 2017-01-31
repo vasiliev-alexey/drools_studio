@@ -19,7 +19,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.dialogs.EventFormController">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="745.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.dialogs.EventFormController">
    <children>
        <TitledPane fx:id="headerGridPane" animated="false" maxHeight="1.7976931348623157E308" prefWidth="803.0" text="Заголовок" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <content>
@@ -56,10 +57,12 @@
       </TitledPane>
       <VBox fx:id="rulesMainBox" layoutY="210.0" prefHeight="450.0" prefWidth="220.0" spacing="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
       <HBox fx:id="rulesBox" layoutY="210.0" maxWidth="1.7976931348623157E308" prefHeight="169.0" prefWidth="800.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <VBox alignment="CENTER" prefHeight="338.0" prefWidth="50.0" spacing="20.0" HBox.hgrow="NEVER">
+         <VBox alignment="CENTER" prefHeight="338.0" prefWidth="50.0" spacing="2.0" HBox.hgrow="NEVER">
             <children>
                <Button mnemonicParsing="false" style="-fx-graphic: url('/icons/add_16x16.png');" text="" />
                <Button mnemonicParsing="false" style="-fx-graphic: url('/icons/del_16x16.png');" text="" VBox.vgrow="NEVER" />
+                <Button fx:id="btnCondition" mnemonicParsing="false" style="-fx-graphic: url('/icons/rules_16x16.png');" text="" VBox.vgrow="NEVER" disable="true" />
+
             </children>
          </VBox>
        <TableView fx:id="eventRulesTable" editable="true" layoutX="23.0" layoutY="240.0" maxWidth="1.7976931348623157E308" prefHeight="250.0" prefWidth="740.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="0.0" HBox.hgrow="ALWAYS">
