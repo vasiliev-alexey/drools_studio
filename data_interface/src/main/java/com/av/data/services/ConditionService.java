@@ -7,5 +7,5 @@ import com.av.domain.settings.AbstractCondition;
  */
 public interface ConditionService {
 
-    AbstractCondition Save(AbstractCondition condition);
+    AbstractCondition save(AbstractCondition condition);
 }

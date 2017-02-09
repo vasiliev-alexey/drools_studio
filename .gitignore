@@ -99,3 +99,4 @@ drools_studio.iml
 /LICENSE.txt
 /data_interface/data_interface.iml
 /repository/drools.studio.data_repository.iml
+/repository/repository.iml

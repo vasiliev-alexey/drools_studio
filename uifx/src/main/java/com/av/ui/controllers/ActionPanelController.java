@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  * Created by vasiliev-alexey on 19.12.16.
  */
 
-public class ActionPanelController extends AbstractController implements Initializable, Serializable {
+public class ActionPanelController extends AbstractController implements Initializable {
 
     private static Logger logger = Logger.getLogger(ActionPanelController.class.getName());
     private TableSelectionModel tableSelectionModel;

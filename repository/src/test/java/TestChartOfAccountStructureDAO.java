@@ -27,7 +27,7 @@ public class TestChartOfAccountStructureDAO extends AbstractTestDao {
         String  tmpDate = LocalDateTime.now().toString();
         structure.setCode("code_"+ tmpDate);
         structure.setName("name_"+tmpDate);
-        service.Save(structure);
+        service.save(structure);
         Assert.assertTrue("structure not saved", structure.getId() > 0);
     }
     @Test
@@ -51,7 +51,7 @@ structure.setSegmentDescriptionList(new ArrayList<>());
         }
 
 
-        service.Save(structure);
+        service.save(structure);
         Assert.assertTrue("structure not saved", structure.getId() > 0);
     }
 

@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "model_attr")
 @Access(AccessType.PROPERTY)
-public class ModelAttr implements Serializable {
+public class ModelAttr   {
 
 
     private LongProperty id;

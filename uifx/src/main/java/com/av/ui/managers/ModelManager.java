@@ -67,7 +67,7 @@ public class ModelManager extends AbstractDataManager<Model> {
             modelManagerLogger.info("model save");
             ObservableList<Error> constraintViolations = validationService.validateModel(item);
             if (constraintViolations.isEmpty()) {
-                modelService.Save(item);
+                modelService.save(item);
                 modelManagerLogger.info("model saved - completed");
             } else {
                 modelManagerLogger.info("model has error - save rejected");

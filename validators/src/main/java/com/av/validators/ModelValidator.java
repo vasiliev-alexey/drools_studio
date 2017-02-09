@@ -28,7 +28,7 @@ public class ModelValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
 
-        Model m = (Model)o;
+
 
 
 

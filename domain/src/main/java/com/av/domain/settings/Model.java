@@ -22,7 +22,7 @@ import java.util.List;
 @Table(name = "model")
 @Access(AccessType.PROPERTY)
 
-public class Model implements Serializable {
+public class Model  {
 
     private LongProperty id;
     private StringProperty code;

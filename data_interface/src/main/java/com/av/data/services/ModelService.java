@@ -12,7 +12,7 @@ import org.springframework.cache.annotation.Cacheable;
 public interface ModelService {
 
     @CacheEvict (cacheNames = "model"  )
-    Model Save(Model model);
+    Model save(Model model);
 
 
    @Cacheable(cacheNames = "model")

@@ -12,10 +12,11 @@ import java.util.List;
 /**
  * Created by vasiliev-alexey on 25.01.17.
  */
+
 @Entity
 @Table(name = "chart_of_account_structure")
 @Access(AccessType.PROPERTY)
-public class ChartOfAccountStructure implements Serializable {
+public class ChartOfAccountStructure   {
 
     private LongProperty id;
     private StringProperty code;

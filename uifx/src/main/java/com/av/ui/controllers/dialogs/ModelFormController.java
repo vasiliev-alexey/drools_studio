@@ -148,7 +148,7 @@ public class ModelFormController extends AbstractController {
      * @param readOnly - флаг только для чтения
      */
     public void setDependencyValue(Model model, boolean readOnly, Action a) {
-        this.dialogStage = dialogStage;
+
         this.model = model;
         close  =a;
         groups = FXCollections.observableArrayList(model.getModelAttrGroups());

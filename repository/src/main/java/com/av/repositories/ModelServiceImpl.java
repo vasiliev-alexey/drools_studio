@@ -30,7 +30,7 @@ public class ModelServiceImpl implements ModelService {
     @Override
 
 
-    public Model Save(Model model) {
+    public Model save(Model model) {
 
 
         if (model.getId() == 0) {

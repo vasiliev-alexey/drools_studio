@@ -2,12 +2,8 @@ import com.av.data.services.ModelService;
 
 import com.av.domain.settings.*;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
@@ -56,7 +52,7 @@ public class TestDaoModel extends AbstractTestDao {
         attrGroup.setModelAttrList(new ArrayList<>());
         attrGroup.getModelAttrList().add(attr);
 
-        service.Save(m);
+        service.save(m);
 
         System.out.println(m.getId());
         // System.out.println(m.getModelAttrGroups().get(0).getId());
@@ -74,7 +70,7 @@ public class TestDaoModel extends AbstractTestDao {
         m.setCode("XXX");
         m.setModelName("XXX");
         m.setPackageName("XXX");
-        service.Save(m);
+        service.save(m);
         assertTrue ( "model not saved", m.getId() > 0  );
         service.remove(m);
 

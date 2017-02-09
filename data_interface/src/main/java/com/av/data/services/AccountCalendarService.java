@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface AccountCalendarService {
     @CacheEvict(cacheNames = "accountSettings"  , allEntries = true)
-    AccountCalendar Save(AccountCalendar model);
+    AccountCalendar save(AccountCalendar model);
 
 
     @Cacheable(cacheNames = "accountSettings")

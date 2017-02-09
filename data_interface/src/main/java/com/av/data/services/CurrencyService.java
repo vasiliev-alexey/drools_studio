@@ -11,7 +11,7 @@ import org.springframework.cache.annotation.Cacheable;
 public interface CurrencyService {
 
     @CacheEvict(cacheNames = "currency"  , allEntries = true)
-    Currency Save(Currency currency);
+    Currency save(Currency currency);
 
 
     @Cacheable(cacheNames = "currency")

@@ -6,12 +6,8 @@ import org.joda.time.DateTimeUtils;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 /**
@@ -38,7 +34,7 @@ public class TestDAOCondition extends AbstractTestDao {
         constantCondition.setStringValue("simple 1");
 
 
-        conditionService.Save(constantCondition);
+        conditionService.save(constantCondition);
         Assert.assertNotNull("Объект долженг быть сохранен", constantCondition.getId());
 
     }
@@ -51,7 +47,7 @@ public class TestDAOCondition extends AbstractTestDao {
         constantCondition.setValueType(StandardValueType.Date);
         constantCondition.setDateValue(LocalDate.now());
 
-        conditionService.Save(constantCondition);
+        conditionService.save(constantCondition);
         Assert.assertNotNull("Объект c датой должен быть сохранен", constantCondition.getId());
 
     }
@@ -64,7 +60,7 @@ public class TestDAOCondition extends AbstractTestDao {
         constantCondition.setValueType(StandardValueType.Double);
         constantCondition.setDoubleValue(1D);
 
-        conditionService.Save(constantCondition);
+        conditionService.save(constantCondition);
         Assert.assertNotNull("Объект c датой должен быть сохранен", constantCondition.getId());
 
     }
@@ -80,7 +76,7 @@ public class TestDAOCondition extends AbstractTestDao {
         documentAttribute.setConditionType(ConditionType.DOCUMENT_ATTRIBUTE);
         documentAttribute.setAttr(attr);
 
-        conditionService.Save(documentAttribute);
+        conditionService.save(documentAttribute);
         Assert.assertNotNull("Объект атрибута должен быть сохранен", documentAttribute.getId());
 
     }

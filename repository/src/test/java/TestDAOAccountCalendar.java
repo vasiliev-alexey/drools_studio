@@ -6,12 +6,8 @@ import org.joda.time.DateTimeUtils;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 
@@ -57,7 +53,7 @@ public class TestDAOAccountCalendar extends AbstractTestDao {
 
 
 
-        service.Save(accountCalendar);
+        service.save(accountCalendar);
         Assert.assertNotNull("Объект долженг быть сохранен", accountCalendar.getId());
 
     }

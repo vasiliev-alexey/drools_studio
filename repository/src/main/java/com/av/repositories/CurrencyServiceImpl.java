@@ -24,7 +24,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     private EntityManager emf;
 
     @Override
-    public Currency Save(Currency currency) {
+    public Currency save(Currency currency) {
         if (currency.getId() == 0) {
             emf.persist(currency);
         } else {

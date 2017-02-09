@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "model_attr_group")
 @Access(AccessType.PROPERTY)
-public class ModelAttrGroup implements Serializable {
+public class ModelAttrGroup   {
 
 
     private StringProperty code;
@@ -125,7 +125,7 @@ public class ModelAttrGroup implements Serializable {
                 : that.codeProperty().getValue() != null) return false;
         if (idProperty().getValue() != null ? !idProperty().getValue().equals(that.idProperty().getValue())
                 : that.idProperty().getValue() != null) return false;
-        if (nameProperty().getValue() != null ? !nameProperty().getValue().equals(that.nameProperty())
+        if (nameProperty().getValue() != null ? !nameProperty().getValue().equals(that.nameProperty().getValue())
                 : that.nameProperty().getValue() != null) return false;
         if (groupTypeProperty().getValue() != null ? !groupTypeProperty().getValue().equals(that.groupTypeProperty().getValue())
                 : that.groupTypeProperty().getValue() != null) return false;

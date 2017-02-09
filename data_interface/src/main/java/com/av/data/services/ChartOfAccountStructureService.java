@@ -11,7 +11,7 @@ import org.springframework.cache.annotation.Cacheable;
 public interface ChartOfAccountStructureService {
 
     @CacheEvict(cacheNames = "chartOfAccountStructure"  )
-    ChartOfAccountStructure Save(ChartOfAccountStructure chartOfAccountStructure);
+    ChartOfAccountStructure save(ChartOfAccountStructure chartOfAccountStructure);
 
 
     @Cacheable(cacheNames = "chartOfAccountStructure")

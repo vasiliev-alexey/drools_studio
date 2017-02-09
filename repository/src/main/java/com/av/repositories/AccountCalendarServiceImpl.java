@@ -21,7 +21,7 @@ public class AccountCalendarServiceImpl implements AccountCalendarService {
     private EntityManager emf;
 
     @Override
-    public AccountCalendar Save(AccountCalendar data) {
+    public AccountCalendar save(AccountCalendar data) {
 
         if (data.getId() == 0) {
             emf.persist(data);

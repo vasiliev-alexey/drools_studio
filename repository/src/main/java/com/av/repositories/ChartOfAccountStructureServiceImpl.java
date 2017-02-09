@@ -22,7 +22,7 @@ public class ChartOfAccountStructureServiceImpl implements ChartOfAccountStructu
     private EntityManager emf;
 
     @Override
-    public ChartOfAccountStructure Save(ChartOfAccountStructure chartOfAccountStructure) {
+    public ChartOfAccountStructure save(ChartOfAccountStructure chartOfAccountStructure) {
         if (chartOfAccountStructure.getId() == 0) {
             emf.persist(chartOfAccountStructure);
         } else {

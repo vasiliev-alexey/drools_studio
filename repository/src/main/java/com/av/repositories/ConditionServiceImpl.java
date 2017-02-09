@@ -19,7 +19,7 @@ public class ConditionServiceImpl implements ConditionService {
     private EntityManager emf;
 
     @Override
-    public AbstractCondition Save(AbstractCondition condition) {
+    public AbstractCondition save(AbstractCondition condition) {
         if (condition.getId() == null || condition.getId() == 0) {
             emf.persist(condition);
         } else {
