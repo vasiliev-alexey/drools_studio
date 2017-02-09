@@ -5,6 +5,7 @@ import com.av.domain.accounting.Event;
 import com.av.domain.accounting.SegmentDescription;
 import com.av.ui.controllers.AbstractController;
 import com.av.ui.controllers.Controller;
+import com.av.ui.utils.Action;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -39,16 +40,14 @@ public class CASFormController extends AbstractController {
     private ChartOfAccountStructure structure;
 
     private ObservableList<SegmentDescription> segmentDescriptions;
-    private Stage dialogStage;
+
+    private Action close;
 
 
-    public void setDependencyValue(Stage dialogStage, ChartOfAccountStructure structure, boolean readOnly) {
-
-        this.dialogStage = dialogStage;
+    public void setDependencyValue(ChartOfAccountStructure structure, boolean readOnly , Action action) {
+        this.close = action;
         this.structure = structure;
         segmentDescriptions = FXCollections.observableArrayList(structure.getSegmentDescriptionList());
-
-
         bind();
     }
 
@@ -78,13 +77,13 @@ public class CASFormController extends AbstractController {
         alert.setHeaderText("Сохранение не реализовано");
 
         alert.showAndWait();
-        dialogStage.close();
+        close.perform();
 
     }
 
     public void handleCancel(ActionEvent actionEvent) {
 
-        dialogStage.close();
+        close.perform();
 
     }
 

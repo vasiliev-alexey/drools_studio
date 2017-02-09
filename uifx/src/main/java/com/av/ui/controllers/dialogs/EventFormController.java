@@ -9,6 +9,7 @@ import com.av.domain.accounting.EventRule;
 import com.av.domain.settings.Model;
 import com.av.ui.controllers.AbstractController;
 import com.av.ui.treeitems.EditCell;
+import com.av.ui.utils.Action;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -53,7 +54,6 @@ public class EventFormController extends AbstractController {
     @FXML
     public HBox rulesBox;
     private Event event;
-    private Stage dialogStage;
     private List<EventRule> eventRules;
     @FXML
     private AnchorPane mainPane;
@@ -79,10 +79,10 @@ public class EventFormController extends AbstractController {
     private ChartOfAccountStructureService chartOfAccountStructureService;
     @Autowired
     private EventService eventService;
+    private Action close;
 
-    public void setDependencyValue(Stage dialogStage, Event item, boolean readOnly) {
-
-        this.dialogStage = dialogStage;
+    public void setDependencyValue(Event item, boolean readOnly , Action close) {
+        this.close = close;
         event = item;
         eventRules = item.getEventRules();
 
@@ -175,7 +175,7 @@ public class EventFormController extends AbstractController {
             }
 
         });
-        rulesBox.prefWidthProperty().bind(dialogStage.widthProperty());
+
         eventRulesTable.prefWidthProperty().bind(rulesBox.prefWidthProperty().add(-50d));
         ruleName.prefWidthProperty().bind(eventRulesTable.prefWidthProperty().multiply(0.66d));
         ruleCode.prefWidthProperty().bind(eventRulesTable.prefWidthProperty().multiply(0.18d));
@@ -188,10 +188,11 @@ public class EventFormController extends AbstractController {
 
     public void handleOk(ActionEvent actionEvent) {
         eventService.save(event);
+        close.perform();
 
     }
 
     public void handleCancel(ActionEvent actionEvent) {
-        dialogStage.close();
+        close.perform();
     }
 }

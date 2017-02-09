@@ -4,20 +4,18 @@ import com.av.data.services.ModelService;
 import com.av.domain.settings.Error;
 import com.av.domain.settings.Model;
 import com.av.domain.settings.ModelAttrGroup;
-
 import com.av.ui.controllers.ModelTableViewController;
 import com.av.ui.controllers.dialogs.ModelFormController;
+import com.av.ui.utils.DialogBuilder;
 import com.av.ui.utils.SpringFXMLLoader;
 import com.av.validators.ModelBeanValidationServiceImpl;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.TableSelectionModel;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -55,14 +53,13 @@ public class ModelManager extends AbstractDataManager<Model> {
         ModelFormController controller = (ModelFormController) SpringFXMLLoader.load("/fxml/dialogs/ModelForm.fxml");
         AnchorPane view = (AnchorPane) controller.getView();
 
-        Stage dialogStage = new Stage();
+        DialogBuilder dialogStage = new DialogBuilder()
+                .setPane(view)
+                .setModelity(Modality.APPLICATION_MODAL)
+                .setTitle("Редактирование модели")
 
-        dialogStage.setTitle("Редактирование модели");
-        dialogStage.initModality(Modality.APPLICATION_MODAL);
-
-        Scene scene = new Scene(view);
-        dialogStage.setScene(scene);
-        controller.setDependencyValue(dialogStage, item, false);
+                 ;
+        controller.setDependencyValue(item, false ,  dialogStage.getAction());
 
         dialogStage.showAndWait();
 
@@ -96,12 +93,12 @@ public class ModelManager extends AbstractDataManager<Model> {
     public Model addItem() {
         modelManagerLogger.log(Level.INFO, "add item");
 
-        Model  newModel = new Model();
+        Model newModel = new Model();
         List<ModelAttrGroup> mag = new ArrayList<>();
         newModel.setModelAttrGroups(mag);
 
 
-        newModel =  editItem(newModel);
+        newModel = editItem(newModel);
 
         modelTableViewController.refresh();
 

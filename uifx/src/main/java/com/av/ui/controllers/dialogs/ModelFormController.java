@@ -3,6 +3,7 @@ package com.av.ui.controllers.dialogs;
 import com.av.domain.settings.*;
 import com.av.ui.controllers.AbstractController;
 import com.av.ui.treeitems.EditCell;
+import com.av.ui.utils.Action;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +28,7 @@ public class ModelFormController extends AbstractController {
     private boolean okClicked = false;
     private ObservableList<ModelAttrGroup> groups = FXCollections.observableArrayList();
     private Stage dialogStage;
-
+    private Action close;
 
     @FXML
     private AnchorPane mainPane;
@@ -143,13 +144,13 @@ public class ModelFormController extends AbstractController {
 
     /**
      *
-     * @param dialogStage - диалоговое окно - родитель
      * @param model  - модель для редактирования
      * @param readOnly - флаг только для чтения
      */
-    public void setDependencyValue(Stage dialogStage, Model model, boolean readOnly) {
+    public void setDependencyValue(Model model, boolean readOnly, Action a) {
         this.dialogStage = dialogStage;
         this.model = model;
+        close  =a;
         groups = FXCollections.observableArrayList(model.getModelAttrGroups());
         tableGroup.setItems(groups);
         tableGroup.setFixedCellSize(25);
@@ -171,8 +172,8 @@ public class ModelFormController extends AbstractController {
     public void handleOk(ActionEvent actionEvent) {
 
         okClicked = true;
-
-        dialogStage.close();
+        close.perform();
+       // dialogStage.close();
     }
 
     @FXML
@@ -180,7 +181,9 @@ public class ModelFormController extends AbstractController {
      * событие по нажатию на кнопку Отмена
      */
     private void handleCancel() {
-        dialogStage.close();
+
+        close.perform();
+       // dialogStage.close();
     }
 
 

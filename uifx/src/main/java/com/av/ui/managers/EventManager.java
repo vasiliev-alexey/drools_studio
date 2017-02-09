@@ -2,6 +2,7 @@ package com.av.ui.managers;
 
 import com.av.domain.accounting.Event;
 import com.av.ui.controllers.dialogs.EventFormController;
+import com.av.ui.utils.DialogBuilder;
 import com.av.ui.utils.SpringFXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -51,22 +52,13 @@ public class EventManager extends AbstractDataManager<Event> {
         logger.log(Level.INFO, "Edit:" + item);
 
         EventFormController controller = (EventFormController) SpringFXMLLoader.load("/fxml/dialogs/EventForm.fxml");
-        AnchorPane view = (AnchorPane) controller.getView();
-
-        Stage dialogStage = new Stage();
-        view.prefWidthProperty().bind(dialogStage.widthProperty());
-        dialogStage.setWidth(800d);
-
-        dialogStage.setTitle("Редактирование учетного события " + item.codeProperty().getValue());
-        dialogStage.initModality(Modality.APPLICATION_MODAL);
 
 
-
-        Scene scene = new Scene(view);
-        dialogStage.setScene(scene);
-        controller.setDependencyValue(dialogStage, item, false);
-
-        dialogStage.showAndWait();
+        DialogBuilder dialogBuilder = new DialogBuilder()
+                .setPane( (AnchorPane) controller.getView())
+                .setTitle("Редактирование учетного события " + item.codeProperty().getValue());
+        controller.setDependencyValue( item, false , dialogBuilder.getAction());
+        dialogBuilder.showAndWait();
         return  item;
     }
 

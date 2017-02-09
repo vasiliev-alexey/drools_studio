@@ -3,6 +3,7 @@ package com.av.ui.managers;
 import com.av.domain.accounting.ChartOfAccountStructure;
 import com.av.ui.controllers.dialogs.CASFormController;
 import com.av.ui.controllers.dialogs.EventFormController;
+import com.av.ui.utils.DialogBuilder;
 import com.av.ui.utils.SpringFXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -54,20 +55,26 @@ public class CASManager extends AbstractDataManager<ChartOfAccountStructure> {
                 ("/fxml/dialogs/ChartOfAccountStructureForm.fxml");
         AnchorPane view = (AnchorPane) controller.getView();
 
-        Stage dialogStage = new Stage();
-        view.prefWidthProperty().bind(dialogStage.widthProperty());
-        dialogStage.setWidth(800d);
-
-        dialogStage.setTitle("Редактирование структуры плана счетов события " + item.codeProperty().getValue());
-        dialogStage.initModality(Modality.APPLICATION_MODAL);
+        DialogBuilder dialogBuilder = new DialogBuilder()
+                .setTitle("Редактирование структуры плана счетов события " + item.codeProperty().getValue())
+                .setPane(view)
+                ;
 
 
+     //   Stage dialogStage = new Stage();
+     //   view.prefWidthProperty().bind(dialogStage.widthProperty());
+        //dialogStage.setWidth(800d);
 
-        Scene scene = new Scene(view);
-        dialogStage.setScene(scene);
-        controller.setDependencyValue(dialogStage, item, false);
+      //  dialogStage.setTitle();
+      //  dialogStage.initModality(Modality.APPLICATION_MODAL);
 
-        dialogStage.showAndWait();
+
+
+       // Scene scene = new Scene(view);
+        //dialogStage.setScene(scene);
+        controller.setDependencyValue(item, false , dialogBuilder.getAction());
+
+        dialogBuilder.showAndWait();
         return  item;
     }
 }
