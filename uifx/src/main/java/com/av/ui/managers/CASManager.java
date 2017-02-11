@@ -2,16 +2,12 @@ package com.av.ui.managers;
 
 import com.av.domain.accounting.ChartOfAccountStructure;
 import com.av.ui.controllers.dialogs.CASFormController;
-import com.av.ui.controllers.dialogs.EventFormController;
 import com.av.ui.utils.DialogBuilder;
 import com.av.ui.utils.SpringFXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +20,7 @@ import java.util.logging.Logger;
 @Service
 @Lazy
 public class CASManager extends AbstractDataManager<ChartOfAccountStructure> {
-    private static Logger logger = Logger.getLogger(CASManager.class.getName());
+    private final Logger logger = Logger.getLogger(CASManager.class.getName());
 
     @Override
     public ChartOfAccountStructure addItem() {
@@ -72,7 +68,7 @@ public class CASManager extends AbstractDataManager<ChartOfAccountStructure> {
 
        // Scene scene = new Scene(view);
         //dialogStage.setScene(scene);
-        controller.setDependencyValue(item, false , dialogBuilder.getAction());
+        controller.setDependencyValue(item, false , dialogBuilder.getCommand());
 
         dialogBuilder.showAndWait();
         return  item;

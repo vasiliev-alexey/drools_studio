@@ -9,10 +9,8 @@ import com.av.domain.accounting.EventRule;
 import com.av.domain.settings.Model;
 import com.av.ui.controllers.AbstractController;
 import com.av.ui.treeitems.EditCell;
-import com.av.ui.utils.Action;
+import com.av.ui.utils.Command;
 import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,12 +21,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by vasiliev-alexey on 24.01.17.
@@ -79,9 +75,9 @@ public class EventFormController extends AbstractController {
     private ChartOfAccountStructureService chartOfAccountStructureService;
     @Autowired
     private EventService eventService;
-    private Action close;
+    private Command close;
 
-    public void setDependencyValue(Event item, boolean readOnly , Action close) {
+    public void setDependencyValue(Event item, boolean readOnly , Command close) {
         this.close = close;
         event = item;
         eventRules = item.getEventRules();

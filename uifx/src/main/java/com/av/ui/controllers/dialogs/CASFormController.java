@@ -1,21 +1,17 @@
 package com.av.ui.controllers.dialogs;
 
 import com.av.domain.accounting.ChartOfAccountStructure;
-import com.av.domain.accounting.Event;
 import com.av.domain.accounting.SegmentDescription;
 import com.av.ui.controllers.AbstractController;
-import com.av.ui.controllers.Controller;
-import com.av.ui.utils.Action;
+import com.av.ui.utils.Command;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 /**
  * Created by vasiliev-alexey on 26.01.17.
@@ -41,11 +37,11 @@ public class CASFormController extends AbstractController {
 
     private ObservableList<SegmentDescription> segmentDescriptions;
 
-    private Action close;
+    private Command close;
 
 
-    public void setDependencyValue(ChartOfAccountStructure structure, boolean readOnly , Action action) {
-        this.close = action;
+    public void setDependencyValue(ChartOfAccountStructure structure, boolean readOnly , Command command) {
+        this.close = command;
         this.structure = structure;
         segmentDescriptions = FXCollections.observableArrayList(structure.getSegmentDescriptionList());
         bind();

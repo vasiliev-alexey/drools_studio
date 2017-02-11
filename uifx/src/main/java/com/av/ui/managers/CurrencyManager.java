@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 @Lazy
 public class CurrencyManager extends AbstractDataManager<Currency> {
 
-    private static Logger logger = Logger.getLogger(CurrencyManager.class.getName());
+    private final Logger logger = Logger.getLogger(CurrencyManager.class.getName());
 
 
     @Autowired

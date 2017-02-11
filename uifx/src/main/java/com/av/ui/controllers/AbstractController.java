@@ -9,7 +9,7 @@ import javafx.scene.layout.TilePane;
 /**
  * Created by vasiliev-alexey on 20.12.16.
  */
-public class AbstractController implements Controller {
+public abstract class AbstractController implements Controller {
 
     protected Node view;
 

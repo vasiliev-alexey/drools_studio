@@ -26,7 +26,7 @@ public abstract class AbstractDataManager<T> implements StandardAction<T> {
 
 
 
-    private static Logger logger = Logger.getLogger(AbstractDataManager.class.getName());
+    private final Logger logger = Logger.getLogger(AbstractDataManager.class.getName());
 
 
     public abstract String getLabel();

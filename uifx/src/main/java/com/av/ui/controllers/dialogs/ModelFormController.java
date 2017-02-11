@@ -3,7 +3,7 @@ package com.av.ui.controllers.dialogs;
 import com.av.domain.settings.*;
 import com.av.ui.controllers.AbstractController;
 import com.av.ui.treeitems.EditCell;
-import com.av.ui.utils.Action;
+import com.av.ui.utils.Command;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +17,12 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  * Created by vasiliev-alexey on 23.12.16.
@@ -25,11 +30,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ModelFormController extends AbstractController {
 
 
+    private final Logger logger = Logger.getLogger(ModelFormController.class.getName());
     private Model model;
     private boolean okClicked = false;
     private ObservableList<ModelAttrGroup> groups = FXCollections.observableArrayList();
     private Stage dialogStage;
-    private Action close;
+    private Command close;
 
     @FXML
     private AnchorPane mainPane;
@@ -152,16 +158,24 @@ public class ModelFormController extends AbstractController {
      * @param model  - модель для редактирования
      * @param readOnly - флаг только для чтения
      */
-    public void setDependencyValue(Model model, boolean readOnly, Action a) {
+    public void setDependencyValue(Model model, boolean readOnly, Command closeDialog) {
 
         this.model = model;
-        close  =a;
+        //close  =a;
         groups = FXCollections.observableArrayList(model.getModelAttrGroups());
         tableGroup.setItems(groups);
         tableGroup.setFixedCellSize(25);
         tableGroup.prefHeightProperty().bind(Bindings.size(tableGroup.getItems()).multiply(tableGroup.getFixedCellSize()).add(30));
         initTable();
-        actionController.setAction(a);
+        actionController.setOnClose(()-> {
+            logger.log(Level.INFO , "Call close");
+            closeDialog.perform();
+        });
+        actionController.setOnOk(()-> {
+            logger.log(Level.INFO , "Call Ok");
+            okClicked = true;
+            closeDialog.perform();
+        });
 
         if (readOnly) {
             setReadOnly(mainPane);
@@ -169,27 +183,7 @@ public class ModelFormController extends AbstractController {
 
     }
 
-    /**
-     *
-     * @param actionEvent -
-     */
-    @FXML
-    public void handleOk(ActionEvent actionEvent) {
 
-        okClicked = true;
-        close.perform();
-       // dialogStage.close();
-    }
-
-    @FXML
-    /**
-     * событие по нажатию на кнопку Отмена
-     */
-    private void handleCancel() {
-
-        close.perform();
-       // dialogStage.close();
-    }
 
 
     /**

@@ -1,26 +1,40 @@
 package com.av.ui.controllers.dialogs;
 
-import com.av.ui.utils.Action;
+import com.av.ui.utils.Command;
 import javafx.event.ActionEvent;
 
 /**
  * Created by vasiliev-alexey on 11.02.17.
  */
- 
+
 public class ActionController {
 
-    private Action action;
+    private Command commandOk;
+    private Command commandClose;
 
-    public void setAction(Action action) {
-        this.action = action;
-
+    public void setOnOk(Command command) {
+        this.commandOk = command;
     }
 
+    public void setOnClose(Command command) {
+        commandClose = command;
+    }
+
+
     public void handleOk(ActionEvent actionEvent) {
-        action.perform();
+        if (commandOk != null) {
+            commandOk.perform();
+        } else {
+            throw new IllegalStateException("Function on OK not setted");
+        }
+
     }
 
     public void handleCancel(ActionEvent actionEvent) {
-        action.perform();
+        if (commandClose != null) {
+            commandClose.perform();
+        } else {
+            throw new IllegalStateException("Function on OK not setted");
+        }
     }
 }

@@ -32,7 +32,7 @@ import java.util.logging.Logger;
 @Lazy
 public class ModelManager extends AbstractDataManager<Model> {
 
-    private static Logger modelManagerLogger = Logger.getLogger(ModelManager.class.getName());
+    private final Logger modelManagerLogger = Logger.getLogger(ModelManager.class.getName());
     @Autowired
     private ModelService modelService;
 
@@ -59,7 +59,7 @@ public class ModelManager extends AbstractDataManager<Model> {
                 .setTitle("Редактирование модели")
 
                  ;
-        controller.setDependencyValue(item, false ,  dialogStage.getAction());
+        controller.setDependencyValue(item, false ,  dialogStage.getCommand());
 
         dialogStage.showAndWait();
 

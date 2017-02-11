@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class DialogBuilder {
 
     private Stage dialog;
-    private Action action;
+    private Command command;
 
     private static final double DEAFAULT_WIDTH = 800d;
 
@@ -55,16 +55,16 @@ public class DialogBuilder {
         return dialog;
     }
 
-    public Action getAction() {
-        if(action == null) {
-            action = () -> dialog.close();
+    public Command getCommand() {
+        if(command == null) {
+            command = () -> dialog.close();
         }
 
-        return action;
+        return command;
     }
 
-    public DialogBuilder setOnClose(Action action) {
-        this.action = action;
+    public DialogBuilder setOnClose(Command command) {
+        this.command = command;
         return this;
     }
 

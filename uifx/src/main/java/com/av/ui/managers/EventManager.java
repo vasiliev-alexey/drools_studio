@@ -5,12 +5,9 @@ import com.av.ui.controllers.dialogs.EventFormController;
 import com.av.ui.utils.DialogBuilder;
 import com.av.ui.utils.SpringFXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import org.springframework.stereotype.Service;
 
 import java.util.logging.Level;
@@ -22,7 +19,7 @@ import java.util.logging.Logger;
 @Service
 public class EventManager extends AbstractDataManager<Event> {
 
-    private static Logger logger = Logger.getLogger(EventManager.class.getName());
+    private final Logger logger = Logger.getLogger(EventManager.class.getName());
 
     @Override
     public String getLabel() {
@@ -57,7 +54,7 @@ public class EventManager extends AbstractDataManager<Event> {
         DialogBuilder dialogBuilder = new DialogBuilder()
                 .setPane( (AnchorPane) controller.getView())
                 .setTitle("Редактирование учетного события " + item.codeProperty().getValue());
-        controller.setDependencyValue( item, false , dialogBuilder.getAction());
+        controller.setDependencyValue( item, false , dialogBuilder.getCommand());
         dialogBuilder.showAndWait();
         return  item;
     }
