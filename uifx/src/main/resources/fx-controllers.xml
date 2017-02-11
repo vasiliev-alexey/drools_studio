@@ -19,4 +19,5 @@
 
     <bean id="errorsDialog" class="com.av.ui.controllers.dialogs.ErrorsDialogController"></bean>
     <bean id="CASTableViewController" class="com.av.ui.controllers.CASTableViewController" scope="prototype"></bean>
+    <bean id="actionController" class="com.av.ui.controllers.dialogs.ActionController" scope="singleton"></bean>
 </beans>

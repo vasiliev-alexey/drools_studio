@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<HBox id="HBox" alignment="CENTER" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0"
+      fx:controller="com.av.ui.controllers.dialogs.ActionController"  xmlns:fx="http://javafx.com/fxml/1" >
+    <children>
+        <Button mnemonicParsing="false" onAction="#handleOk" prefWidth="80.0" text="OK" />
+        <Button mnemonicParsing="false" onAction="#handleCancel" prefWidth="80.0" text="Отмена" />
+    </children>
+</HBox>

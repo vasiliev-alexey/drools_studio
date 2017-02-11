@@ -17,6 +17,7 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by vasiliev-alexey on 23.12.16.
@@ -71,6 +72,10 @@ public class ModelFormController extends AbstractController {
 
     @FXML
     private Button delAttrBtn;
+
+    @Autowired
+    private ActionController actionController;
+
 
 
     /**
@@ -156,7 +161,7 @@ public class ModelFormController extends AbstractController {
         tableGroup.setFixedCellSize(25);
         tableGroup.prefHeightProperty().bind(Bindings.size(tableGroup.getItems()).multiply(tableGroup.getFixedCellSize()).add(30));
         initTable();
-
+        actionController.setAction(a);
 
         if (readOnly) {
             setReadOnly(mainPane);
