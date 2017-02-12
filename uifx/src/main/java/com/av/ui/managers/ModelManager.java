@@ -42,10 +42,6 @@ public class ModelManager extends AbstractDataManager<Model> {
     @Autowired
     private ModelTableViewController modelTableViewController;
 
-    public void setTableselectionModel(TableSelectionModel tableselectionModel) {
-        this.tableSelectionModel = tableselectionModel;
-    }
-
     @Override
     public Model editItem(Model item) {
         modelManagerLogger.log(Level.INFO, "Edit:" + item);

@@ -12,16 +12,16 @@ import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.net.URL;
+import java.net.URLClassLoader;
+
 public class MainApp extends Application {
 
     public static void main(String[] args) {
 
         ApplicationContext context =
                 new ClassPathXmlApplicationContext("classpath*:repository-beans.xml");
-
         launch(args);
-
-
     }
 
     @Override
