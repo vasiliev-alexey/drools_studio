@@ -5,5 +5,5 @@ package com.av.ui.utils;
  */
 @FunctionalInterface
 public interface Command {
-    public void perform();
+    void perform();
 }
