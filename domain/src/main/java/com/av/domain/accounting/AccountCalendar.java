@@ -34,13 +34,15 @@ public class AccountCalendar {
         return idProperty().get();
     }
 
-    public LongProperty idProperty() {
-        if (id == null) id = new SimpleLongProperty(this, "id");
-        return id;
-    }
-
     public void setId(long id) {
         idProperty().set(id);
+    }
+
+    public LongProperty idProperty() {
+        if (id == null) {
+            id = new SimpleLongProperty(this, "id");
+        }
+        return id;
     }
 
     @Valid
@@ -69,7 +71,9 @@ public class AccountCalendar {
 
     public StringProperty codeProperty() {
 
-        if (code == null) code = new SimpleStringProperty(this, "code");
+        if (code == null) {
+            code = new SimpleStringProperty(this, "code");
+        }
         return code;
     }
 
@@ -85,7 +89,9 @@ public class AccountCalendar {
     }
 
     public StringProperty nameProperty() {
-        if (name == null) name = new SimpleStringProperty(this, "name");
+        if (name == null) {
+            name = new SimpleStringProperty(this, "name");
+        }
 
         return name;
     }

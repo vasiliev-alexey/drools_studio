@@ -52,6 +52,6 @@ public abstract class AbstractController implements Controller {
 
      public     void refresh() {
 
-     } ;
+     }
 
 }

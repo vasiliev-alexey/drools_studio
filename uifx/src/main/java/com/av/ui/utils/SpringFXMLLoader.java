@@ -18,7 +18,7 @@ public class SpringFXMLLoader {
 
     private static final ApplicationContext APPLICATION_CONTEXT =
             new ClassPathXmlApplicationContext("classpath*:main-config.xml");
-    private static Logger LOG = Logger.getLogger(SpringFXMLLoader.class);
+    private final static Logger LOG = Logger.getLogger(SpringFXMLLoader.class);
 
     public static Controller load(String url) {
         InputStream fxmlStream = null;
@@ -39,7 +39,7 @@ public class SpringFXMLLoader {
             return controller;
         } catch (IOException e) {
             LOG.error("Can't load resource", e);
-            throw new RuntimeException(e);
+            throw new LoadFXMLException(e);
         } finally {
             if (fxmlStream != null) {
                 try {

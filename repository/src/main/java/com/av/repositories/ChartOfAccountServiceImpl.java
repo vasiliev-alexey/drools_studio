@@ -8,12 +8,15 @@ import org.springframework.cache.annotation.Cacheable;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.util.logging.Logger;
 
 /**
  * Created by vasiliev-alexey on 21.01.17.
  */
 @Transactional
 public class ChartOfAccountServiceImpl implements ChartOfAccountService {
+    private final Logger logger = Logger.getLogger(ChartOfAccountServiceImpl.class.getName());
+
     @PersistenceContext
     private EntityManager emf;
 
@@ -60,10 +63,10 @@ public class ChartOfAccountServiceImpl implements ChartOfAccountService {
                 setParameter("s9", chartOfAccount.getSegment9()).
                 setParameter("s10", chartOfAccount.getSegment10());
         try {
-            chartOfAccount = (ChartOfAccount) query.getSingleResult();
+            return (ChartOfAccount) query.getSingleResult();
 
         } catch (NoResultException ex) {
-
+            logger.info("create new CAS");
             emf.persist(chartOfAccount );
         }
 
