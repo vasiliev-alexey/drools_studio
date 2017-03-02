@@ -10,11 +10,16 @@ import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.util.StringConverter;
 
 
 public class EditCell<S, T> extends TableCell<S, T> {
+
+
+    private boolean isCmb= false;
 
     /**
      * Convenience converter that does nothing (converts Strings to themselves and vice-versa...).
@@ -51,10 +56,18 @@ public class EditCell<S, T> extends TableCell<S, T> {
         setContentDisplay(ContentDisplay.TEXT_ONLY);
 
         textField.setOnAction(evt -> {
+
+
+
             commitEdit(this.converter.fromString(textField.getText()));
         });
         textField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+
             if (!isNowFocused) {
+                if(isCmb) {
+                    isCmb = false;
+                    return;
+                }
                commitEdit(this.converter.fromString(textField.getText()));
             }
         });
@@ -76,6 +89,9 @@ public class EditCell<S, T> extends TableCell<S, T> {
             } else if (event.getCode() == KeyCode.DOWN) {
                 getTableView().getSelectionModel().selectBelowCell();
                 event.consume();
+            } else  if(event.isControlDown() || event.getCode() == KeyCode.SHIFT) {
+                isCmb = true;
+                //event.consume();
             }
         });
     }
