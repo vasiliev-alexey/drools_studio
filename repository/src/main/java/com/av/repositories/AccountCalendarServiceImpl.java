@@ -4,6 +4,8 @@ import com.av.data.services.AccountCalendarService;
 import com.av.domain.accounting.AccountCalendar;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,6 +23,7 @@ public class AccountCalendarServiceImpl implements AccountCalendarService {
     private EntityManager emf;
 
     @Override
+    @CacheEvict(cacheNames = "accountSettings"  , allEntries = true)
     public AccountCalendar save(AccountCalendar data) {
 
         if (data.getId() == 0) {
@@ -33,6 +36,7 @@ public class AccountCalendarServiceImpl implements AccountCalendarService {
     }
 
     @Override
+    @Cacheable(cacheNames = "accountSettings")
     public ObservableList<AccountCalendar> getAll() {
         CriteriaBuilder cb = emf.getCriteriaBuilder();
         CriteriaQuery<AccountCalendar> cq = cb.createQuery(AccountCalendar.class);
@@ -43,6 +47,8 @@ public class AccountCalendarServiceImpl implements AccountCalendarService {
     }
 
     @Override
+
+    @CacheEvict (cacheNames = "accountSettings"  , allEntries = true)
     public void remove(AccountCalendar data) {
         emf.remove(data);
 

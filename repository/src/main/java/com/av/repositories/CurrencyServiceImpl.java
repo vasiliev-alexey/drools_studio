@@ -4,6 +4,8 @@ import com.av.data.services.CurrencyService;
 import com.av.domain.accounting.Currency;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -24,6 +26,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     private EntityManager emf;
 
     @Override
+    @CacheEvict(cacheNames = "currency" )
     public Currency save(Currency currency) {
         if (currency.getId() == 0) {
             emf.persist(currency);
@@ -35,6 +38,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     @Transactional(readOnly = true)
+    @Cacheable(cacheNames = "currency")
     public ObservableList<Currency> getAll() {
         CriteriaBuilder cb = emf.getCriteriaBuilder();
         CriteriaQuery<Currency> cq = cb.createQuery(Currency.class);
@@ -45,6 +49,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
+    @CacheEvict (cacheNames = "currency"  , allEntries = true)
     public void remove(Currency currency) {
         emf.remove(currency);
     }

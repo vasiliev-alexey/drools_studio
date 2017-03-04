@@ -3,6 +3,7 @@ package com.av.repositories;
 import com.av.data.services.EventService;
 import com.av.domain.accounting.Event;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +13,6 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.List;
 
 /**
  * Created by vasiliev-alexey on 20.12.16.
@@ -37,7 +37,12 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> findAll() {
+    public void remove(Event entity) {
+        emf.remove(entity);
+    }
+
+    @Override
+    public ObservableList<Event> getAll() {
         CriteriaBuilder cb = emf.getCriteriaBuilder();
         CriteriaQuery<Event> cq = cb.createQuery(Event.class);
         Root<Event> rootEntry = cq.from(Event.class);

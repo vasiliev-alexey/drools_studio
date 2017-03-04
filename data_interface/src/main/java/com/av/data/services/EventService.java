@@ -7,10 +7,7 @@ import java.util.List;
 /**
  * Created by vasiliev-alexey on 20.12.16.
  */
-public interface EventService {
+public interface EventService extends AbstractEntityService<Event>{
 
-    Event save(Event event);
-
-    List<Event> findAll();
 
 }

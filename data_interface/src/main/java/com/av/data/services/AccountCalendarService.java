@@ -1,7 +1,6 @@
 package com.av.data.services;
 
 import com.av.domain.accounting.AccountCalendar;
-import com.av.domain.accounting.AccountPeriod;
 import javafx.collections.ObservableList;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -14,17 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional(propagation = Propagation.REQUIRED)
+public interface AccountCalendarService extends AbstractEntityService<AccountCalendar> {
 
-public interface AccountCalendarService {
-    @CacheEvict(cacheNames = "accountSettings"  , allEntries = true)
-    AccountCalendar save(AccountCalendar model);
-
-
-    @Cacheable(cacheNames = "accountSettings")
-    ObservableList<AccountCalendar> getAll();
-
-
-
-    @CacheEvict (cacheNames = "accountSettings"  , allEntries = true)
-    void remove(AccountCalendar model);
 }

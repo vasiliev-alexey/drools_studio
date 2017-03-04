@@ -4,6 +4,8 @@ import com.av.data.services.ChartOfAccountStructureService;
 import com.av.domain.accounting.ChartOfAccountStructure;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -22,6 +24,7 @@ public class ChartOfAccountStructureServiceImpl implements ChartOfAccountStructu
     private EntityManager emf;
 
     @Override
+    @CacheEvict(cacheNames = "chartOfAccountStructure"  )
     public ChartOfAccountStructure save(ChartOfAccountStructure chartOfAccountStructure) {
         if (chartOfAccountStructure.getId() == 0) {
             emf.persist(chartOfAccountStructure);
@@ -33,6 +36,7 @@ public class ChartOfAccountStructureServiceImpl implements ChartOfAccountStructu
 
     @Override
     @Transactional(readOnly = true)
+    @Cacheable(cacheNames = "chartOfAccountStructure")
     public ObservableList<ChartOfAccountStructure> getAll() {
         CriteriaBuilder cb = emf.getCriteriaBuilder();
         CriteriaQuery<ChartOfAccountStructure> cq = cb.createQuery(ChartOfAccountStructure.class);
@@ -44,12 +48,7 @@ public class ChartOfAccountStructureServiceImpl implements ChartOfAccountStructu
     }
 
     @Override
-    public ChartOfAccountStructure refresh(ChartOfAccountStructure data) {
-        data = emf.find(ChartOfAccountStructure.class, data.getId());
-        return data;
-    }
-
-    @Override
+    @CacheEvict (cacheNames = "chartOfAccountStructure"  , allEntries = true)
     public void remove(ChartOfAccountStructure chartOfAccountStructure) {
         emf.remove(chartOfAccountStructure);
     }

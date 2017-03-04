@@ -8,17 +8,7 @@ import org.springframework.cache.annotation.Cacheable;
 /**
  * Created by vasiliev-alexey on 21.01.17.
  */
-public interface CurrencyService {
-
-    @CacheEvict(cacheNames = "currency"  , allEntries = true)
-    Currency save(Currency currency);
+public interface CurrencyService extends AbstractEntityService<Currency> {
 
 
-    @Cacheable(cacheNames = "currency")
-    ObservableList<Currency> getAll();
-
-
-
-    @CacheEvict (cacheNames = "currency"  , allEntries = true)
-    void remove(Currency currency);
 }
