@@ -22,39 +22,12 @@ import javax.persistence.criteria.Root;
 
 @Repository
 @Transactional(propagation = Propagation.REQUIRED)
-public class ModelServiceImpl implements ModelService {
+public class ModelServiceImpl extends AbstracrService<Model> implements ModelService  {
 
     @PersistenceContext
     private EntityManager emf;
 
-    @Override
 
-
-    public Model save(Model model) {
-
-
-        if (model.getId() == 0) {
-            emf.persist(model);
-        } else {
-            emf.merge(model);
-        }
-        return model;
-
-
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public ObservableList<Model> getAll() {
-
-        CriteriaBuilder cb = emf.getCriteriaBuilder();
-        CriteriaQuery<Model> cq = cb.createQuery(Model.class);
-        Root<Model> rootEntry = cq.from(Model.class);
-        CriteriaQuery<Model> all = cq.select(rootEntry);
-        TypedQuery<Model> allQuery = emf.createQuery(all);
-        return FXCollections.observableArrayList(allQuery.getResultList());
-
-    }
 
     @Override
     public void remove(Model model) {

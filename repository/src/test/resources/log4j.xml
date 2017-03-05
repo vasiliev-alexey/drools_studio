@@ -11,7 +11,7 @@
     </appender>
 
     <root>
-        <level value="Error"/>
+        <level value="All"/>
         <appender-ref ref="console"/>
     </root>
 

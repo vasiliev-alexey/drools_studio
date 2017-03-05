@@ -70,7 +70,7 @@ public class TestDaoModel extends AbstractTestDao {
         m.setCode("XXX");
         m.setModelName("XXX");
         m.setPackageName("XXX");
-        service.save(m);
+        m =service.save(m);
         assertTrue ( "model not saved", m.getId() > 0  );
         service.remove(m);
 

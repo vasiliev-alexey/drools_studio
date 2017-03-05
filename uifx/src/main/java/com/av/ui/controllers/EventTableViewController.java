@@ -63,7 +63,7 @@ public class EventTableViewController extends AbstractController implements Init
             return data.getValue().modelProperty().getValue().codeProperty();
         });
 
-        events = FXCollections.observableArrayList(eventService.findAll());
+        events = FXCollections.observableArrayList(eventService.getAll());
         tableModels.setItems(events);
         tableModels.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 

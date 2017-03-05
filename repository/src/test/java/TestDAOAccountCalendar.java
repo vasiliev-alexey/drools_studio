@@ -53,7 +53,7 @@ public class TestDAOAccountCalendar extends AbstractTestDao {
 
 
 
-        service.save(accountCalendar);
+        accountCalendar= service.save(accountCalendar);
         Assert.assertNotNull("Объект долженг быть сохранен", accountCalendar.getId());
 
     }
