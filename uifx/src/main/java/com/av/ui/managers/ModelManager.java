@@ -11,7 +11,6 @@ import com.av.ui.utils.SpringFXMLLoader;
 import com.av.validators.ModelBeanValidationServiceImpl;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.control.TableSelectionModel;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -51,7 +50,7 @@ public class ModelManager extends AbstractDataManager<Model> {
 
         DialogBuilder dialogStage = new DialogBuilder()
                 .setPane(view)
-                .setModelity(Modality.APPLICATION_MODAL)
+                .setModality(Modality.APPLICATION_MODAL)
                 .setTitle("Редактирование модели")
 
                  ;

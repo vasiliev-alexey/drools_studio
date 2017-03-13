@@ -6,26 +6,17 @@ package com.av.ui.treeitems;
  */
 
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.util.StringConverter;
 
-
 public class EditCell<S, T> extends TableCell<S, T> {
-
-
-    private boolean isCmb= false;
-
     /**
      * Convenience converter that does nothing (converts Strings to themselves and vice-versa...).
      */
     public static final StringConverter<String> IDENTITY_CONVERTER = new StringConverter<String>() {
-
         @Override
         public String toString(String object) {
             return object;
@@ -41,6 +32,7 @@ public class EditCell<S, T> extends TableCell<S, T> {
     private final TextField textField = new TextField();
     // Converter for converting the text in the text field to the user type, and vice-versa:
     private final StringConverter<T> converter;
+    private boolean isCmb = false;
 
     public EditCell(StringConverter<T> converter) {
         this.converter = converter;
@@ -56,19 +48,16 @@ public class EditCell<S, T> extends TableCell<S, T> {
         setContentDisplay(ContentDisplay.TEXT_ONLY);
 
         textField.setOnAction(evt -> {
-
-
-
             commitEdit(this.converter.fromString(textField.getText()));
         });
         textField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
 
             if (!isNowFocused) {
-                if(isCmb) {
+                if (isCmb) {
                     isCmb = false;
                     return;
                 }
-               commitEdit(this.converter.fromString(textField.getText()));
+                commitEdit(this.converter.fromString(textField.getText()));
             }
         });
 
@@ -89,7 +78,7 @@ public class EditCell<S, T> extends TableCell<S, T> {
             } else if (event.getCode() == KeyCode.DOWN) {
                 getTableView().getSelectionModel().selectBelowCell();
                 event.consume();
-            } else  if(event.isControlDown() || event.getCode() == KeyCode.SHIFT) {
+            } else if (event.isControlDown() || event.getCode() == KeyCode.SHIFT) {
                 isCmb = true;
                 //event.consume();
             }
@@ -104,7 +93,6 @@ public class EditCell<S, T> extends TableCell<S, T> {
     public static <S> EditCell<S, String> createStringEditCell() {
         return new EditCell<S, String>(IDENTITY_CONVERTER);
     }
-
 
     // set the text of the text field and display the graphic
     @Override

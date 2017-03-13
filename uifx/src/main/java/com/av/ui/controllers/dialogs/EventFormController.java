@@ -8,8 +8,11 @@ import com.av.domain.accounting.Event;
 import com.av.domain.accounting.EventRule;
 import com.av.domain.settings.Model;
 import com.av.ui.controllers.AbstractController;
+import com.av.ui.controllers.Controller;
 import com.av.ui.treeitems.EditCell;
 import com.av.ui.utils.Command;
+import com.av.ui.utils.DialogBuilder;
+import com.av.ui.utils.SpringFXMLLoader;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,11 +20,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -30,6 +32,9 @@ import java.util.List;
  * Created by vasiliev-alexey on 24.01.17.
  */
 public class EventFormController extends AbstractController {
+
+
+    private final static Logger LOG = Logger.getLogger(EventFormController.class);
 
     @FXML
     public VBox rulesMainBox;
@@ -75,6 +80,11 @@ public class EventFormController extends AbstractController {
     private ChartOfAccountStructureService chartOfAccountStructureService;
     @Autowired
     private EventService eventService;
+    @Autowired
+    private ActionController actionController;
+    @Autowired
+    private ConditionDialogController conditionDialogController;
+
     private Command close;
 
     public void setDependencyValue(Event item, boolean readOnly , Command close) {
@@ -180,6 +190,8 @@ public class EventFormController extends AbstractController {
 
         btnCondition.disableProperty().bind(Bindings.isEmpty( eventRulesTable.getSelectionModel().getSelectedItems()));
 
+
+
     }
 
     public void handleOk(ActionEvent actionEvent) {
@@ -190,5 +202,19 @@ public class EventFormController extends AbstractController {
 
     public void handleCancel(ActionEvent actionEvent) {
         close.perform();
+    }
+
+    public void showConditionDialog(ActionEvent actionEvent) {
+
+        DialogBuilder dialogBuilder = new DialogBuilder();
+
+        EventRule eventRule = (EventRule)eventRulesTable.getSelectionModel().getSelectedItem();
+
+        dialogBuilder.setPane((Pane)SpringFXMLLoader.load("/fxml/dialogs/ConditionDialog.fxml").getView());
+        dialogBuilder.setTitle("Настройка условий  для строки события");
+        Stage  dialog = dialogBuilder.get();
+        conditionDialogController.setEventRule(dialog , eventRule);
+        dialogBuilder.showAndWait();
+
     }
 }

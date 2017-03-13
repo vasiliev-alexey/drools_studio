@@ -28,7 +28,7 @@ public class DialogBuilder {
     }
 
 
-    public DialogBuilder setModelity(Modality modality) {
+    public DialogBuilder setModality(Modality modality) {
         dialog.initModality(modality);
         return this;
     }
