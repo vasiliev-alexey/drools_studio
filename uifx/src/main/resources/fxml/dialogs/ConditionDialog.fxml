@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,8 +9,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.dialogs.ConditionDialogController">
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.geometry.Insets?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.dialogs.ConditionDialogController">
     <children>
         <GridPane layoutX="5.0" layoutY="-10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="-10.0">
             <columnConstraints>
@@ -28,22 +32,50 @@
                     <Button mnemonicParsing="false" onAction="#handleCancel" prefWidth="80.0" text="Отмена" />
                 </children>
             </HBox>
-            <TableView prefHeight="293.0" prefWidth="604.0" GridPane.rowIndex="1">
-              <columns>
-                <TableColumn fx:id="priorColumn" prefWidth="75.0" text="№" />
-                <TableColumn fx:id="rightBracketColumn" prefWidth="50.0" text="(" />
-                  <TableColumn fx:id="typeOperatorColumn" prefWidth="120.0" text="Тип оператора" />
-                  <TableColumn prefWidth="576.0" text="C2" />
-              </columns>
-            </TableView>
-            <TableView layoutX="10.0" layoutY="135.0" prefHeight="293.0" prefWidth="604.0">
-               <columns>
-                  <TableColumn fx:id="priorColumn1" prefWidth="75.0" text="№" />
-                  <TableColumn fx:id="rightBracketColumn1" prefWidth="50.0" text="(" />
-                  <TableColumn prefWidth="576.0" text="C2" />
-                  <TableColumn prefWidth="576.0" text="C2" />
-               </columns>
-            </TableView>
+            <HBox GridPane.rowIndex="1">
+               <children>
+                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="7.0" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                       <children>
+                           <Button fx:id="addLineBtn" mnemonicParsing="false" onAction="#addLineCondition" style="-fx-graphic: url('/icons/add_16x16.png');">
+                               <tooltip>
+                                   <Tooltip text="Добавить" />
+                               </tooltip>
+                           </Button>
+                           <!--Button fx:id="editGroupBtn" mnemonicParsing="false"
+                                   style="-fx-graphic: url('/icons/edit_16x16.png');">
+                               <tooltip>
+                                   <Tooltip text="Редактировать"/>
+                               </tooltip>
+                           </Button-->
+                           <Button fx:id="delLineBtn" lineSpacing="10.0" mnemonicParsing="false" onAction="#delLineCondition" style="-fx-graphic: url('/icons/del_16x16.png');">
+                               <tooltip>
+                                   <Tooltip text="Удалить" />
+                               </tooltip>
+                           </Button>
+                       </children>
+                       <padding>
+                           <Insets top="30.0" />
+                       </padding>
+                   </VBox>
+                  <ScrollPane vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
+                     <content>
+                        <TableView fx:id="lineTable" prefHeight="305.0" prefWidth="1129.0"  >
+                          <columns>
+                            <TableColumn fx:id="priorColumn" prefWidth="75.0" text="№" />
+                            <TableColumn fx:id="leftBracketColumn" prefWidth="50.0" text="(" />
+                              <TableColumn fx:id="leftTypeOperatorColumn" prefWidth="120.0" text="Тип оператора" />
+                              <TableColumn fx:id="leftOperatorValue" prefWidth="200.0" text="Значение оператора" />
+                              <TableColumn fx:id="operandColumn" prefWidth="200.0" text="Операнд" />
+                              <TableColumn fx:id="leftTypeOperator" prefWidth="134.0" text="Тип оператора" />
+                              <TableColumn fx:id="leftValueOperator" prefWidth="134.0" text="Значение" />
+                              <TableColumn fx:id="rightBracketColumn" prefWidth="34.0" text=")" />
+                              <TableColumn fx:id="logicOperator" prefWidth="71.0" text="И / ИЛИ" />
+                          </columns>
+                        </TableView>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
          </children>
         </GridPane>
 

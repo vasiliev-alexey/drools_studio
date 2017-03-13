@@ -21,6 +21,7 @@ public class EventRule {
     private BooleanProperty enabledFlag;
     private ObjectProperty<Event> event;
 
+
     @Id
     @GeneratedValue
     @Column(name = "id")

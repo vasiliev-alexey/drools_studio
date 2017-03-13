@@ -1,5 +1,7 @@
 import com.av.data.services.ConditionService;
+import com.av.data.services.EventService;
 import com.av.data.services.ModelService;
+import com.av.domain.accounting.EventRule;
 import com.av.domain.settings.*;
 
 import org.joda.time.DateTimeUtils;
@@ -23,6 +25,30 @@ public class TestDAOCondition extends AbstractTestDao {
     @Autowired
     private ModelService modelService;
 
+    @Autowired
+    private EventService eventService;
+
+    private long rndValue = System.nanoTime();
+
+
+    @Test
+    public  void conditionShouldBeSave() {
+
+        Condition condition = new Condition();
+        condition.setCode("code_" + rndValue);
+        condition.setConditionName("name_" + rndValue);
+
+        //EventRule eventRule = eventService.getAll().get(0).getEventRules().get(0);
+
+        conditionService.save(condition);
+
+        Assert.assertTrue("Условие долэно быть сохранено" , condition.getId() > 0);
+
+
+
+    }
+
+    /*
     @Test
     public void ConstantConditionShouldBeSave() {
 
@@ -80,7 +106,7 @@ public class TestDAOCondition extends AbstractTestDao {
         Assert.assertNotNull("Объект атрибута должен быть сохранен", documentAttribute.getId());
 
     }
-
+*/
 
 
 }

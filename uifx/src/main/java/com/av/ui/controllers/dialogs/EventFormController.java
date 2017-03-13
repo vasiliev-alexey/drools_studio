@@ -212,6 +212,7 @@ public class EventFormController extends AbstractController {
 
         dialogBuilder.setPane((Pane)SpringFXMLLoader.load("/fxml/dialogs/ConditionDialog.fxml").getView());
         dialogBuilder.setTitle("Настройка условий  для строки события");
+        dialogBuilder.setWidth(1024d);
         Stage  dialog = dialogBuilder.get();
         conditionDialogController.setEventRule(dialog , eventRule);
         dialogBuilder.showAndWait();
