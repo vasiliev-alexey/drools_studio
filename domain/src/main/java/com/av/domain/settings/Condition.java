@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by alexey on 13.03.17.
@@ -17,6 +18,7 @@ public class Condition {
     private LongProperty id;
     private StringProperty code;
     private StringProperty name;
+    private List<ConditionLine> conditionLines;
 
 
     @Id
@@ -66,4 +68,13 @@ public class Condition {
     }
 
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL }  , orphanRemoval = true
+            , mappedBy = "condition")
+    public List<ConditionLine> getConditionLines() {
+        return conditionLines;
+    }
+
+    public void setConditionLines(List<ConditionLine> conditionLines) {
+        this.conditionLines = conditionLines;
+    }
 }
