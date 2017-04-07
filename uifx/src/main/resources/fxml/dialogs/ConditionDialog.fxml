@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,8 +13,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Tooltip?>
-<?import javafx.geometry.Insets?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.av.ui.controllers.dialogs.ConditionDialogController">
     <children>
         <GridPane layoutX="5.0" layoutY="-10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="-10.0">
@@ -59,7 +59,7 @@
                    </VBox>
                   <ScrollPane vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
                      <content>
-                        <TableView fx:id="lineTable" prefHeight="305.0" prefWidth="1129.0"  >
+                        <TableView fx:id="lineTable" editable="true" prefHeight="305.0" prefWidth="1129.0">
                           <columns>
                             <TableColumn fx:id="priorColumn" prefWidth="75.0" text="№" />
                             <TableColumn fx:id="leftBracketColumn" prefWidth="50.0" text="(" />

@@ -1,9 +1,6 @@
 package com.av.domain.settings;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.*;
 
 import javax.persistence.*;
 
@@ -15,9 +12,13 @@ import javax.persistence.*;
 @Access(AccessType.PROPERTY)
 public class ConditionLine {
 
-    private  LongProperty id;
+    private LongProperty id;
     private Condition condition;
     private IntegerProperty userSeq;
+
+    private StringProperty leftBracket;
+    private StringProperty rightBracket;
+    private ObjectProperty <LogicOperatorType> logicOperatorType;
 
     @Id
     @Column(name = "condition_line_id")
@@ -51,12 +52,56 @@ public class ConditionLine {
         return userSeqProperty().get();
     }
 
+    public void setUserSeq(int userSeq) {
+        userSeqProperty().set(userSeq);
+    }
+
     public IntegerProperty userSeqProperty() {
-        if(userSeq == null) userSeq = new SimpleIntegerProperty(this, "userSeq");
+        if (userSeq == null) userSeq = new SimpleIntegerProperty(this, "userSeq");
         return userSeq;
     }
 
-    public void setUserSeq(int userSeq) {
-         userSeqProperty().set(userSeq);
+    @Column(name = "bracket_left_code")
+    public String getLeftBracket() {
+        return leftBracketProperty().get();
+    }
+
+    public StringProperty leftBracketProperty() {
+        if(leftBracket == null) leftBracket = new SimpleStringProperty(this , "leftBracket");
+        return leftBracket;
+    }
+
+    public void setLeftBracket(String leftBracket) {
+        leftBracketProperty().set(leftBracket);
+    }
+
+    @Column(name = "bracket_right_code")
+    public String getRightBracket() {
+        return rightBracketProperty().get();
+    }
+
+    public StringProperty rightBracketProperty() {
+        if(rightBracket == null) rightBracket = new SimpleStringProperty(this , "rightBracket");
+
+        return rightBracket;
+    }
+
+    public void setRightBracket(String rightBracket) {
+        rightBracketProperty().set(rightBracket);
+    }
+
+    @Column(name = "logic_operator")
+    @Enumerated(EnumType.STRING)
+    public LogicOperatorType getLogicOperatorType() {
+        return logicOperatorTypeProperty().get();
+    }
+
+    public ObjectProperty<LogicOperatorType> logicOperatorTypeProperty() {
+        if(logicOperatorType ==null) logicOperatorType = new SimpleObjectProperty<>(this , "logicOperatorType");
+        return logicOperatorType;
+    }
+
+    public void setLogicOperatorType(LogicOperatorType logicOperatorType) {
+        logicOperatorTypeProperty().set(logicOperatorType);
     }
 }

@@ -5,6 +5,7 @@ import com.av.domain.accounting.ChartOfAccountStructure;
 import com.av.domain.accounting.Event;
 
 import com.av.domain.accounting.EventRule;
+import com.av.domain.settings.Condition;
 import com.av.domain.settings.Model;
 import javafx.collections.FXCollections;
 import org.joda.time.DateTimeUtils;
@@ -103,5 +104,53 @@ public class TestEventDAO extends AbstractTestDao {
 
 
     }
+
+
+    @Test
+    public void EventWithConditionShouldBeSave() {
+
+
+        Event event = new Event();
+
+        Long l = DateTimeUtils.currentTimeMillis();
+
+        event.setName("name_" + l.toString());
+        event.setCode(l.toString());
+
+
+        Model model = modelService.getAll().stream().findAny().get();
+        event.setModel(model);
+        event.setEnabled(true);
+
+        event.setEventRules(FXCollections.observableArrayList());
+
+        EventRule rule1 = new EventRule();
+        rule1.setCode("rule_code_1_"+l);
+        rule1.setName("rule_name_1_"+l);
+        rule1.setEnabledFlag(true);
+
+        EventRule rule2 = new EventRule();
+        rule2.setCode("rule_code_2_"+l);
+        rule2.setName("rule_name_2_"+l);
+        rule2.setEnabledFlag(false);
+        event.getEventRules().add(rule1);
+        event.getEventRules().add(rule2);
+
+        event.getEventRules().forEach(e -> e.setEvent(event));
+
+        Condition condition = new Condition();
+        condition.setCode("condition_code_" + l);
+        condition.setCode("condition_name_" + l);
+
+        rule1.setCondition(condition);
+
+        service.save(event);
+
+
+        Assert.notNull(event.getId() , "Событие  с условием должно быть сохранено");
+
+
+    }
+
 
 }

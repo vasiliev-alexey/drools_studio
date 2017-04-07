@@ -1,5 +1,6 @@
 package com.av.domain.accounting;
 
+import com.av.domain.settings.Condition;
 import javafx.beans.property.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -20,6 +21,14 @@ public class EventRule {
     private StringProperty name;
     private BooleanProperty enabledFlag;
     private ObjectProperty<Event> event;
+
+
+    private ObjectProperty<Condition> condition;
+
+
+
+
+
 
 
     @Id
@@ -96,5 +105,20 @@ public class EventRule {
 
     public void setEnabledFlag(boolean enabledFlag) {
         enabledFlagProperty().set(enabledFlag);
+    }
+
+    @OneToOne (fetch = FetchType.EAGER , orphanRemoval = true , cascade = CascadeType.ALL)
+    @JoinColumn(name = "condition_id"  )
+    public Condition getCondition() {
+        return conditionProperty().get();
+    }
+
+    public ObjectProperty<Condition> conditionProperty() {
+       if(condition == null) condition = new SimpleObjectProperty<>(this , "condition");
+        return condition;
+    }
+
+    public void setCondition(Condition condition) {
+        conditionProperty().set(condition);
     }
 }
