@@ -1,12 +1,12 @@
 package com.av.domain.settings;
 
+import com.av.domain.settings.enums.GroupType;
 import javafx.beans.property.*;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

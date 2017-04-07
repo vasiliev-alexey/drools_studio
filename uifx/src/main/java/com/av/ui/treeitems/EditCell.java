@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 public class EditCell<S, T> extends TableCell<S, T> {
     /**
@@ -93,6 +94,11 @@ public class EditCell<S, T> extends TableCell<S, T> {
     public static <S> EditCell<S, String> createStringEditCell() {
         return new EditCell<S, String>(IDENTITY_CONVERTER);
     }
+
+    public static <S> EditCell<S, Number> createNumberEditCell() {
+        return new EditCell<S, Number>(new NumberStringConverter());
+    }
+
 
     // set the text of the text field and display the graphic
     @Override

@@ -1,5 +1,7 @@
 package com.av.domain.settings;
 
+import com.av.domain.settings.enums.LogicOperatorType;
+import com.av.domain.settings.enums.OperandType;
 import javafx.beans.property.*;
 
 import javax.persistence.*;
@@ -19,6 +21,7 @@ public class ConditionLine {
     private StringProperty leftBracket;
     private StringProperty rightBracket;
     private ObjectProperty <LogicOperatorType> logicOperatorType;
+    private ObjectProperty <OperandType> operandType;
 
     @Id
     @Column(name = "condition_line_id")
@@ -52,7 +55,8 @@ public class ConditionLine {
         return userSeqProperty().get();
     }
 
-    public void setUserSeq(int userSeq) {
+    public void setUserSeq(Integer userSeq) {
+        if(userSeq!=null)
         userSeqProperty().set(userSeq);
     }
 
@@ -103,5 +107,20 @@ public class ConditionLine {
 
     public void setLogicOperatorType(LogicOperatorType logicOperatorType) {
         logicOperatorTypeProperty().set(logicOperatorType);
+    }
+
+    @Column(name = "operand")
+    @Enumerated(EnumType.STRING)
+    public OperandType getOperandType() {
+        return  operandTypeProperty().get();
+    }
+
+    public ObjectProperty<OperandType> operandTypeProperty() {
+        if(operandType ==null) operandType = new SimpleObjectProperty<>(this , "operandType");
+        return operandType;
+    }
+
+    public void setOperandType(OperandType operandType) {
+        operandTypeProperty().set(operandType);
     }
 }

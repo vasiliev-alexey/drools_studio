@@ -1,5 +1,7 @@
 package com.av.domain.settings;
 
+import com.av.domain.settings.enums.ConditionType;
+
 import javax.persistence.*;
 
 /**

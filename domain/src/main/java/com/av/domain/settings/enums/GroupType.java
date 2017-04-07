@@ -1,4 +1,4 @@
-package com.av.domain.settings;
+package com.av.domain.settings.enums;
 
 /**
  * Created by Vasiliev.Alexey on 29.11.16.

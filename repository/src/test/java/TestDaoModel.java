@@ -1,6 +1,8 @@
 import com.av.data.services.ModelService;
 
 import com.av.domain.settings.*;
+import com.av.domain.settings.enums.GroupType;
+import com.av.domain.settings.enums.StandardValueType;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

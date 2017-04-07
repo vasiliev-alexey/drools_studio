@@ -1,11 +1,11 @@
 package com.av.domain.settings;
 
+import com.av.domain.settings.enums.StandardValueType;
 import javafx.beans.property.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 /**
  * Created by Vasiliev.Alexey on 22.11.16.

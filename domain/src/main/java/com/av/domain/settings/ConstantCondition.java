@@ -1,5 +1,7 @@
 package com.av.domain.settings;
 
+import com.av.domain.settings.enums.ConditionType;
+import com.av.domain.settings.enums.StandardValueType;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 

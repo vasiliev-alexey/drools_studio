@@ -1,6 +1,8 @@
 package com.av.ui.controllers.dialogs;
 
 import com.av.domain.settings.*;
+import com.av.domain.settings.enums.GroupType;
+import com.av.domain.settings.enums.StandardValueType;
 import com.av.ui.controllers.AbstractController;
 import com.av.ui.treeitems.EditCell;
 import com.av.ui.utils.Command;

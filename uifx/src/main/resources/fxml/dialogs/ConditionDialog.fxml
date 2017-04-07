@@ -63,11 +63,11 @@
                           <columns>
                             <TableColumn fx:id="priorColumn" prefWidth="75.0" text="№" />
                             <TableColumn fx:id="leftBracketColumn" prefWidth="50.0" text="(" />
-                              <TableColumn fx:id="leftTypeOperatorColumn" prefWidth="120.0" text="Тип оператора" />
+                              <TableColumn fx:id="leftTypeOperator" prefWidth="120.0" text="Тип оператора" />
                               <TableColumn fx:id="leftOperatorValue" prefWidth="200.0" text="Значение оператора" />
                               <TableColumn fx:id="operandColumn" prefWidth="200.0" text="Операнд" />
-                              <TableColumn fx:id="leftTypeOperator" prefWidth="134.0" text="Тип оператора" />
-                              <TableColumn fx:id="leftValueOperator" prefWidth="134.0" text="Значение" />
+                              <TableColumn fx:id="rightTypeOperator" prefWidth="134.0" text="Тип оператора" />
+                              <TableColumn fx:id="rightOperatorValue" prefWidth="134.0" text="Значение" />
                               <TableColumn fx:id="rightBracketColumn" prefWidth="34.0" text=")" />
                               <TableColumn fx:id="logicOperator" prefWidth="71.0" text="И / ИЛИ" />
                           </columns>
